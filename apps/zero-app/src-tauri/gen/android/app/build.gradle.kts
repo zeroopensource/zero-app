@@ -1,5 +1,4 @@
 import java.util.Properties
-import java.io.FileInputStream
 
 plugins {
     id("com.android.application")
@@ -16,28 +15,14 @@ val tauriProperties = Properties().apply {
 
 android {
     compileSdk = 34
-    namespace = "com.zerocompany.app"
+    namespace = "com.zeroopensource.app"
     defaultConfig {
         manifestPlaceholders["usesCleartextTraffic"] = "false"
-        applicationId = "com.zerocompany.app"
+        applicationId = "com.zeroopensource.app"
         minSdk = 24
         targetSdk = 34
         versionCode = tauriProperties.getProperty("tauri.android.versionCode", "1").toInt()
         versionName = tauriProperties.getProperty("tauri.android.versionName", "1.0")
-    }
-    signingConfigs {
-      create("release") {
-          val keystorePropertiesFile = rootProject.file("keystore.properties")
-          val keystoreProperties = Properties()
-          if (keystorePropertiesFile.exists()) {
-              keystoreProperties.load(FileInputStream(keystorePropertiesFile))
-          }
-
-          keyAlias = keystoreProperties["keyAlias"] as String
-          keyPassword = keystoreProperties["keyPassword"] as String
-          storeFile = file(keystoreProperties["storeFile"] as String)
-          storePassword = keystoreProperties["storePassword"] as String
-      }
     }
     buildTypes {
         getByName("debug") {
@@ -52,7 +37,6 @@ android {
             }
         }
         getByName("release") {
-            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             proguardFiles(
                 *fileTree(".") { include("**/*.pro") }

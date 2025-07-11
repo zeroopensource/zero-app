@@ -1,8 +1,8 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "productName": "zero-app",
-  "version": "0.0.2",
-  "identifier": "com.zerocompany.app",
+  "version": "0.0.1",
+  "identifier": "com.zeroopensource.app",
   "build": {
     "frontendDist": "../out",
     "devUrl": "http://localhost:3000",
