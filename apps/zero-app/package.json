@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "dev:tauri": "tauri dev",
+    "build:tauri": "tauri android build --aab",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
