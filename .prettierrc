@@ -1,0 +1,11 @@
+{
+  "_references": [
+    "zero-community/zero-config/prettier-v1",
+    "https://github.com/zero-company/zero-community"
+  ],
+  "arrowParens": "avoid",
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": true,
+  "jsxSingleQuote": true
+}
