@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "productName": "zero-app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "identifier": "org.zeroopensource.app",
   "build": {
     "frontendDist": "../out",
@@ -33,6 +33,9 @@
       "icons/128x128@2x.png",
       "icons/icon.icns",
       "icons/icon.ico"
-    ]
+    ],
+    "android": {
+      "minSdkVersion": 28
+    }
   }
 }
