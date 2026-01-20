@@ -12,7 +12,7 @@ const nextConfig = {
     unoptimized: true,
   },
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
-  assetPrefix: isProd ? null : `http://${internalHost}:3000`,
+  assetPrefix: isProd ? null : `http://${internalHost}:3002`,
 }
 
 const withMDX = createMDX({
