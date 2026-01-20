@@ -1,25 +1,25 @@
-import createMDX from '@next/mdx'
-import remarkGfm from 'remark-gfm'
+import createMDX from "@next/mdx";
+import remarkGfm from "remark-gfm";
 
-const isProd = process.env.NODE_ENV === 'production'
+const isProd = process.env.NODE_ENV === "production";
 
-const internalHost = process.env.TAURI_DEV_HOST || 'localhost'
+const internalHost = process.env.TAURI_DEV_HOST || "localhost";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  output: "export",
   images: {
     unoptimized: true,
   },
-  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
-  assetPrefix: isProd ? null : `http://${internalHost}:3002`,
-}
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  assetPrefix: isProd ? null : `http://${internalHost}:3000`,
+};
 
 const withMDX = createMDX({
   options: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [],
   },
-})
+});
 
-export default withMDX(nextConfig)
+export default withMDX(nextConfig);
