@@ -1,6 +1,6 @@
 {
-  "name": "web",
-  "version": "0.1.0",
+  "name": "zero-app-2",
+  "version": "0.0.3",
   "private": true,
   "scripts": {
     "dev": "next dev --port 3001",
@@ -13,7 +13,6 @@
   "dependencies": {
     "@base-ui/react": "^1.0.0",
     "@tanstack/react-form": "^1.27.3",
-    "@zero-app-1/env": "workspace:*",
     "babel-plugin-react-compiler": "^1.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -35,7 +34,6 @@
     "@types/node": "^20",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "@zero-app-1/config": "workspace:*",
     "tailwindcss": "^4.1.10",
     "typescript": "catalog:"
   }

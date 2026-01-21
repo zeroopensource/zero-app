@@ -1,4 +1,4 @@
-import "@zero-app-1/env/web";
+// import "@zero-app-1/env/web";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
