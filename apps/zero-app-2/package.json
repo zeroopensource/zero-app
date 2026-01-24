@@ -1,5 +1,7 @@
 {
   "name": "zero-app-2",
+  "displayName": "Zero V2",
+  "description": "Version 2 of the Zero App",
   "version": "0.0.3",
   "private": true,
   "scripts": {
