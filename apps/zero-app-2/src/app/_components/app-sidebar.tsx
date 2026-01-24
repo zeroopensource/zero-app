@@ -160,7 +160,8 @@ const data = {
 - account switch, auth
 - search
 - quick actions
-- about zero, requests, socials, join community, support zero, Create issue ticket
+- about zero, requests, socials, join community, support zero, support ticket
+- ai chat assistant
 - © Zero. All Rights Reserved. - at the end of scrollable sidebar above footer, subtle faded text color
 */
 
