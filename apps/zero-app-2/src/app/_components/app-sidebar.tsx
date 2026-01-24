@@ -163,6 +163,7 @@ const data = {
 - about zero, requests, socials, join community, support zero, support ticket
 - ai chat assistant
 - © Zero. All Rights Reserved. - at the end of scrollable sidebar above footer, subtle faded text color
+- collapsible menus, tap to expand, or tap and drag to immedietely select menu item
 */
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
