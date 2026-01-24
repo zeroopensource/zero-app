@@ -73,7 +73,7 @@ export const AppSidebarHeader = () => {
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <Sparkles />
-                Upgrade to Pro
+                Apps
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
