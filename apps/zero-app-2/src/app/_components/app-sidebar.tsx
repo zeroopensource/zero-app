@@ -154,6 +154,16 @@ const data = {
   ],
 };
 
+/*
+- zero logo
+- app switch
+- account switch, auth
+- search
+- quick actions
+- about zero, requests, socials, join community, support zero, Create issue ticket
+- © Zero. All Rights Reserved. - at the end of scrollable sidebar above footer, subtle faded text color
+*/
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar variant="floating" {...props}>
