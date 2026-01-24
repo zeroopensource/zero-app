@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "tauri": "tauri",
-    "desktop:dev": "tauri dev",
-    "desktop:build": "tauri build",
+    "dev:desktop": "tauri dev",
+    "build:desktop": "tauri build",
     "shadcn": "shadcn",
     "shadcn:add": "shadcn add",
     "shadcn:addzero": "pnpm shadcn add https://zerocn.zeroopensource.org/r/all.json -y -o"
