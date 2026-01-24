@@ -155,8 +155,7 @@ const data = {
 };
 
 /*
-- zero logo
-- app switch
+- zero logo with caret down icon to open app switcher
 - account switch, auth
 - search
 - quick actions
