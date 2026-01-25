@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../index.css";
+import type { CSSProperties } from "react";
 import Header from "@/components/header";
 import Providers from "@/components/providers";
 import {
@@ -41,7 +42,7 @@ export default function RootLayout({
             style={
               {
                 "--sidebar-width": "16rem",
-              } as React.CSSProperties
+              } as CSSProperties
             }
           >
             <AppSidebar />
