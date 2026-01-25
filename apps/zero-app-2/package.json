@@ -12,7 +12,6 @@
     "dev:desktop": "tauri dev",
     "build:desktop": "tauri build",
     "shadcn": "shadcn",
-    "shadcn:add": "shadcn add",
     "shadcn:addzero": "pnpm shadcn add https://zerocn.zeroopensource.org/r/all.json -y -o"
   },
   "dependencies": {
