@@ -42,21 +42,6 @@ export type ZeroSchemaPrimitives = z.infer<typeof ZeroSchemaPrimitives>;
 
 export const ZeroSchema = z.object({
   ...ZeroSchemaPrimitives.shape,
-  /** variations: envApi, envNext */
-  envApi: ZeroSchemaPrimitives.pick({
-    NODE_ENV: true,
-    PORT: true,
-    LOG_LEVEL: true,
-    DATABASE_URL: true,
-    DATABASE_AUTH_TOKEN: true,
-    BETTER_AUTH_URL: true,
-    BETTER_AUTH_SECRET: true,
-  }),
-  /** variations: envApi, envNext */
-  envNext: ZeroSchemaPrimitives.pick({
-    NODE_ENV: true,
-    PORT: true,
-  }),
   /**
   googleCalendarEvent ref: 
   https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/gapi.calendar
