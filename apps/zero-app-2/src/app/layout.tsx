@@ -4,11 +4,7 @@ import "../index.css";
 import type { CSSProperties } from "react";
 import Header from "@/components/header";
 import Providers from "@/components/providers";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { PACKAGEJSON } from "@/lib/packagejson";
 import { AppSidebar } from "./_components/app-sidebar";
 
@@ -49,7 +45,6 @@ export default function RootLayout({
             <SidebarInset>
               <div className="grid h-svh grid-rows-[auto_1fr]">
                 <Header />
-                <SidebarTrigger className="-ml-1" />
                 {children}
               </div>
             </SidebarInset>
