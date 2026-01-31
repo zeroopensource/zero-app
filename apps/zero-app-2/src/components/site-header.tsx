@@ -14,6 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useSidebar } from "@/components/ui/sidebar";
+import { ZeroLogoV1 } from "./zero-logo-v1";
 
 export function SiteHeader() {
   const { toggleSidebar } = useSidebar();
@@ -29,12 +30,12 @@ export function SiteHeader() {
         >
           <SidebarIcon />
         </Button>
-        <Separator className="mr-2 h-4" orientation="vertical" />
+        <Separator className="mr-2" orientation="vertical" />
         <Breadcrumb className="hidden sm:block">
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink href="#">
-                Building Your Application
+                <ZeroLogoV1 className="h-4 w-4" />
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
