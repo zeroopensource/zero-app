@@ -2,9 +2,9 @@
 
 import {
   Folder,
+  Forward,
   type LucideIcon,
   MoreHorizontal,
-  Share,
   Trash2,
 } from "lucide-react";
 
@@ -57,7 +57,7 @@ export function NavProjects({
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 align={isMobile ? "end" : "start"}
-                className="w-48"
+                className="w-48 rounded-lg"
                 side={isMobile ? "bottom" : "right"}
               >
                 <DropdownMenuItem>
@@ -65,7 +65,7 @@ export function NavProjects({
                   <span>View Project</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Share className="text-muted-foreground" />
+                  <Forward className="text-muted-foreground" />
                   <span>Share Project</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
@@ -78,8 +78,8 @@ export function NavProjects({
           </SidebarMenuItem>
         ))}
         <SidebarMenuItem>
-          <SidebarMenuButton>
-            <MoreHorizontal />
+          <SidebarMenuButton className="text-sidebar-foreground/70">
+            <MoreHorizontal className="text-sidebar-foreground/70" />
             <span>More</span>
           </SidebarMenuButton>
         </SidebarMenuItem>

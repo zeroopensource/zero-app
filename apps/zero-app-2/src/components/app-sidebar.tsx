@@ -1,10 +1,12 @@
 "use client";
 
 import {
+  AudioWaveform,
   BookOpen,
   Bot,
   Command,
   Frame,
+  GalleryVerticalEnd,
   LifeBuoy,
   Map,
   PieChart,
@@ -13,7 +15,6 @@ import {
   SquareTerminal,
 } from "lucide-react";
 import type * as React from "react";
-
 import { NavMain } from "@/components/nav-main";
 import { NavProjects } from "@/components/nav-projects";
 import { NavSecondary } from "@/components/nav-secondary";
@@ -23,12 +24,27 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { TeamSwitcher } from "./team-switcher";
 
 const data = {
+  teams: [
+    {
+      name: "Acme Inc",
+      logo: GalleryVerticalEnd,
+      plan: "Enterprise",
+    },
+    {
+      name: "Acme Corp.",
+      logo: AudioWaveform,
+      plan: "Startup",
+    },
+    {
+      name: "Evil Corp.",
+      logo: Command,
+      plan: "Free",
+    },
+  ],
   user: {
     name: "shadcn",
     email: "m@example.com",
@@ -159,21 +175,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       {...props}
     >
       <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild size="lg">
-              <a href="#">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <Command className="size-4" />
-                </div>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">Acme Inc</span>
-                  <span className="truncate text-xs">Enterprise</span>
-                </div>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
