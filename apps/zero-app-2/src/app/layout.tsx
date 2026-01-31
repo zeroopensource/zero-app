@@ -33,7 +33,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <div className="[--header-height:calc(--spacing(14))]">
+          <div className="[--header-height:calc(--spacing(10))]">
             <SidebarProvider
               // style={
               //   {
