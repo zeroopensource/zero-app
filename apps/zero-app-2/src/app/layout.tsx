@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../index.css";
+import type { CSSProperties } from "react";
 import { AppSidebar } from "@/components/app-sidebar";
 import Providers from "@/components/providers";
 import { SiteHeader } from "@/components/site-header";
@@ -35,12 +36,12 @@ export default function RootLayout({
         <Providers>
           <div className="[--header-height:calc(--spacing(10))]">
             <SidebarProvider
-              // style={
-              //   {
-              //     "--sidebar-width": "16rem",
-              //   } as CSSProperties
-              // }
               className="flex flex-col"
+              style={
+                {
+                  "--sidebar-width": "16rem",
+                } as CSSProperties
+              }
             >
               <SiteHeader />
               <div className="flex flex-1">
