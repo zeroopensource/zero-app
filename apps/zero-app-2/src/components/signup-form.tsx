@@ -38,33 +38,25 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
                 required
                 type="email"
               />
-              <FieldDescription>
-                We&apos;ll use this to contact you. We will not share your email
-                with anyone else.
-              </FieldDescription>
             </Field>
             <Field>
               <FieldLabel htmlFor="password">Password</FieldLabel>
               <Input id="password" required type="password" />
-              <FieldDescription>
-                Must be at least 8 characters long.
-              </FieldDescription>
             </Field>
             <Field>
               <FieldLabel htmlFor="confirm-password">
                 Confirm Password
               </FieldLabel>
               <Input id="confirm-password" required type="password" />
-              <FieldDescription>Please confirm your password.</FieldDescription>
             </Field>
             <FieldGroup>
               <Field>
                 <Button type="submit">Create Account</Button>
-                <Button type="button" variant="outline">
+                {/* <Button type="button" variant="outline">
                   Sign up with Google
-                </Button>
+                </Button> */}
                 <FieldDescription className="px-6 text-center">
-                  Already have an account? <a href="#">Sign in</a>
+                  Already have an account? <a href="/auth/signin">Sign in</a>
                 </FieldDescription>
               </Field>
             </FieldGroup>
