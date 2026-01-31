@@ -8,7 +8,7 @@ import {
   Frame,
   GalleryVerticalEnd,
   LifeBuoy,
-  Map,
+  Map as LucideMap,
   PieChart,
   Send,
   Settings2,
@@ -163,7 +163,7 @@ const data = {
     {
       name: "Travel",
       url: "#",
-      icon: Map,
+      icon: LucideMap,
     },
   ],
 };
