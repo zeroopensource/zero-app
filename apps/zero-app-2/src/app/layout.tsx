@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../index.css";
-import type { CSSProperties } from "react";
-import Header from "@/components/header";
+import { AppSidebar } from "@/components/app-sidebar";
 import Providers from "@/components/providers";
+import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { PACKAGEJSON } from "@/lib/packagejson";
-import { AppSidebar } from "./_components/app-sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,21 +33,30 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <SidebarProvider
-            style={
-              {
-                "--sidebar-width": "16rem",
-              } as CSSProperties
-            }
-          >
-            <AppSidebar />
-            <SidebarInset>
-              <div className="grid h-svh grid-rows-[auto_1fr]">
-                <Header />
-                {children}
+          <div className="[--header-height:calc(--spacing(14))]">
+            <SidebarProvider
+              // style={
+              //   {
+              //     "--sidebar-width": "16rem",
+              //   } as CSSProperties
+              // }
+              className="flex flex-col"
+            >
+              <SiteHeader />
+              <div className="flex flex-1">
+                <AppSidebar />
+                <SidebarInset>
+                  {children}
+                  {/* 
+                  <div className="grid h-svh grid-rows-[auto_1fr]">
+                    <Header />
+                    {children}
+                  </div> 
+                  */}
+                </SidebarInset>
               </div>
-            </SidebarInset>
-          </SidebarProvider>
+            </SidebarProvider>
+          </div>
         </Providers>
       </body>
     </html>
