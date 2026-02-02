@@ -15,7 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-export function SigninForm({
+export function ForgotPasswordForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
@@ -23,9 +23,9 @@ export function SigninForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle>Login to your account</CardTitle>
+          <CardTitle>Forgot Password</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            Enter your email for account recovery
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -40,20 +40,9 @@ export function SigninForm({
                   type="email"
                 />
               </Field>
+
               <Field>
-                <div className="flex items-center">
-                  <FieldLabel htmlFor="password">Password</FieldLabel>
-                  <a
-                    className="ml-auto inline-block text-xs underline underline-offset-4 brightness-50 hover:brightness-75"
-                    href="/auth/forgot-password"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
-                <Input id="password" required type="password" />
-              </Field>
-              <Field>
-                <Button type="submit">Sign in</Button>
+                <Button type="submit">Send Recovery Email</Button>
                 <FieldDescription className="text-center">
                   Don&apos;t have an account? <a href="/auth/signup">Sign up</a>
                 </FieldDescription>

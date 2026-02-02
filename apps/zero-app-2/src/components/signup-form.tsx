@@ -47,7 +47,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
             </Field>
             <FieldGroup>
               <Field>
-                <Button type="submit">Create Account</Button>
+                <Button type="submit">Sign up</Button>
                 {/* <Button type="button" variant="outline">
                   Sign up with Google
                 </Button> */}
