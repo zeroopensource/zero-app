@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useSidebar } from "@/components/ui/sidebar";
-import { ZeroLogoV1 } from "./zero-logo-v1";
+import { ZeroLogo } from "@/components/ui/zero-logo";
 
 export function SiteHeader() {
   const { toggleSidebar } = useSidebar();
@@ -33,7 +33,7 @@ export function SiteHeader() {
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink href="#">
-                <ZeroLogoV1 className="h-4 w-4" />
+                <ZeroLogo className="h-4 w-4" />
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
