@@ -1,10 +1,10 @@
 import { format } from "date-fns";
 import { customAlphabet } from "nanoid";
 
-const DEFAULT_PART_COUNT = 6;
+const DEFAULT_PART_COUNT = 4;
 const DEFAULT_PART_SIZE = 6;
 const DEFAULT_SEPARATOR = "-";
-const DEFAULT_PREFIXES = ["zero1", format(new Date(), "yyyyMMdd")];
+const DEFAULT_PREFIXES = ["zero", format(new Date(), "yyyyMMdd")];
 
 type Params = {
   prefixes?: string[] | null | undefined;
