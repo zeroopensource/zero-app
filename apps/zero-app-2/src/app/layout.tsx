@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
+"use client";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../index.css";
 import type { CSSProperties } from "react";
 import { AppSidebar } from "@/components/app-sidebar";
+import { useAuthSession } from "@/components/auth-client";
 import Providers from "@/components/providers";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { PACKAGEJSON } from "@/lib/packagejson";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,16 +18,22 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: PACKAGEJSON.displayName,
-  description: PACKAGEJSON.description,
-};
+// export const metadata: Metadata = {
+//   title: PACKAGEJSON.displayName,
+//   description: PACKAGEJSON.description,
+// };
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // const { useSession } = authClient;
+  // const { data: session, isPending, error, refetch } = useSession();
+
+  const { data: session, isPending, error, refetch } = useAuthSession();
+  console.log("session", session);
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
