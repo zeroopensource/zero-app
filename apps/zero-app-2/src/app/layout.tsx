@@ -49,10 +49,10 @@ export default function RootLayout({
       toast.dismiss(toasterId);
     }
 
-    if (!(isPendingSession || session) && pathname !== "/auth/signin") {
+    if (!(isPendingSession || session || pathname.startsWith("/auth"))) {
       router.push("/auth/signin");
     }
-  }, [isPendingSession]);
+  }, [isPendingSession, pathname, router, session]);
 
   return (
     <html lang="en" suppressHydrationWarning>
