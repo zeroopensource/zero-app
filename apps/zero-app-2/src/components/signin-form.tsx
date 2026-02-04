@@ -33,12 +33,7 @@ export function SigninForm({
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input
-                  id="email"
-                  placeholder="m@example.com"
-                  required
-                  type="email"
-                />
+                <Input id="email" required type="email" />
               </Field>
               <Field>
                 <div className="flex items-center">

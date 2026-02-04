@@ -47,10 +47,11 @@ export default function RootLayout({
       toast.loading("Loading Session.", { dismissible: false, id: toasterId });
     } else {
       toast.dismiss(toasterId);
-    }
-
-    if (!(isPendingSession || session || pathname.startsWith("/auth"))) {
-      router.push("/auth/signin");
+      if (!(session || pathname.startsWith("/auth"))) {
+        router.push("/auth/signin");
+      } else if (session && pathname.startsWith("/auth")) {
+        router.push("/app");
+      }
     }
   }, [isPendingSession, pathname, router, session]);
 
