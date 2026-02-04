@@ -1,5 +1,8 @@
 import { useForm } from "@tanstack/react-form";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import * as z from "zod";
+import { authClient } from "@/components/auth-client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -39,6 +42,7 @@ export function SigninForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const router = useRouter();
   const form = useForm({
     defaultValues: {
       email: "",
@@ -47,9 +51,22 @@ export function SigninForm({
     validators: {
       onSubmit: formSchema,
     },
-    onSubmit: ({ value }) => {
+    onSubmit: async ({ value }) => {
       console.log(value);
-      // toast("Invalid input");
+      await authClient.signIn.email(
+        {
+          email: value.email,
+          password: value.password,
+        },
+        {
+          onSuccess: (ctx) => {
+            router.push("/app");
+          },
+          onError: (ctx) => {
+            toast.error(ctx.error.message);
+          },
+        }
+      );
     },
   });
 
