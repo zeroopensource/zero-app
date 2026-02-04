@@ -1,3 +1,4 @@
+import { useForm } from "@tanstack/react-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,6 +11,7 @@ import {
 import {
   Field,
   FieldDescription,
+  FieldError,
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
@@ -17,7 +19,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
-  email: z.email(),
+  email: z.email("Invalid Email"),
   password: z
     .string()
     .min(8, "Password must be at least 8 characters long")
@@ -37,6 +39,20 @@ export function SigninForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const form = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+    validators: {
+      onSubmit: formSchema,
+    },
+    onSubmit: ({ value }) => {
+      console.log(value);
+      // toast("Invalid input");
+    },
+  });
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -47,26 +63,75 @@ export function SigninForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form
+            id="signin-form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              form.handleSubmit();
+            }}
+          >
             <FieldGroup>
+              <form.Field
+                children={(field) => {
+                  const isInvalid =
+                    field.state.meta.isTouched && !field.state.meta.isValid;
+                  return (
+                    <Field>
+                      <FieldLabel htmlFor="email">Email</FieldLabel>
+                      <Input
+                        aria-invalid={isInvalid}
+                        autoComplete="off"
+                        id={field.name}
+                        name={field.name}
+                        onBlur={field.handleBlur}
+                        onChange={(e) => field.handleChange(e.target.value)}
+                        value={field.state.value}
+                      />
+                      {isInvalid && (
+                        <FieldError errors={field.state.meta.errors} />
+                      )}
+                    </Field>
+                  );
+                }}
+                name="email"
+              />
+              <form.Field
+                children={(field) => {
+                  const isInvalid =
+                    field.state.meta.isTouched && !field.state.meta.isValid;
+                  return (
+                    <Field>
+                      <div className="flex items-center">
+                        <FieldLabel htmlFor="password">Password</FieldLabel>
+                        <a
+                          className="ml-auto inline-block text-xs underline underline-offset-4 brightness-50 hover:brightness-75"
+                          href="/auth/forgot-password"
+                        >
+                          Forgot password?
+                        </a>
+                      </div>
+                      <Input
+                        aria-invalid={isInvalid}
+                        autoComplete="off"
+                        id={field.name}
+                        name={field.name}
+                        onBlur={field.handleBlur}
+                        onChange={(e) => field.handleChange(e.target.value)}
+                        type="password"
+                        value={field.state.value}
+                      />
+                      {isInvalid && (
+                        <FieldError errors={field.state.meta.errors} />
+                      )}
+                    </Field>
+                  );
+                }}
+                name="password"
+              />
               <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input id="email" required type="email" />
-              </Field>
-              <Field>
-                <div className="flex items-center">
-                  <FieldLabel htmlFor="password">Password</FieldLabel>
-                  <a
-                    className="ml-auto inline-block text-xs underline underline-offset-4 brightness-50 hover:brightness-75"
-                    href="/auth/forgot-password"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
-                <Input id="password" required type="password" />
-              </Field>
-              <Field>
-                <Button type="submit">Sign in</Button>
+                <Button form="signin-form" type="submit">
+                  Sign in
+                </Button>
                 <FieldDescription className="text-center">
                   Don&apos;t have an account? <a href="/auth/signup">Sign up</a>
                 </FieldDescription>
