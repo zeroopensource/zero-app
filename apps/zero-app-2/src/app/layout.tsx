@@ -1,6 +1,7 @@
 "use client";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../index.css";
+import { usePathname, useRouter } from "next/navigation";
 import type { CSSProperties } from "react";
 import { useEffect } from "react";
 import { toast } from "sonner";
@@ -31,6 +32,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
+  const pathname = usePathname();
   const {
     data: session,
     isPending: isPendingSession,
@@ -46,6 +49,10 @@ export default function RootLayout({
       toast.dismiss(toasterId);
     }
   }, [isPendingSession]);
+
+  if (!(isPendingSession || session) && pathname !== "/auth/signin") {
+    router.push("/auth/signin");
+  }
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -66,9 +73,7 @@ export default function RootLayout({
               <SiteHeader />
               <div className="flex flex-1">
                 <AppSidebar />
-                <SidebarInset>
-                  {session && !isPendingSession && children}
-                </SidebarInset>
+                <SidebarInset>{!isPendingSession && children}</SidebarInset>
               </div>
             </SidebarProvider>
           </div>
