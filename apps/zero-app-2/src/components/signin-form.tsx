@@ -1,3 +1,4 @@
+import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -14,6 +15,23 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+
+const formSchema = z.object({
+  email: z.email(),
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters long")
+    .max(128, "Password must be at most 128 characters long")
+    .regex(/[a-z]/, "Password must include at least one lowercase letter")
+    .regex(/[A-Z]/, "Password must include at least one uppercase letter")
+    .regex(/[0-9]/, "Password must include at least one number")
+    .regex(
+      /[^a-zA-Z0-9]/,
+      "Password must include at least one special character"
+    )
+    // biome-ignore lint/performance/useTopLevelRegex: Intentional
+    .refine((val) => !/\s/.test(val), "Password must not contain spaces"),
+});
 
 export function SigninForm({
   className,
