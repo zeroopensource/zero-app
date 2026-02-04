@@ -2,11 +2,14 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "../index.css";
 import type { CSSProperties } from "react";
+import { useEffect } from "react";
+import { toast } from "sonner";
 import { AppSidebar } from "@/components/app-sidebar";
 import { useAuthSession } from "@/components/auth-client";
 import Providers from "@/components/providers";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,11 +31,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const { useSession } = authClient;
-  // const { data: session, isPending, error, refetch } = useSession();
+  const {
+    data: session,
+    isPending: isPendingSession,
+    error,
+    refetch,
+  } = useAuthSession();
 
-  const { data: session, isPending, error, refetch } = useAuthSession();
-  console.log("session", session);
+  useEffect(() => {
+    const toasterId = "LOADING_SESSION_TOAST_ID";
+    if (isPendingSession) {
+      toast.loading("Loading Session.", { dismissible: false, id: toasterId });
+    } else {
+      toast.dismiss(toasterId);
+    }
+  }, [isPendingSession]);
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -43,6 +56,7 @@ export default function RootLayout({
           <div className="[--header-height:calc(--spacing(10))]">
             <SidebarProvider
               className="flex flex-col"
+              open={session ? undefined : false}
               style={
                 {
                   "--sidebar-width": "16rem",
@@ -53,18 +67,13 @@ export default function RootLayout({
               <div className="flex flex-1">
                 <AppSidebar />
                 <SidebarInset>
-                  {children}
-                  {/* 
-                  <div className="grid h-svh grid-rows-[auto_1fr]">
-                    <Header />
-                    {children}
-                  </div> 
-                  */}
+                  {session && !isPendingSession && children}
                 </SidebarInset>
               </div>
             </SidebarProvider>
           </div>
         </Providers>
+        <Toaster />
       </body>
     </html>
   );
