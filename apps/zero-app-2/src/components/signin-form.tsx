@@ -52,7 +52,6 @@ export function SigninForm({
       onSubmit: formSchema,
     },
     onSubmit: async ({ value }) => {
-      console.log(value);
       await authClient.signIn.email(
         {
           email: value.email,
