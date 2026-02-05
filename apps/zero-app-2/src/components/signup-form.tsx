@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -52,7 +53,8 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
                   Sign up with Google
                 </Button> */}
                 <FieldDescription className="px-6 text-center">
-                  Already have an account? <a href="/auth/signin">Sign in</a>
+                  Already have an account?{" "}
+                  <Link href="/auth/signin">Sign in</Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>

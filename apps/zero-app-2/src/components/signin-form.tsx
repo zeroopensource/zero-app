@@ -1,4 +1,5 @@
 import { useForm } from "@tanstack/react-form";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -119,12 +120,12 @@ export function SigninForm({
                     <Field>
                       <div className="flex items-center">
                         <FieldLabel htmlFor="password">Password</FieldLabel>
-                        <a
+                        <Link
                           className="ml-auto inline-block text-xs underline underline-offset-4 brightness-50 hover:brightness-75"
                           href="/auth/forgot-password"
                         >
                           Forgot password?
-                        </a>
+                        </Link>
                       </div>
                       <Input
                         aria-invalid={isInvalid}
@@ -149,7 +150,8 @@ export function SigninForm({
                   Sign in
                 </Button>
                 <FieldDescription className="text-center">
-                  Don&apos;t have an account? <a href="/auth/signup">Sign up</a>
+                  Don&apos;t have an account?{" "}
+                  <Link href="/auth/signup">Sign up</Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>

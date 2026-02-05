@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -44,7 +45,8 @@ export function ForgotPasswordForm({
               <Field>
                 <Button type="submit">Send Recovery Email</Button>
                 <FieldDescription className="text-center">
-                  Don&apos;t have an account? <a href="/auth/signup">Sign up</a>
+                  Don&apos;t have an account?{" "}
+                  <Link href="/auth/signup">Sign up</Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>
