@@ -34,12 +34,7 @@ export function ForgotPasswordForm({
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input
-                  id="email"
-                  placeholder="m@example.com"
-                  required
-                  type="email"
-                />
+                <Input id="email" required type="email" />
               </Field>
 
               <Field>
