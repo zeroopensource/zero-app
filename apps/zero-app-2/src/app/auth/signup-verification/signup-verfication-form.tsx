@@ -22,19 +22,22 @@ export function SignupVerificationForm({
   return (
     <Card {...props}>
       <CardHeader>
-        <CardTitle>Forgot Password</CardTitle>
-        <CardDescription>Enter your email for account recovery</CardDescription>
+        <CardTitle>Signup Verification</CardTitle>
+        <CardDescription>
+          Enter the verification code send to your email
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <form>
           <FieldGroup>
             <Field>
-              <FieldLabel htmlFor="email">Email</FieldLabel>
-              <Input id="email" required type="email" />
+              <FieldLabel htmlFor="signupVerificationCode">
+                Signup Verification Code
+              </FieldLabel>
+              <Input id="signupVerificationCode" required />
             </Field>
-
             <Field>
-              <Button type="submit">Send Recovery Email</Button>
+              <Button type="submit">Verify</Button>
               <FieldDescription className="text-center">
                 Don&apos;t have an account?{" "}
                 <Link href="/auth/signup">Sign up</Link>

@@ -23,23 +23,33 @@ export function ResetPasswordForm({
     <Card {...props}>
       <CardHeader>
         <CardTitle>Reset Password</CardTitle>
-        <CardDescription>Enter your email for account recovery</CardDescription>
+        <CardDescription>Enter your new Password</CardDescription>
       </CardHeader>
       <CardContent>
         <form>
           <FieldGroup>
             <Field>
-              <FieldLabel htmlFor="email">Email</FieldLabel>
-              <Input id="email" required type="email" />
+              <FieldLabel htmlFor="password">Password</FieldLabel>
+              <Input id="password" required type="password" />
             </Field>
-
             <Field>
-              <Button type="submit">Send Recovery Email</Button>
-              <FieldDescription className="text-center">
-                Don&apos;t have an account?{" "}
-                <Link href="/auth/signup">Sign up</Link>
-              </FieldDescription>
+              <FieldLabel htmlFor="confirm-password">
+                Confirm Password
+              </FieldLabel>
+              <Input id="confirm-password" required type="password" />
             </Field>
+            <FieldGroup>
+              <Field>
+                <Button type="submit">Sign up</Button>
+                {/* <Button type="button" variant="outline">
+                      Sign up with Google
+                    </Button> */}
+                <FieldDescription className="px-6 text-center">
+                  Already have an account?{" "}
+                  <Link href="/auth/signin">Sign in</Link>
+                </FieldDescription>
+              </Field>
+            </FieldGroup>
           </FieldGroup>
         </form>
       </CardContent>
