@@ -2,7 +2,7 @@ import { useForm } from "@tanstack/react-form";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import * as z from "zod";
+import { z } from "zod";
 import { authClient } from "@/components/auth-client";
 import { Button } from "@/components/ui/button";
 import {
@@ -59,7 +59,9 @@ export function SigninForm({
           password: value.password,
         },
         {
-          onSuccess: (ctx) => {
+          onSuccess: (
+            // ctx
+          ) => {
             router.push("/app");
           },
           onError: (ctx) => {
