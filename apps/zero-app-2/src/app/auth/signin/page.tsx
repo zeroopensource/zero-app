@@ -1,5 +1,5 @@
 "use client";
-import { SigninForm } from "@/components/signin-form";
+import { SigninForm } from "./signin-form";
 
 export default function SigninPage() {
   return (
