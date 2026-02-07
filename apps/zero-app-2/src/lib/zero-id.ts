@@ -6,14 +6,14 @@ const DEFAULT_PART_SIZE = 6;
 const DEFAULT_SEPARATOR = "-";
 const DEFAULT_PREFIXES = ["zero", format(new Date(), "yyyyMMdd")];
 
-type Params = {
+interface Params {
   prefixes?: string[] | null | undefined;
   /** x-x-x-x-x-x */
   partSize?: number | null | undefined;
   /** xxxxxxx */
   partCount?: number | null | undefined;
   separator?: string | null | undefined;
-};
+}
 
 export const generateZeroId = (params?: Params | undefined) => {
   const { prefixes, partSize, partCount, separator } = params || {};

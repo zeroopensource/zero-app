@@ -13,23 +13,12 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { ZeroLogo } from "@/components/ui/zero-logo";
+import { ZeroSchema } from "@/lib/zero-schema";
 import { AuthFormFooter } from "../auth-form-footer";
 
 const formSchema = z.object({
-  email: z.email("Invalid Email"),
-  password: z
-    .string()
-    .min(8, "Password must be at least 8 characters long")
-    .max(128, "Password must be at most 128 characters long")
-    .regex(/[a-z]/, "Password must include at least one lowercase letter")
-    .regex(/[A-Z]/, "Password must include at least one uppercase letter")
-    .regex(/[0-9]/, "Password must include at least one number")
-    .regex(
-      /[^a-zA-Z0-9]/,
-      "Password must include at least one special character"
-    )
-    // biome-ignore lint/performance/useTopLevelRegex: Intentional
-    .refine((val) => !/\s/.test(val), "Password must not contain spaces"),
+  email: ZeroSchema.shape.email,
+  password: ZeroSchema.shape.password,
 });
 
 export function SigninForm({

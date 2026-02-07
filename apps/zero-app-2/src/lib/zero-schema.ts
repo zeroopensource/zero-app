@@ -37,11 +37,35 @@ export const ZeroSchemaPrimitives = z.object({
   location: z.string(),
   /** recurrence ref: http://tools.ietf.org/html/rfc5545#section-3.8.5 */
   recurrence: z.array(z.string()),
+  email: z.email(),
+  password: z.string().min(1, { message: "Password required" }),
+  newPassword: z
+    .string()
+    .min(8, "Password must be at least 8 characters long")
+    .max(128, "Password must be at most 128 characters long")
+    .regex(/[a-z]/, "Password must include at least one lowercase letter")
+    .regex(/[A-Z]/, "Password must include at least one uppercase letter")
+    .regex(/[0-9]/, "Password must include at least one number")
+    .regex(
+      /[^a-zA-Z0-9]/,
+      "Password must include at least one special character"
+    )
+    // biome-ignore lint/performance/useTopLevelRegex: Intentional
+    .refine((val) => !/\s/.test(val), "Password must not contain spaces"),
 });
 export type ZeroSchemaPrimitives = z.infer<typeof ZeroSchemaPrimitives>;
 
 export const ZeroSchema = z.object({
   ...ZeroSchemaPrimitives.shape,
+  newConfirmedPassword: z
+    .object({
+      newPassword: ZeroSchemaPrimitives.shape.newPassword,
+      confirmPassword: z.string(),
+    })
+    .refine((data) => data.newPassword === data.confirmPassword, {
+      message: "Passwords do not match",
+      path: ["confirmPassword"],
+    }),
   /**
   googleCalendarEvent ref: 
   https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/gapi.calendar
