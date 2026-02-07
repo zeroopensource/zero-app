@@ -4,7 +4,12 @@ import { toast } from "sonner";
 import { authClient } from "@/components/auth-client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { ZeroLogo } from "@/components/ui/zero-logo";
 import { ZeroSchema } from "@/lib/zero-schema";
@@ -56,12 +61,44 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <form>
+        <form
+          id="signup-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            form.handleSubmit();
+          }}
+        >
           <FieldGroup>
+            <form.Field
+              children={(field) => {
+                const isInvalid =
+                  field.state.meta.isTouched && !field.state.meta.isValid;
+                return (
+                  <Field>
+                    <FieldLabel htmlFor="email">Email</FieldLabel>
+                    <Input
+                      aria-invalid={isInvalid}
+                      autoComplete="off"
+                      id={field.name}
+                      name={field.name}
+                      onBlur={field.handleBlur}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                      value={field.state.value}
+                    />
+                    {isInvalid && (
+                      <FieldError errors={field.state.meta.errors} />
+                    )}
+                  </Field>
+                );
+              }}
+              name="email"
+            />
+            {/* 
             <Field>
               <FieldLabel htmlFor="email">Email</FieldLabel>
               <Input id="email" required type="email" />
-            </Field>
+            </Field> 
+            */}
             <Field>
               <FieldLabel htmlFor="password">Password</FieldLabel>
               <Input id="password" required type="password" />
@@ -74,7 +111,9 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
             </Field>
             <FieldGroup>
               <Field>
-                <Button type="submit">Sign up</Button>
+                <Button form="signup-form" type="submit">
+                  Sign up
+                </Button>
               </Field>
               <AuthFormFooter />
             </FieldGroup>
