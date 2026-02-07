@@ -39,7 +39,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
           onSuccess: (
             // ctx
           ) => {
-            router.push("/app");
+            router.push("/auth/signin");
           },
           onError: (ctx) => {
             toast.error(ctx.error.message);
