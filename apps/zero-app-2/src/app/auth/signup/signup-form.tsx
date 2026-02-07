@@ -1,5 +1,6 @@
 import { useForm } from "@tanstack/react-form";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import z from "zod";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,6 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { ZeroLogo } from "@/components/ui/zero-logo";
 import { ZeroSchema } from "@/lib/zero-schema";
+import { authClient } from "@/root/src/components/auth-client";
 import { AuthFormFooter } from "../auth-form-footer";
 
 const formSchema = z
@@ -36,25 +38,24 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
     validators: {
       onSubmit: formSchema,
     },
-    onSubmit: ({ value }) => {
-      console.log("value", value);
-      // await authClient.signUp.email(
-      //   {
-      //     name: value.email,
-      //     email: value.email,
-      //     password: value.newConfirmedPassword.newPassword,
-      //   },
-      //   {
-      //     onSuccess: (
-      //       // ctx
-      //     ) => {
-      //       router.push("/auth/signin");
-      //     },
-      //     onError: (ctx) => {
-      //       toast.error(ctx.error.message);
-      //     },
-      //   }
-      // );
+    onSubmit: async ({ value }) => {
+      await authClient.signUp.email(
+        {
+          name: value.email,
+          email: value.email,
+          password: value.newPassword,
+        },
+        {
+          onSuccess: (
+            // ctx
+          ) => {
+            router.push("/auth/signin");
+          },
+          onError: (ctx) => {
+            toast.error(ctx.error.message);
+          },
+        }
+      );
     },
   });
 
