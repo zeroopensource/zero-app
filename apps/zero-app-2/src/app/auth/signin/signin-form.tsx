@@ -60,9 +60,6 @@ export function SigninForm({
         <CardTitle className="flex items-center gap-1">
           Sign in to your <ZeroLogo className="h-4! w-4!" /> Account
         </CardTitle>
-        {/* <CardDescription>
-          Enter your email below to login to your account
-        </CardDescription> */}
       </CardHeader>
       <CardContent>
         <form
