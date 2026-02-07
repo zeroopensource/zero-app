@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,13 +6,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { AuthFormFooter } from "../auth-form-footer";
 
 export function SignupVerificationForm({
   className,
@@ -38,11 +33,8 @@ export function SignupVerificationForm({
             </Field>
             <Field>
               <Button type="submit">Verify</Button>
-              <FieldDescription className="text-center">
-                Don&apos;t have an account?{" "}
-                <Link href="/auth/signup">Sign up</Link>
-              </FieldDescription>
             </Field>
+            <AuthFormFooter />
           </FieldGroup>
         </form>
       </CardContent>

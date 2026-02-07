@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,13 +6,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { AuthFormFooter } from "../auth-form-footer";
 
 export function ResetPasswordForm({
   className,
@@ -40,15 +35,9 @@ export function ResetPasswordForm({
             </Field>
             <FieldGroup>
               <Field>
-                <Button type="submit">Sign up</Button>
-                {/* <Button type="button" variant="outline">
-                      Sign up with Google
-                    </Button> */}
-                <FieldDescription className="px-6 text-center">
-                  Already have an account?{" "}
-                  <Link href="/auth/signin">Sign in</Link>
-                </FieldDescription>
+                <Button type="submit">Reset</Button>
               </Field>
+              <AuthFormFooter />
             </FieldGroup>
           </FieldGroup>
         </form>
