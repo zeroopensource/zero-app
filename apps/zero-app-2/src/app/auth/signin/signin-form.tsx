@@ -1,25 +1,19 @@
 import { useForm } from "@tanstack/react-form";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { z } from "zod";
 import { authClient } from "@/components/auth-client";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Field,
-  FieldDescription,
   FieldError,
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import { AuthFormFooter } from "../auth-form-footer";
 
 const formSchema = z.object({
   email: z.email("Invalid Email"),
@@ -75,10 +69,11 @@ export function SigninForm({
     <Card {...props}>
       <CardHeader>
         <CardTitle>Login to your account</CardTitle>
-        <CardDescription>
+        {/* <CardDescription>
           Enter your email below to login to your account
-        </CardDescription>
+        </CardDescription> */}
       </CardHeader>
+      <Separator />
       <CardContent>
         <form
           id="signin-form"
@@ -120,12 +115,6 @@ export function SigninForm({
                   <Field>
                     <div className="flex items-center">
                       <FieldLabel htmlFor="password">Password</FieldLabel>
-                      <Link
-                        className="ml-auto inline-block text-xs underline underline-offset-4 brightness-50 hover:brightness-75"
-                        href="/auth/forgot-password"
-                      >
-                        Forgot password?
-                      </Link>
                     </div>
                     <Input
                       aria-invalid={isInvalid}
@@ -149,11 +138,8 @@ export function SigninForm({
               <Button form="signin-form" type="submit">
                 Sign in
               </Button>
-              <FieldDescription className="text-center">
-                Don&apos;t have an account?{" "}
-                <Link href="/auth/signup">Sign up</Link>
-              </FieldDescription>
             </Field>
+            <AuthFormFooter />
           </FieldGroup>
         </form>
       </CardContent>
