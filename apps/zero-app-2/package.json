@@ -5,9 +5,9 @@
   "version": "0.0.3",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3001",
+    "dev": "dotenv -e .env -- next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "dotenv -e .env -- next start",
     "tauri": "tauri",
     "dev:desktop": "tauri dev",
     "build:desktop": "tauri build",
@@ -47,6 +47,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "dotenv-cli": "11.0.0",
     "@tailwindcss/postcss": "^4.1.10",
     "@tauri-apps/cli": "^2.4.0",
     "@types/node": "^20",

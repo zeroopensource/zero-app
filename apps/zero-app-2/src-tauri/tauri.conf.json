@@ -5,7 +5,7 @@
   "identifier": "org.zeroopensource.app",
   "build": {
     "frontendDist": "../.next",
-    "devUrl": "http://localhost:3001",
+    "devUrl": "http://localhost:4122",
     "beforeDevCommand": "pnpm run dev",
     "beforeBuildCommand": "pnpm run build"
   },
