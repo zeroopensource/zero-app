@@ -12,7 +12,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
+import { ZeroLogo } from "@/components/ui/zero-logo";
 import { AuthFormFooter } from "../auth-form-footer";
 
 const formSchema = z.object({
@@ -66,14 +66,15 @@ export function SigninForm({
   });
 
   return (
-    <Card {...props}>
-      <CardHeader>
-        <CardTitle>Login to your account</CardTitle>
+    <Card {...props} className="pt-0">
+      <CardHeader className="border-b pt-2 pb-2!">
+        <CardTitle className="flex items-center">
+          Sign in to your <ZeroLogo className="mx-1 h-4 w-4" /> Account
+        </CardTitle>
         {/* <CardDescription>
           Enter your email below to login to your account
         </CardDescription> */}
       </CardHeader>
-      <Separator />
       <CardContent>
         <form
           id="signin-form"
