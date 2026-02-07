@@ -68,8 +68,8 @@ export function SigninForm({
   return (
     <Card {...props} className="pt-0">
       <CardHeader className="border-b pt-2 pb-2!">
-        <CardTitle className="flex items-center">
-          Sign in to your <ZeroLogo className="mx-1 h-4 w-4" /> Account
+        <CardTitle className="flex items-center gap-1">
+          Sign in to your <ZeroLogo className="h-4! w-4!" /> Account
         </CardTitle>
         {/* <CardDescription>
           Enter your email below to login to your account

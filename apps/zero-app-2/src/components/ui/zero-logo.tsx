@@ -1,5 +1,11 @@
 "use client";
 import type { SVGProps } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type Props = SVGProps<SVGSVGElement>;
 
@@ -21,5 +27,20 @@ export const ZeroLogo = (props: Props) => {
         fillRule="evenodd"
       />
     </svg>
+  );
+};
+
+export const ZeroLogoHover = (props: React.ComponentProps<typeof ZeroLogo>) => {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button className="h-auto w-auto p-0" variant="ghost">
+          <ZeroLogo {...props} />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>Zero</p>
+      </TooltipContent>
+    </Tooltip>
   );
 };
