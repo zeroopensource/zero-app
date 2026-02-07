@@ -1,7 +1,6 @@
 import { useForm } from "@tanstack/react-form";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-import { authClient } from "@/components/auth-client";
+import z from "zod";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -15,44 +14,50 @@ import { ZeroLogo } from "@/components/ui/zero-logo";
 import { ZeroSchema } from "@/lib/zero-schema";
 import { AuthFormFooter } from "../auth-form-footer";
 
-const formSchema = ZeroSchema.pick({
-  email: true,
-  newConfirmedPassword: true,
-});
+const formSchema = z
+  .object({
+    email: ZeroSchema.shape.email,
+    newPassword: ZeroSchema.shape.newPassword,
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.newPassword === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
 
 export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
   const router = useRouter();
   const form = useForm({
     defaultValues: {
       email: "",
-      newConfirmedPassword: {
-        newPassword: "",
-        confirmPassword: "",
-      },
+      newPassword: "",
+      confirmPassword: "",
     },
     validators: {
       onSubmit: formSchema,
     },
-    onSubmit: async ({ value }) => {
-      await authClient.signUp.email(
-        {
-          name: value.email,
-          email: value.email,
-          password: value.newConfirmedPassword.newPassword,
-        },
-        {
-          onSuccess: (
-            // ctx
-          ) => {
-            router.push("/auth/signin");
-          },
-          onError: (ctx) => {
-            toast.error(ctx.error.message);
-          },
-        }
-      );
+    onSubmit: ({ value }) => {
+      console.log("value", value);
+      // await authClient.signUp.email(
+      //   {
+      //     name: value.email,
+      //     email: value.email,
+      //     password: value.newConfirmedPassword.newPassword,
+      //   },
+      //   {
+      //     onSuccess: (
+      //       // ctx
+      //     ) => {
+      //       router.push("/auth/signin");
+      //     },
+      //     onError: (ctx) => {
+      //       toast.error(ctx.error.message);
+      //     },
+      //   }
+      // );
     },
   });
+
   return (
     <Card {...props} className="pt-0">
       <CardHeader className="border-b pt-2 pb-2!">
@@ -93,22 +98,59 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
               }}
               name="email"
             />
-            {/* 
-            <Field>
-              <FieldLabel htmlFor="email">Email</FieldLabel>
-              <Input id="email" required type="email" />
-            </Field> 
-            */}
-            <Field>
-              <FieldLabel htmlFor="password">Password</FieldLabel>
-              <Input id="password" required type="password" />
-            </Field>
-            <Field>
-              <FieldLabel htmlFor="confirm-password">
-                Confirm Password
-              </FieldLabel>
-              <Input id="confirm-password" required type="password" />
-            </Field>
+            <form.Field
+              children={(field) => {
+                const isInvalid =
+                  field.state.meta.isTouched && !field.state.meta.isValid;
+                return (
+                  <Field>
+                    <FieldLabel htmlFor="newPassword">Password</FieldLabel>
+                    <Input
+                      aria-invalid={isInvalid}
+                      autoComplete="off"
+                      id={field.name}
+                      name={field.name}
+                      onBlur={field.handleBlur}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                      type="password"
+                      value={field.state.value}
+                    />
+                    {isInvalid && (
+                      <FieldError errors={field.state.meta.errors} />
+                    )}
+                  </Field>
+                );
+              }}
+              name="newPassword"
+            />
+
+            <form.Field
+              children={(field) => {
+                const isInvalid =
+                  field.state.meta.isTouched && !field.state.meta.isValid;
+                return (
+                  <Field>
+                    <FieldLabel htmlFor="confirmPassword">
+                      Confirm Password
+                    </FieldLabel>
+                    <Input
+                      aria-invalid={isInvalid}
+                      autoComplete="off"
+                      id={field.name}
+                      name={field.name}
+                      onBlur={field.handleBlur}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                      type="password"
+                      value={field.state.value}
+                    />
+                    {isInvalid && (
+                      <FieldError errors={field.state.meta.errors} />
+                    )}
+                  </Field>
+                );
+              }}
+              name="confirmPassword"
+            />
             <FieldGroup>
               <Field>
                 <Button form="signup-form" type="submit">
