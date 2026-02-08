@@ -8,7 +8,7 @@ import {
   LogOut,
   Sparkles,
 } from "lucide-react";
-
+import { authClient } from "@/components/auth-client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -36,6 +36,10 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
+
+  const signOut = async () => {
+    await authClient.signOut();
+  };
 
   return (
     <SidebarMenu>
@@ -98,7 +102,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => signOut()}>
               <LogOut />
               Sign out
             </DropdownMenuItem>

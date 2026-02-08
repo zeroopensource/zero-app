@@ -37,8 +37,8 @@ export default function RootLayout({
   const {
     data: session,
     isPending: isPendingSession,
-    error,
-    refetch,
+    // error,
+    // refetch,
   } = useAuthSession();
 
   useEffect(() => {
