@@ -37,7 +37,7 @@ export default function RootLayout({
   const {
     data: session,
     isPending: isPendingSession,
-    // error,
+    error,
     // refetch,
   } = useAuthSession();
 
@@ -47,13 +47,16 @@ export default function RootLayout({
       toast.loading("Loading Session.", { dismissible: false, id: toasterId });
     } else {
       toast.dismiss(toasterId);
+      if (error) {
+        toast.error(error.message);
+      }
       if (!(session || pathname.startsWith("/auth"))) {
         router.push("/auth/signin");
       } else if (session && pathname.startsWith("/auth")) {
         router.push("/app");
       }
     }
-  }, [isPendingSession, pathname, router, session]);
+  }, [isPendingSession, pathname, router, session, error]);
 
   return (
     <html lang="en" suppressHydrationWarning>
