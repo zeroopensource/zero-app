@@ -52,7 +52,7 @@ export default function RootLayout({
       }
       if (!(session || pathname.startsWith("/auth"))) {
         router.push("/auth/signin");
-      } else if (session && pathname.startsWith("/auth")) {
+      } else if (session && !pathname.startsWith("/app")) {
         router.push("/app");
       }
     }
