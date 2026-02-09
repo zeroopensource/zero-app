@@ -35,11 +35,15 @@ export default function RootLayout({
   const router = useRouter();
   const pathname = usePathname();
   const {
-    data: session,
+    data: authSession,
     isPending: isPendingSession,
     error,
     // refetch,
   } = useAuthSession();
+  const {
+    session,
+    // user
+  } = authSession || {};
 
   useEffect(() => {
     const toasterId = "LOADING_SESSION_TOAST_ID";
