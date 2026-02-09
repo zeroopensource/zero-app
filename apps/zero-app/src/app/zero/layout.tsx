@@ -1,132 +1,128 @@
-'use client'
-import Link from 'next/link'
+"use client";
 import {
   AppLayoutV2,
-  IconV2,
-  Header,
   Footer,
-  SupportCard,
-  Button,
-  Menu,
-  ZeroLogo,
-  ZERO_LINKS,
   GradientButton,
-} from '@zero-company/zero-lib-react'
+  Header,
+  IconV2,
+  Menu,
+  ZERO_LINKS,
+} from "@zero-company/zero-lib-react";
+import Link from "next/link";
+import { FaFacebookF, FaGithub, FaGlobe, FaTwitter } from "react-icons/fa6";
 import {
-  LuList,
-  LuHome,
-  LuLayoutGrid,
-  LuSettings,
-  LuUserCircle2,
-  LuSearch,
   LuBookOpen,
+  // LuHome,
   LuInfo,
-} from 'react-icons/lu'
-import { FaFacebookF, FaGithub, FaTwitter, FaGlobe } from 'react-icons/fa6'
-import { GlobalSidebarTabs } from '@/components'
+  LuLayoutGrid,
+  LuList,
+  LuSearch,
+  LuSettings,
+  // LuUserCircle2,
+} from "react-icons/lu";
 
 type Props = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 const SocialLinks = () => (
   <>
-    <div className='flex p-2 gap-2'>
-      <Link href={ZERO_LINKS.buymeacoffee} className='flex-1' target='_blank'>
-        <GradientButton className='w-full'>Support Zero</GradientButton>
+    <div className="flex gap-2 p-2">
+      <Link className="flex-1" href={ZERO_LINKS.buymeacoffee} target="_blank">
+        <GradientButton className="w-full">Support Zero</GradientButton>
       </Link>
-      <Link href={ZERO_LINKS.discord} className='flex-1' target='_blank'>
-        <GradientButton gradient='purple2' className='w-full'>
+      <Link className="flex-1" href={ZERO_LINKS.discord} target="_blank">
+        <GradientButton className="w-full" gradient="purple2">
           Join Community
         </GradientButton>
       </Link>
     </div>
-    <div className='h-8 divide-x flex *:flex *:flex-1 *:justify-center *:h-full *:p-2'>
-      <Link href={ZERO_LINKS.website} className='flex-1' target='_blank'>
-        <IconV2 size='sm' reactIcon={<FaGlobe />} />
+    <div className="flex h-8 divide-x *:flex *:h-full *:flex-1 *:justify-center *:p-2">
+      <Link className="flex-1" href={ZERO_LINKS.website} target="_blank">
+        <IconV2 reactIcon={<FaGlobe />} size="sm" />
       </Link>
-      <Link href={ZERO_LINKS.github} className='flex-1' target='_blank'>
-        <IconV2 size='sm' reactIcon={<FaGithub />} />
+      <Link className="flex-1" href={ZERO_LINKS.github} target="_blank">
+        <IconV2 reactIcon={<FaGithub />} size="sm" />
       </Link>
-      <Link href={ZERO_LINKS.twitter} className='flex-1' target='_blank'>
-        <IconV2 size='sm' reactIcon={<FaTwitter />} />
+      <Link className="flex-1" href={ZERO_LINKS.twitter} target="_blank">
+        <IconV2 reactIcon={<FaTwitter />} size="sm" />
       </Link>
-      <Link href={ZERO_LINKS.facebook} className='flex-1' target='_blank'>
-        <IconV2 size='sm' reactIcon={<FaFacebookF />} />
+      <Link className="flex-1" href={ZERO_LINKS.facebook} target="_blank">
+        <IconV2 reactIcon={<FaFacebookF />} size="sm" />
       </Link>
     </div>
   </>
-)
+);
 
 export default function Layout({ children }: Props) {
   return (
     <>
       <AppLayoutV2
         body={children}
-        header={<Header />}
-        sidebar={
-          <>
-            <Menu
-              options={[
-                {
-                  children: 'Index',
-                  icon: <LuHome />,
-                  href: '/zero',
-                },
-                {
-                  children: 'Docs',
-                  icon: <LuBookOpen />,
-                  href: '/docs',
-                },
-                {
-                  children: 'Advanced Search',
-                  icon: <LuSearch />,
-                  href: '/advanced-search',
-                },
-                {
-                  children: 'App',
-                  icon: <LuList />,
-                  href: '/zero/about-app',
-                },
-              ]}
-            />
-            <Menu
-              options={[
-                {
-                  children: 'Apps',
-                  icon: <LuLayoutGrid />,
-                  href: '/apps',
-                  disabled: true,
-                },
-                {
-                  children: 'User',
-                  icon: <LuUserCircle2 />,
-                  href: '/user',
-                  disabled: true,
-                },
-                {
-                  children: 'Settings',
-                  icon: <LuSettings />,
-                  href: '/settings',
-                  disabled: true,
-                },
-                {
-                  children: 'About',
-                  icon: <LuInfo />,
-                  href: '/zero/about',
-                  disabled: true,
-                },
-              ]}
-            />
-          </>
-        }
         footer={
           <>
             <SocialLinks />
             <Footer />
           </>
         }
+        header={<Header />}
+        sidebar={
+          <>
+            <Menu
+              options={[
+                {
+                  children: "Index",
+                  icon: <LuSearch />,
+                  href: "/zero",
+                },
+                {
+                  children: "Docs",
+                  icon: <LuBookOpen />,
+                  href: "/docs",
+                },
+                {
+                  children: "Advanced Search",
+                  icon: <LuSearch />,
+                  href: "/advanced-search",
+                },
+                {
+                  children: "App",
+                  icon: <LuList />,
+                  href: "/zero/about-app",
+                },
+              ]}
+            />
+            <Menu
+              options={[
+                {
+                  children: "Apps",
+                  icon: <LuLayoutGrid />,
+                  href: "/apps",
+                  disabled: true,
+                },
+                {
+                  children: "User",
+                  icon: <LuSearch />,
+                  href: "/user",
+                  disabled: true,
+                },
+                {
+                  children: "Settings",
+                  icon: <LuSettings />,
+                  href: "/settings",
+                  disabled: true,
+                },
+                {
+                  children: "About",
+                  icon: <LuInfo />,
+                  href: "/zero/about",
+                  disabled: true,
+                },
+              ]}
+            />
+          </>
+        }
       />
     </>
-  )
+  );
 }
