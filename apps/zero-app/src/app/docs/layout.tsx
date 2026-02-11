@@ -10,10 +10,8 @@ import {
 } from '@zero-company/zero-lib-react'
 import {
   LuList,
-  LuHome,
   LuLayoutGrid,
   LuSettings,
-  LuUserCircle2,
   LuSearch,
 } from 'react-icons/lu'
 import { GlobalSidebarTabs } from '@/components'
@@ -36,7 +34,7 @@ export default function Layout({ children }: Props) {
                 className='text-xs gap-2 justify-start h-8 px-2'
                 variant='ghost'
               >
-                <IconV2 reactIcon={<LuHome />} size='sm' /> Browse
+                <IconV2 reactIcon={<LuSearch />} size='sm' /> Browse
               </Button>
               <Button
                 size='sm'

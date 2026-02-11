@@ -1,6 +1,7 @@
 {
   "name": "@zeroopensource/zero-app",
-  "version": "0.0.3",
+  "version": "0.0.4",
+  "//":"update version in tauri.conf.json",
   "private": true,
   "scripts": {
     "dev": "next dev",
