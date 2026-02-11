@@ -1,5 +1,5 @@
 {
-  "name": "zero-app-2",
+  "name": "@zeroopensource/zero-app-2",
   "displayName": "Zero V2",
   "description": "Version 2 of the Zero App",
   "version": "0.0.3",
@@ -9,6 +9,8 @@
     "build": "next build",
     "start": "dotenv -e .env -- next start",
     "tauri": "tauri",
+    "init:tauri": "tauri android init",
+    "build:tauri": "tauri android build --aab=true",
     "dev:desktop": "tauri dev",
     "build:desktop": "tauri build",
     "shadcn": "shadcn",
