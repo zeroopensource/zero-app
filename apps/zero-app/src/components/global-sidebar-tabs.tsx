@@ -2,7 +2,6 @@
 import { Icon } from '@zero-company/zero-lib-react'
 import {
   LuSettings,
-  LuUserCircle2,
   LuSearch,
   LuLayoutGrid,
 } from 'react-icons/lu'
@@ -43,7 +42,7 @@ export const GlobalSidebarTabs = [
   },
   {
     id: 'user',
-    icon: <Icon reactIcon={<LuUserCircle2 />} />,
+    icon: <Icon reactIcon={<LuSearch />} />,
     content: <div>user</div>,
     disabled: true,
   },
