@@ -6,7 +6,10 @@
   "private": true,
   "scripts": {
     "dev": "dotenv -e .env -- next dev",
-    "build": "next build",
+    "build:web": "cross-env PLATFORM=web next build && pnpm fix:next-out",
+    "serve:web": "serve out",
+    "fix:next-out": "tsx scripts/fix-next-out.ts",
+    "build": "next build && pnpm build:web",
     "start": "dotenv -e .env -- next start",
     "tauri": "tauri",
     "init:tauri": "tauri android init",
@@ -17,6 +20,7 @@
     "shadcn:addzero": "pnpm shadcn add https://zerocn.zeroopensource.org/r/all.json -y -o"
   },
   "dependencies": {
+    "serve": "14.2.5",
     "better-auth": "1.4.18",
     "@giscus/react": "^3.1.0",
     "@t3-oss/env-nextjs": "^0.13.10",
@@ -49,6 +53,8 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "tsx": "^4.21.0",
+    "cross-env": "10.1.0",
     "dotenv-cli": "11.0.0",
     "@tailwindcss/postcss": "^4.1.10",
     "@tauri-apps/cli": "^2.4.0",
