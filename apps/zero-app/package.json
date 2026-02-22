@@ -6,8 +6,9 @@
   "private": true,
   "scripts": {
     "dev": "dotenv -e .env -- next dev",
-    "build:web": "cross-env PLATFORM=web next build",
+    "build:web": "cross-env PLATFORM=web next build && pnpm fix:next-out",
     "serve:web": "serve out",
+    "fix:next-out": "tsx scripts/fix-next-out.ts",
     "build": "next build && pnpm build:web",
     "start": "dotenv -e .env -- next start",
     "tauri": "tauri",
@@ -52,6 +53,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "tsx": "^4.21.0",
     "cross-env": "10.1.0",
     "dotenv-cli": "11.0.0",
     "@tailwindcss/postcss": "^4.1.10",
