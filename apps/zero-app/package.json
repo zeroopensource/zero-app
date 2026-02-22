@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "dotenv -e .env -- next dev",
-    "build": "next build",
+    "build:web": "cross-env PLATFORM=web next build",
+    "build": "next build && pnpm build:web",
     "start": "dotenv -e .env -- next start",
     "tauri": "tauri",
     "init:tauri": "tauri android init",
@@ -49,6 +50,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "cross-env": "10.1.0",
     "dotenv-cli": "11.0.0",
     "@tailwindcss/postcss": "^4.1.10",
     "@tauri-apps/cli": "^2.4.0",
