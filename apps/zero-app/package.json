@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "dotenv -e .env -- next dev",
     "build:web": "cross-env PLATFORM=web next build",
+    "serve:web": "serve out",
     "build": "next build && pnpm build:web",
     "start": "dotenv -e .env -- next start",
     "tauri": "tauri",
@@ -18,6 +19,7 @@
     "shadcn:addzero": "pnpm shadcn add https://zerocn.zeroopensource.org/r/all.json -y -o"
   },
   "dependencies": {
+    "serve": "14.2.5",
     "better-auth": "1.4.18",
     "@giscus/react": "^3.1.0",
     "@t3-oss/env-nextjs": "^0.13.10",
