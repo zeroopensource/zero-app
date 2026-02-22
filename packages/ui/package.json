@@ -10,20 +10,15 @@
   "files": [
     "dist/**"
   ],
-  "scripts": {
+  "_scripts": {
     "build": "tsup",
     "clean": "rm -rf dist",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src/",
-    "test": "jest"
-  },
-  "jest": {
-    "preset": "@repo/jest-presets/browser"
+    "lint": "eslint src/"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
-    "@repo/jest-presets": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.24",
