@@ -21,7 +21,7 @@
     "shadcn:addzero": "pnpm shadcn add https://zerocn.zeroopensource.org/r/all.json -y -o"
   },
   "dependencies": {
-    "@tauri-apps/api": "2.10.1",
+    "@tauri-apps/api": "2.9.1",
     "serve": "14.2.5",
     "better-auth": "1.4.18",
     "@giscus/react": "^3.1.0",
