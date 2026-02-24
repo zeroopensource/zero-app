@@ -2,7 +2,7 @@
   "name": "@zeroopensource/zero-app",
   "displayName": "Zero V2",
   "description": "Zero App",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": true,
   "scripts": {
     "dev:web": "dotenv -e .env -- next dev",
