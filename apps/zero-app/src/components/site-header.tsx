@@ -2,7 +2,7 @@
 
 import { SidebarIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -20,6 +20,11 @@ export function SiteHeader() {
   const { toggleSidebar } = useSidebar();
   const pathname = usePathname();
   const pathnameSegments = pathname.split("/").filter(Boolean);
+  const [pathname2, setPathname2] = useState("");
+
+  useEffect(() => {
+    setPathname2(window.location.pathname);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 flex w-full items-center border-b bg-background">
@@ -50,6 +55,8 @@ export function SiteHeader() {
             ))}
           </BreadcrumbList>
         </Breadcrumb>
+        <span className="ml-4 text-xs">{pathname}</span>
+        <span className="ml-4 text-xs">{pathname2}</span>
         {/* <SearchForm className="w-full sm:ml-auto sm:w-auto" /> */}
       </div>
     </header>
