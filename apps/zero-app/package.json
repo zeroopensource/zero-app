@@ -1,7 +1,7 @@
 {
   "name": "@zeroopensource/zero-app",
-  "displayName": "Zero V2",
-  "description": "Zero App",
+  "displayName": "Zero",
+  "description": "Open Source App",
   "version": "0.0.7",
   "private": true,
   "scripts": {
