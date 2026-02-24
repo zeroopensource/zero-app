@@ -1,7 +1,7 @@
 "use client";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../index.css";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import type { CSSProperties } from "react";
 import { useEffect } from "react";
 import { toast } from "sonner";
@@ -33,7 +33,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const router = useRouter();
-  const pathname = usePathname();
   const {
     data: authSession,
     isPending: isPendingSession,
@@ -46,6 +45,7 @@ export default function RootLayout({
   } = authSession || {};
 
   useEffect(() => {
+    const pathname = window.location.pathname;
     const toasterId = "LOADING_SESSION_TOAST_ID";
     if (isPendingSession) {
       toast.loading("Loading Session.", { dismissible: false, id: toasterId });
@@ -60,7 +60,7 @@ export default function RootLayout({
         router.push("/app");
       }
     }
-  }, [isPendingSession, pathname, router, session, error]);
+  }, [isPendingSession, router, session, error]);
 
   return (
     <html lang="en" suppressHydrationWarning>
