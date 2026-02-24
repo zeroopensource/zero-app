@@ -13,6 +13,17 @@
         "!.next/cache/**"
       ]
     },
+    "build:web": {
+      "dependsOn": ["^build:web"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [
+        "build/**",
+        ".vercel/**",
+        "dist/**",
+        ".next/**",
+        "!.next/cache/**"
+      ]
+    },
     "typecheck": {
       "dependsOn": ["^build"]
     },
