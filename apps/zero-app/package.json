@@ -61,7 +61,7 @@
     "cross-env": "10.1.0",
     "dotenv-cli": "11.0.0",
     "@tailwindcss/postcss": "^4.1.10",
-    "@tauri-apps/cli": "^2.4.0",
+    "@tauri-apps/cli": "^2.9.6",
     "@types/node": "^20",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
