@@ -15,8 +15,9 @@
     "dev:android": "tauri android dev",
     "init:android": "tauri android init",
     "build:android": "tauri android build --aab=true",
+    "build:android:apk": "tauri android build --apk=true",
     "dev:desktop": "tauri dev",
-    "build:desktop": "tauri build",
+    "build:desktop": "tauri build --debug",
     "build": "pnpm build:web && pnpm build:android && pnpm build:desktop",
     "shadcn": "shadcn",
     "shadcn:addzero": "pnpm shadcn add https://zerocn.zeroopensource.org/r/all.json -y -o"
