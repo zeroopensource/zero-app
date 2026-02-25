@@ -12,6 +12,7 @@
     "build:web2": "next build && pnpm build:web",
     "start": "dotenv -e .env -- next start",
     "tauri": "tauri",
+    "dev:android": "tauri android dev",
     "init:android": "tauri android init",
     "build:android": "tauri android build --aab=true",
     "dev:desktop": "tauri dev",
