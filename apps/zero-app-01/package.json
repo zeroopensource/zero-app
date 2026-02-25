@@ -13,7 +13,7 @@
     "tauri": "tauri",
     "shadcn": "pnpx shadcn@latest"
   },
-  "dependencies": {
+  "_dependencies": {
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
     "@next/mdx": "^14.2.12",
@@ -35,7 +35,7 @@
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7"
   },
-  "devDependencies": {
+  "_devDependencies": {
     "@tailwindcss/typography": "^0.5.14",
     "@tauri-apps/cli": "2.6.2",
     "@types/node": "^20",
