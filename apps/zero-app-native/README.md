@@ -48,3 +48,18 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+## React Native Windows
+
+Run in elevated Powershell:
+```sh
+Set-ExecutionPolicy Unrestricted -Scope Process -Force;
+iex (New-Object System.Net.WebClient).DownloadString('https://aka.ms/rnw-vs2022-deps.ps1');
+```
+
+```sh
+Set-ExecutionPolicy Unrestricted -Scope Process -Force
+$script = "$env:TEMP\rnw-vs2022-deps.ps1"
+Invoke-WebRequest https://aka.ms/rnw-vs2022-deps.ps1 -OutFile $script
+& $script -Debug -Verbose -Install
+```
