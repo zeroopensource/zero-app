@@ -9,7 +9,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "windows": "npx @react-native-community/cli run-windows",
+    "windows": "npx @react-native-community/cli run-windows --arch x64 --logging",
     "react-native": "react-native",
     "test:windows": "jest --config jest.config.windows.js"
   },
