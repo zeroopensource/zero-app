@@ -3,7 +3,8 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
-    "start": "expo start",
+    "expo:start": "dotenv -e .env -- cross-env-shell \"expo start --port $EXPO_PORT\"",
+    "expo:export:web": "expo export -p web",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -42,6 +43,9 @@
     "react-native-web": "~0.21.0"
   },
   "devDependencies": {
+    "dotenv-cli": "11.0.0",
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.3.1",
     "@tauri-apps/cli": "^2.10.0",
     "@types/react": "~19.2.2",
     "typescript": "~5.9.2"
