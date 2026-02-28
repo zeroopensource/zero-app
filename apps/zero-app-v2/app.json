@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "zero-app-native",
-    "slug": "zero-app-native",
+    "name": "zero-app",
+    "slug": "zero-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "zeroappnative",
+    "scheme": "zeroapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
