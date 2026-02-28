@@ -4,10 +4,10 @@
   "version": "0.0.8",
   "identifier": "org.zeroopensource.app",
   "build": {
-    "frontendDist": "../out",
+    "frontendDist": "../dist",
     "devUrl": "http://localhost:4122",
-    "beforeDevCommand": "pnpm run dev:web",
-    "beforeBuildCommand": "pnpm run build:web"
+    "beforeDevCommand": "pnpm run expo:start",
+    "beforeBuildCommand": "pnpm run expo:export:web"
   },
   "app": {
     "windows": [
