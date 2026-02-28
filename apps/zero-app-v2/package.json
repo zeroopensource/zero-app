@@ -12,7 +12,7 @@
     "serve:web": "serve dist",
     "lint": "expo lint",
     "tauri": "tauri",
-    "dev:desktop": "tauri dev",
+    "dev:desktop": "tauri dev --no-watch",
     "build:desktop": "tauri build --debug"
   },
   "dependencies": {
