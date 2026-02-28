@@ -13,7 +13,8 @@
     "lint": "expo lint",
     "tauri": "tauri",
     "dev:desktop": "tauri dev --no-watch",
-    "build:desktop": "tauri build --debug"
+    "build:desktop": "tauri build --debug",
+    "dev": "pnpm dev:desktop"
   },
   "dependencies": {
     "@tauri-apps/api": "2.10.1",
