@@ -46,7 +46,6 @@
     "react-native-web": "~0.21.0"
   },
   "devDependencies": {
-    "@react-native-reusables/cli": "0.6.3",
     "serve": "14.2.5",
     "dotenv-cli": "11.0.0",
     "cross-env": "^10.1.0",
