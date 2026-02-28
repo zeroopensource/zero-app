@@ -8,9 +8,13 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "tauri": "tauri",
+    "dev:desktop": "tauri dev",
+    "build:desktop": "tauri build --debug"
   },
   "dependencies": {
+    "@tauri-apps/api": "2.10.1",
     "@react-navigation/bottom-tabs": "^7.7.3",
     "@react-navigation/elements": "^2.8.1",
     "@react-navigation/native": "^7.1.28",
@@ -38,6 +42,7 @@
     "react-native-web": "~0.21.0"
   },
   "devDependencies": {
+    "@tauri-apps/cli": "^2.10.0",
     "@types/react": "~19.2.2",
     "typescript": "~5.9.2"
   },

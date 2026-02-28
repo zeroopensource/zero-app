@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Zero",
+  "version": "0.0.8",
+  "identifier": "org.zeroopensource.app",
+  "build": {
+    "frontendDist": "../out",
+    "devUrl": "http://localhost:4122",
+    "beforeDevCommand": "pnpm run dev:web",
+    "beforeBuildCommand": "pnpm run build:web"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Zero",
+        "width": 800,
+        "height": 600,
+        "resizable": true,
+        "fullscreen": false,
+        "backgroundColor": "#242424"
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["app", "dmg", "appimage", "deb", "rpm", "msi"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "android": {
+      "versionCode": 8
+    }
+  }
+}

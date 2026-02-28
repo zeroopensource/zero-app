@@ -15,6 +15,14 @@ public/dist
 .env
 .env*.local
 *.local
+.env*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env
+.env.production
+.dev.vars
 
 # IDEs and editors
 .vscode/*
@@ -26,7 +34,10 @@ public/dist
 *.swp
 *.swo
 *~
+
+# macOS
 .DS_Store
+*.pem
 
 # Logs
 logs
@@ -36,6 +47,16 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
+
+# dev
+.yarn/
+!.yarn/releases
+.vscode/*
+!.vscode/launch.json
+!.vscode/*.code-snippets
+.idea/workspace.xml
+.idea/usage.statistics.xml
+.idea/shelf
 
 # Turbo
 .turbo
@@ -53,12 +74,53 @@ coverage
 tmp
 temp
 
-# Next.js
-.next
-
 # Cargo
 **/target/
 **/capabilities/schemas
 
 # Tauri
 **/gen/schemas
+/target/
+/gen/schemas
+keystore.properties
+
+# Next.js
+.next/
+out/
+build
+.swc/
+.vercel
+next-env.d.ts
+
+# Local db
+dev.db
+test.db
+
+# typescript
+*.tsbuildinfo
+
+# fumadocs
+.source
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+app-example
+
+# Native
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro
+.metro-health-check*
+
+# expo generated native folders
+/ios
+/android
