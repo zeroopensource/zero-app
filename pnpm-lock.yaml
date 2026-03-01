@@ -21,7 +21,7 @@ importers:
         specifier: latest
         version: 0.0.4
       turbo:
-        specifier: '^2.8.12 '
+        specifier: ^2.8.12
         version: 2.8.12
       typescript:
         specifier: 'catalog:'
