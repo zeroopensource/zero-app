@@ -2,6 +2,7 @@
   "name": "@zeroopensource/zero-app-v2",
   "main": "expo-router/entry",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
     "expo:start": "dotenv -e .env -- cross-env-shell \"expo start --port $PORT\"",
     "expo:export:web": "expo export -p web",
@@ -51,7 +52,7 @@
     "dotenv": "^17.3.1",
     "@tauri-apps/cli": "^2.10.0",
     "@types/react": "~19.2.2",
-    "typescript": "~5.9.2"
-  },
-  "private": true
+    "typescript": "~5.9.2",
+    "@zeroopensource/zero-cli": "latest"
+  }
 }
