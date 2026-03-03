@@ -55,8 +55,6 @@ export function SiteHeader() {
             ))}
           </BreadcrumbList>
         </Breadcrumb>
-        <span className="ml-4 text-xs">{pathname}</span>
-        <span className="ml-4 text-xs">{pathname2}</span>
         {/* <SearchForm className="w-full sm:ml-auto sm:w-auto" /> */}
       </div>
     </header>
