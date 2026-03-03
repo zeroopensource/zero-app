@@ -16,9 +16,7 @@ export const NEXTENV = createNextEnv({
     NEXT_PUBLIC_ZERO_SERVICE_GATEWAY: z.string(),
   },
   runtimeEnv: {
-    // biome-ignore lint/style/noProcessEnv: Intentional
     NODE_ENV: process.env.NODE_ENV,
-    // biome-ignore lint/style/noProcessEnv: Intentional
     PORT: process.env.PORT,
     NEXT_PUBLIC_ZERO_SERVICE_GATEWAY:
       process.env.NEXT_PUBLIC_ZERO_SERVICE_GATEWAY,
