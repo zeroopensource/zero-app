@@ -23,7 +23,8 @@
     "open:android": "cap open android",
     "dev:android": "cap run android",
     "open:ios": "cap open ios",
-    "dev:ios": "cap run ios"
+    "dev:ios": "cap run ios",
+    "install:electron": "node node_modules/electron/install.js"
   },
   "dependencies": {
     "@capacitor/ios": "^8.1.0",

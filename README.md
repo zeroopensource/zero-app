@@ -6,6 +6,9 @@ Open Source Data App
 
 Open Android Studio, connect Physical Device, Debug via `chrome://inspect`
 
+`pnpm approve-builds`
+`pnpm --filter @zeroopensource/zero-app-v2 install:electron`
+
 ## Official Links
 
 - [GitHub Repository](https://github.com/zeroopensource/zero-app)
