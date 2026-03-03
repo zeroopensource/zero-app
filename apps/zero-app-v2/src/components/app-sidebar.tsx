@@ -14,7 +14,9 @@ import {
   Settings2,
   SquareTerminal,
 } from "lucide-react";
+import { usePathname } from "next/navigation";
 import type * as React from "react";
+import { useEffect } from "react";
 import { NavMain } from "@/components/nav-main";
 import { NavProjects } from "@/components/nav-projects";
 import { NavSecondary } from "@/components/nav-secondary";
@@ -25,6 +27,7 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { TeamSwitcher } from "./team-switcher";
 
@@ -170,6 +173,13 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { setOpenMobile } = useSidebar();
+  const pathname = usePathname();
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Intentional
+  useEffect(() => {
+    setOpenMobile(false);
+  }, [pathname, setOpenMobile]);
+
   return (
     <Sidebar
       className="top-(--header-height) h-[calc(100svh-var(--header-height))]!"
