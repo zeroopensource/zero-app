@@ -18,11 +18,10 @@
     "shadcn": "shadcn",
     "shadcn:addzero": "pnpm shadcn add https://zerocn.zeroopensource.org/r/all.json -y -o",
     "cap": "cap",
-    "sync:cap": "cap sync",
-    "open:android": "cap open android",
-    "dev:android": "cap run android",
-    "open:ios": "cap open ios",
-    "dev:ios": "cap run ios",
+    "open:android": "cap sync && cap open android",
+    "dev:android": "cap sync && cap run android",
+    "open:ios": "cap sync && cap open ios",
+    "dev:ios": "cap sync && cap run ios",
     "install:electron": "node node_modules/electron/install.js"
   },
   "dependencies": {
