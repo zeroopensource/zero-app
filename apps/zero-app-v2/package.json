@@ -16,8 +16,9 @@
     "cap": "cap",
     "cap:sync": "cap sync",
     "open:android": "cap open android",
-    "run:android": "cap run android",
-    "open:ios": "cap open ios"
+    "dev:android": "cap run android",
+    "open:ios": "cap open ios",
+    "dev:ios": "cap run ios"
   },
   "dependencies": {
     "@capacitor/ios": "^8.1.0",
