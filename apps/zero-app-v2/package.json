@@ -4,18 +4,30 @@
   "description": "Open Source App",
   "version": "0.0.8",
   "private": true,
+  "author": "Zero <zeroopensource@gmail.com>",
+  "main": "src-electron/main.js",
   "scripts": {
+    "dev:desktop": "concurrently -n \"NEXT,ELECTRON\" -c \"yellow,blue\" --kill-others \"pnpm dev:web\" \"electron .\"",
+    "build": "pnpm build:web && electron-builder",
+    "dev2": "concurrently \"pnpm dev:web\" \"pnpm dev:desktop\"",
     "dev:web": "dotenv -e .env -- next dev",
     "build:web": "cross-env PLATFORM=web next build && pnpm fix:next-out",
     "serve:web": "serve out",
     "fix:next-out": "tsx scripts/fix-next-out.ts",
     "start": "dotenv -e .env -- next start",
-    "build": "pnpm build:web",
     "shadcn": "shadcn",
     "shadcn:addzero": "pnpm shadcn add https://zerocn.zeroopensource.org/r/all.json -y -o",
-    "capacitor": "cap"
+    "cap": "cap",
+    "cap:sync": "cap sync",
+    "open:android": "cap open android",
+    "dev:android": "cap run android",
+    "open:ios": "cap open ios",
+    "dev:ios": "cap run ios",
+    "install:electron": "node node_modules/electron/install.js"
   },
   "dependencies": {
+    "@capacitor/ios": "^8.1.0",
+    "@capacitor/android": "^8.1.0",
     "@capacitor/core": "^8.1.0",
     "better-auth": "^1.4.18",
     "@giscus/react": "^3.1.0",
@@ -46,9 +58,13 @@
     "tailwind-merge": "^3.3.1",
     "tw-animate-css": "^1.3.4",
     "vaul": "^1.1.2",
-    "zod": "^4.3.6"
+    "zod": "^4.3.6",
+    "electron-serve": "^3.0.1"
   },
   "devDependencies": {
+    "electron-builder": "^26.8.1",
+    "concurrently": "^9.2.1",
+    "electron": "^40.6.1",
     "@capacitor/cli": "^8.1.0",
     "serve": "^14.2.5",
     "tsx": "^4.21.0",
