@@ -13,8 +13,11 @@
     "build": "pnpm build:web",
     "shadcn": "shadcn",
     "shadcn:addzero": "pnpm shadcn add https://zerocn.zeroopensource.org/r/all.json -y -o",
-    "capacitor": "cap",
-    "capacitor:sync": "cap sync"
+    "cap": "cap",
+    "cap:sync": "cap sync",
+    "open:android": "cap open android",
+    "run:android": "cap run android",
+    "open:ios": "cap open ios"
   },
   "dependencies": {
     "@capacitor/ios": "^8.1.0",
