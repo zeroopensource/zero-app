@@ -18,7 +18,7 @@
     "shadcn": "shadcn",
     "shadcn:addzero": "pnpm shadcn add https://zerocn.zeroopensource.org/r/all.json -y -o",
     "cap": "cap",
-    "cap:sync": "cap sync",
+    "sync:cap": "cap sync",
     "open:android": "cap open android",
     "dev:android": "cap run android",
     "open:ios": "cap open ios",
