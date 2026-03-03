@@ -7,10 +7,9 @@
   "author": "Zero <zeroopensource@gmail.com>",
   "main": "src-electron/main.js",
   "scripts": {
-    "dev": "concurrently -n \"NEXT,ELECTRON\" -c \"yellow,blue\" --kill-others \"pnpm dev:web\" \"electron .\"",
+    "dev:desktop": "concurrently -n \"NEXT,ELECTRON\" -c \"yellow,blue\" --kill-others \"pnpm dev:web\" \"electron .\"",
     "build": "pnpm build:web && electron-builder",
     "dev2": "concurrently \"pnpm dev:web\" \"pnpm dev:desktop\"",
-    "dev:desktop": "electron",
     "dev:web": "dotenv -e .env -- next dev",
     "build:web": "cross-env PLATFORM=web next build && pnpm fix:next-out",
     "serve:web": "serve out",
