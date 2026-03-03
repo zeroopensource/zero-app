@@ -2,8 +2,6 @@ import { createEnv as createNextEnv } from "@t3-oss/env-nextjs";
 import z from "zod";
 import { ZeroSchema } from "@/lib/zero-schema";
 
-console.log(process.env);
-
 /** https://github.com/t3-oss/t3-env */
 export const NEXTENV = createNextEnv({
   server: {},
