@@ -1,0 +1,40 @@
+import { Capacitor } from "@capacitor/core";
+import { useEffect, useState } from "react";
+
+export const Platforms = {
+  WEB: { versionSuffix: "web" },
+  WINDOWS: { versionSuffix: "win" },
+  MAC: { versionSuffix: "mac" },
+  LINUX: { versionSuffix: "lin" },
+  ANDROID: { versionSuffix: "and" },
+  IOS: { versionSuffix: "ios" },
+  UNKNOWN: { versionSuffix: "unk" },
+};
+
+type Platform = keyof typeof Platforms;
+
+export const usePlatform = (): Platform => {
+  const [platform, setPlatform] = useState<Platform>("UNKNOWN");
+
+  useEffect(() => {
+    const electronVersion = process.versions.electron;
+    const electronPlatform = electronVersion != null ? process.platform : null;
+    if (typeof window === "undefined") {
+      setPlatform("UNKNOWN");
+    } else if (electronPlatform === "win32") {
+      setPlatform("WINDOWS");
+    } else if (electronPlatform === "linux") {
+      setPlatform("LINUX");
+    } else if (electronPlatform === "darwin") {
+      setPlatform("MAC");
+    } else if (Capacitor.getPlatform() === "android") {
+      setPlatform("ANDROID");
+    } else if (Capacitor.getPlatform() === "ios") {
+      setPlatform("IOS");
+    } else {
+      setPlatform("WEB");
+    }
+  }, []);
+
+  return platform;
+};
