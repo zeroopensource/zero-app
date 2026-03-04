@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, nativeImage } = require("electron");
 const serve = require("electron-serve");
 const path = require("node:path");
 
@@ -10,12 +10,17 @@ const appServe = app.isPackaged
 
 const createWindow = () => {
   const win = new BrowserWindow({
+    icon: path.join(__dirname, "../public/zero-logo-v1-padding.ico"),
     width: 800,
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
   });
+
+  // const iconPath = path.join(__dirname, "../public/zero-logo-v1-padding.png");
+  // const iconImage = nativeImage.createFromPath(iconPath);
+  // win.setIcon(iconImage);
 
   if (app.isPackaged) {
     appServe(win).then(() => {
