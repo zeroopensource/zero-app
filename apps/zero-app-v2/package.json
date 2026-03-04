@@ -24,9 +24,9 @@
     "install:electron": "node node_modules/electron/install.js",
     "generate:cap:icon": "pnpx @capacitor/assets generate --iconBackgroundColor #09090b --iconBackgroundColorDark #09090b --splashBackgroundColor #09090b --splashBackgroundColorDark #09090b --assetPath /src-capacitor/assets",
     "electron-forge": "electron-forge",
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
+    "start:forge": "electron-forge start",
+    "package:forge": "electron-forge package",
+    "make:forge": "electron-forge make"
   },
   "dependencies": {
     "@capacitor/android": "^8.1.0",
