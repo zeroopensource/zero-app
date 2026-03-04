@@ -33,7 +33,7 @@ export function SiteHeader() {
           <SidebarIcon />
         </Button>
         <Separator className="mr-2" orientation="vertical" />
-        <Breadcrumb className="hidden sm:block">
+        <Breadcrumb className="block">
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink href="#">

@@ -64,6 +64,8 @@ export default function RootLayout({
     }
   }, [isPendingSession, router, session, error, pathname, isAuthPathname]);
 
+  const isSidebarEnabled = !isPendingSession && !!session;
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -73,8 +75,8 @@ export default function RootLayout({
           <div className="[--header-height:calc(--spacing(10))]">
             <SidebarProvider
               className="flex flex-col"
-              open={isAuthPathname ? false : undefined}
-              openMobile={isAuthPathname ? false : undefined}
+              open={isSidebarEnabled ? undefined : false}
+              openMobile={isSidebarEnabled ? undefined : false}
               style={
                 {
                   "--sidebar-width": "16rem",
