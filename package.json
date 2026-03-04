@@ -16,7 +16,9 @@
     "test": "turbo run test",
     "typecheck": "turbo run typecheck"
   },
-  "dependencies": {},
+  "dependencies": {
+    "sharp": "0.32.6"
+  },
   "devDependencies": {
     "@biomejs/biome": "2.3.11",
     "turbo": "^2.8.12",
@@ -27,5 +29,10 @@
   "packageManager": "pnpm@10.30.3",
   "engines": {
     "node": ">=18"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp"
+    ]
   }
 }
