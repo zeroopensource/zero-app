@@ -23,7 +23,7 @@
     "open:ios": "pnpm build:web && cap open ios",
     "dev:ios": "pnpm build:web && cap run ios",
     "install:electron": "node node_modules/electron/install.js",
-    "generate:cap:icon": "pnpx @capacitor/assets generate --iconBackgroundColor '#09090b' --iconBackgroundColorDark '#09090b' --splashBackgroundColor '#09090b' --splashBackgroundColorDark '#09090b'"
+    "generate:cap:icon": "pnpx @capacitor/assets generate --iconBackgroundColor #09090b --iconBackgroundColorDark #09090b --splashBackgroundColor #09090b --splashBackgroundColorDark #09090b --assetPath /src-capacitor/assets"
   },
   "dependencies": {
     "@capacitor/android": "^8.1.0",
