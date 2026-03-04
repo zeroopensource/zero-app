@@ -55,6 +55,7 @@ export default function RootLayout({
       toast.dismiss(toasterId);
       if (error) {
         toast.error(error.message);
+        router.push("/auth/signin");
       }
       if (!(session || isAuthPathname)) {
         router.push("/auth/signin");
