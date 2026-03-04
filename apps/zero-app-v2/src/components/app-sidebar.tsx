@@ -29,7 +29,9 @@ import {
   SidebarHeader,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { usePlatform } from "../hooks/use-platform";
+import { PLATFORMS, usePlatform } from "../hooks/use-platform";
+import { PACKAGEJSON } from "../lib/packagejson";
+import { NavPlatform } from "./nav-platform";
 import { TeamSwitcher } from "./team-switcher";
 
 const data = {
@@ -182,6 +184,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     setOpenMobile(false);
   }, [pathname, setOpenMobile]);
 
+  const versionCode = `${PACKAGEJSON.displayName} v${PACKAGEJSON.version}+${PLATFORMS[platform].versionSuffix}`;
+
   return (
     <Sidebar
       className="top-(--header-height) h-[calc(100svh-var(--header-height))]!"
@@ -195,7 +199,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <NavMain items={data.navMain} />
           <NavProjects projects={data.projects} />
           <NavSecondary className="mt-auto" items={data.navSecondary} />
-          <p>v{platform}</p>
+          <NavPlatform label={versionCode} />
         </ScrollArea>
       </SidebarContent>
       <SidebarFooter>

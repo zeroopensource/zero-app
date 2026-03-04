@@ -1,7 +1,7 @@
 import { Capacitor } from "@capacitor/core";
 import { useEffect, useState } from "react";
 
-export const Platforms = {
+export const PLATFORMS = {
   WEB: { versionSuffix: "web" },
   WINDOWS: { versionSuffix: "win" },
   MAC: { versionSuffix: "mac" },
@@ -11,7 +11,7 @@ export const Platforms = {
   UNKNOWN: { versionSuffix: "unk" },
 };
 
-type Platform = keyof typeof Platforms;
+type Platform = keyof typeof PLATFORMS;
 
 export const usePlatform = (): Platform => {
   const [platform, setPlatform] = useState<Platform>("UNKNOWN");
