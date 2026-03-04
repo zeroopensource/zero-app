@@ -32,7 +32,8 @@
     "./**/*.tsx",
     "./.next/types/**/*.ts",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    "./src-electron/electron-env.d.ts"
   ],
   "exclude": ["./node_modules", "src-tauri"]
 }
