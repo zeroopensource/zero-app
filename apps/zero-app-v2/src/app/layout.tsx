@@ -55,6 +55,7 @@ export default function RootLayout({
       toast.dismiss(toasterId);
       if (error) {
         toast.error(error.message);
+        router.push("/auth/signin");
       }
       if (!(session || isAuthPathname)) {
         router.push("/auth/signin");
@@ -63,6 +64,8 @@ export default function RootLayout({
       }
     }
   }, [isPendingSession, router, session, error, pathname, isAuthPathname]);
+
+  const isSidebarEnabled = !isPendingSession && !!session;
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -73,8 +76,8 @@ export default function RootLayout({
           <div className="[--header-height:calc(--spacing(10))]">
             <SidebarProvider
               className="flex flex-col"
-              open={isAuthPathname ? false : undefined}
-              openMobile={isAuthPathname ? false : undefined}
+              open={isSidebarEnabled ? undefined : false}
+              openMobile={isSidebarEnabled ? undefined : false}
               style={
                 {
                   "--sidebar-width": "16rem",
