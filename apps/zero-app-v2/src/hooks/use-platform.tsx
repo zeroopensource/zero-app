@@ -17,8 +17,9 @@ export const usePlatform = (): Platform => {
   const [platform, setPlatform] = useState<Platform>("UNKNOWN");
 
   useEffect(() => {
-    const electronVersion = process.versions.electron;
-    const electronPlatform = electronVersion != null ? process.platform : null;
+    const electronVersion = window.electronApi?.electronVersion;
+    const electronPlatform =
+      electronVersion != null ? window.electronApi?.electronPlatform : null;
     if (typeof window === "undefined") {
       setPlatform("UNKNOWN");
     } else if (electronPlatform === "win32") {
