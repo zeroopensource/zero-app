@@ -1,6 +1,6 @@
 const { app, BrowserWindow } = require("electron");
 const serve = require("electron-serve");
-const path = require("path");
+const path = require("node:path");
 
 const appServe = app.isPackaged
   ? serve({
@@ -24,9 +24,16 @@ const createWindow = () => {
   } else {
     win.loadURL(`http://localhost:${process.env.PORT || 4122}`);
     win.webContents.openDevTools();
-    win.webContents.on("did-fail-load", (e, code, desc) => {
-      win.webContents.reloadIgnoringCache();
-    });
+    win.webContents.on(
+      "did-fail-load",
+      (
+        // e,
+        // code,
+        // desc
+      ) => {
+        win.webContents.reloadIgnoringCache();
+      }
+    );
   }
 };
 
