@@ -7,9 +7,14 @@ const appServe = app.isPackaged
       directory: path.join(__dirname, "../out"),
     })
   : null;
+// const version = app.getVersion();
 
 const createWindow = () => {
   const win = new BrowserWindow({
+    show: false,
+    backgroundColor: "#09090b", // zinc-950
+    title: "Zero",
+    icon: path.join(__dirname, "../public/zero-logo-v1-padding.ico"),
     width: 800,
     height: 600,
     webPreferences: {
@@ -35,6 +40,9 @@ const createWindow = () => {
       }
     );
   }
+  win.webContents.once("did-finish-load", () => {
+    win.show();
+  });
 };
 
 app.on("ready", () => {
