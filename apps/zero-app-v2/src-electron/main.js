@@ -7,9 +7,11 @@ const appServe = app.isPackaged
       directory: path.join(__dirname, "../out"),
     })
   : null;
+// const version = app.getVersion();
 
 const createWindow = () => {
   const win = new BrowserWindow({
+    title: "Zero",
     icon: path.join(__dirname, "../public/zero-logo-v1-padding.ico"),
     width: 800,
     height: 600,
