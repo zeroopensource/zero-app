@@ -8,15 +8,23 @@ Open Android Studio, connect Physical Device, Debug via `chrome://inspect`
 
 ## Installation issues
 
-`pnpm approve-builds`
-`pnpm --filter zero-app-v2 install:electron`
-`pnpm --filter zero-app-v2 install:electron-winstaller`
+```bash
+pnpm approve-builds
+```
+```bash
+pnpm --filter zero-app-v2 install:electron
+```
+```bash
+pnpm --filter zero-app-v2 install:electron-winstaller
+```
 
 ## Update Icons
 
-`src-capacitor/assets`
+place icons in `src-capacitor/assets`
 
-`pnpm --filter zero-app-v2 generate:cap:icon`
+```bash
+pnpm --filter zero-app-v2 generate:cap:icon
+```
 
 ## Official Links
 
