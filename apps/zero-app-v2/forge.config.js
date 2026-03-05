@@ -5,24 +5,52 @@ module.exports = {
   outDir: "out-electron",
   packagerConfig: {
     asar: true,
+    icon: "./icons/icon",
   },
   rebuildConfig: {},
   makers: [
     {
       name: "@electron-forge/maker-squirrel",
-      config: {},
+      config: {
+        iconUrl:
+          "https://raw.githubusercontent.com/zeroopensource/zero-app/refs/heads/dev/apps/zero-app-v2/icons/icon.ico",
+        setupIcon: "./icons/icon.ico",
+      },
     },
     {
       name: "@electron-forge/maker-zip",
       platforms: ["darwin"],
+      config: {
+        options: {
+          icon: "./icons/icon.png",
+        },
+      },
     },
     {
       name: "@electron-forge/maker-deb",
-      config: {},
+      config: {
+        options: {
+          icon: "./icons/icon.png",
+        },
+      },
     },
+    // {
+    //   name: "@electron-forge/maker-dmg",
+    //   config: {
+    //     icon: "./icons/icon.icns",
+    //   },
+    // },
+    // {
+    //   name: "@electron-forge/maker-wix",
+    //   config: {
+    //     icon: "./icons/icon.ico",
+    //   },
+    // },
     {
       name: "@electron-forge/maker-rpm",
-      config: {},
+      config: {
+        icon: "./icons/icon.png",
+      },
     },
   ],
   plugins: [
