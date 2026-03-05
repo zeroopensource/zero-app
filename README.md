@@ -6,8 +6,25 @@ Open Source Data App
 
 Open Android Studio, connect Physical Device, Debug via `chrome://inspect`
 
-`pnpm approve-builds`
-`pnpm --filter @zeroopensource/zero-app-v2 install:electron`
+## Installation issues
+
+```bash
+pnpm approve-builds
+```
+```bash
+pnpm --filter zero-app-v2 install:electron
+```
+```bash
+pnpm --filter zero-app-v2 install:electron-winstaller
+```
+
+## Update Icons
+
+place icons in `src-capacitor/assets`
+
+```bash
+pnpm --filter zero-app-v2 generate:cap:icon
+```
 
 ## Official Links
 
