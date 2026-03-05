@@ -124,3 +124,6 @@ app-example
 # expo generated native folders
 /ios
 /android
+
+# electron
+out-electron
