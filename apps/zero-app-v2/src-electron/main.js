@@ -1,5 +1,5 @@
 const { app, BrowserWindow } = require("electron");
-const serve = require("electron-serve");
+const serve = require("electron-serve").default;
 const path = require("node:path");
 
 const appServe = app.isPackaged
