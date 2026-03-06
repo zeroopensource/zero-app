@@ -4,7 +4,7 @@ const path = require("node:path");
 
 const appServe = app.isPackaged
   ? serve({
-      directory: path.join(__dirname, "../out"),
+      directory: path.join(process.resourcesPath, "out"),
     })
   : null;
 // const version = app.getVersion();
@@ -23,6 +23,11 @@ const createWindow = () => {
   });
 
   if (app.isPackaged) {
+    // (async () => {
+    //   await app.whenReady();
+    //   await appServe(win, {});
+    //   await win.loadUrl("app://-");
+    // })();
     appServe(win).then(() => {
       win.loadURL("app://-");
     });
