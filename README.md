@@ -26,6 +26,11 @@ place icons in `src-capacitor/assets`
 pnpm --filter zero-app-v2 generate:cap:icon
 ```
 
+## Trust Zero Cerficate
+
+zero-code-signing-E656BCE2.cer
+https://github.com/zeroopensource/zero-official/raw/refs/heads/main/packages/zero-official/src/certificates/zero-code-signing-E656BCE2.cer
+
 ## Official Links
 
 - [GitHub Repository](https://github.com/zeroopensource/zero-app)
