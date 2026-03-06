@@ -83,6 +83,7 @@ temp
 /target/
 /gen/schemas
 keystore.properties
+upload-keystore.jks
 
 # Next.js
 .next/
@@ -127,3 +128,8 @@ app-example
 
 # electron
 out-electron
+
+# signing
+keystore.properties
+upload-keystore.jks
+*.pfx
