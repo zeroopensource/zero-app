@@ -14,13 +14,15 @@ module.exports = {
     {
       name: "@electron-forge/maker-squirrel",
       config: {
+        name: "Zero",
+        shortcutName: "Zero",
         defaultInstallMode: "perUser",
         loadingGif: "./icons/loading-gif.gif",
-        // certificateFile: "./src-electron/cert.pfx",
-        // certificatePassword: process.env.CERTIFICATE_PASSWORD,
         iconUrl:
           "https://raw.githubusercontent.com/zeroopensource/zero-app/refs/heads/dev/apps/zero-app-v2/icons/icon.ico",
-        setupIcon: "./icons/icon.ico",
+        setupIcon: "./icons/icon-transparent.ico",
+        // certificateFile: "./src-electron/cert.pfx",
+        // certificatePassword: process.env.CERTIFICATE_PASSWORD,
       },
     },
     // {

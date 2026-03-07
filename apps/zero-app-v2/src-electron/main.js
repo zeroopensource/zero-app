@@ -10,6 +10,9 @@ const appServe = app.isPackaged
 // const version = app.getVersion();
 
 const createWindow = () => {
+  if (require("electron-squirrel-startup")) {
+    app.quit();
+  }
   const win = new BrowserWindow({
     show: false,
     backgroundColor: "#09090b", // zinc-950
