@@ -20,7 +20,7 @@ module.exports = {
         loadingGif: "./icons/loading-gif.gif",
         iconUrl:
           "https://raw.githubusercontent.com/zeroopensource/zero-app/refs/heads/dev/apps/zero-app-v2/icons/icon.ico",
-        setupIcon: "./icons/icon-transparent.ico",
+        setupIcon: "./icons/icon.ico",
         // certificateFile: "./src-electron/cert.pfx",
         // certificatePassword: process.env.CERTIFICATE_PASSWORD,
       },
