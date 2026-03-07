@@ -14,8 +14,8 @@ module.exports = {
     {
       name: "@electron-forge/maker-squirrel",
       config: {
-        certificateFile: "./src-electron/cert.pfx",
-        certificatePassword: process.env.CERTIFICATE_PASSWORD,
+        // certificateFile: "./src-electron/cert.pfx",
+        // certificatePassword: process.env.CERTIFICATE_PASSWORD,
         iconUrl:
           "https://raw.githubusercontent.com/zeroopensource/zero-app/refs/heads/dev/apps/zero-app-v2/icons/icon.ico",
         setupIcon: "./icons/icon.ico",
@@ -26,8 +26,8 @@ module.exports = {
       config: {
         language: 1033,
         manufacturer: "Zero",
-        certificateFile: "./src-electron/cert.pfx",
-        certificatePassword: process.env.CERTIFICATE_PASSWORD,
+        // certificateFile: "./src-electron/cert.pfx",
+        // certificatePassword: process.env.CERTIFICATE_PASSWORD,
         icon: "./icons/icon.ico",
       },
     },
