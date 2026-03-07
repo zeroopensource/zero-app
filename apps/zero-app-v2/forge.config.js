@@ -15,6 +15,7 @@ module.exports = {
       name: "@electron-forge/maker-squirrel",
       config: {
         defaultInstallMode: "perUser",
+        loadingGif: "./icons/loading-gif.gif",
         // certificateFile: "./src-electron/cert.pfx",
         // certificatePassword: process.env.CERTIFICATE_PASSWORD,
         iconUrl:
