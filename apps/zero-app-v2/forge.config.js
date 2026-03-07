@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { FusesPlugin } = require("@electron-forge/plugin-fuses");
 const { FuseV1Options, FuseVersion } = require("@electron/fuses");
 
@@ -25,7 +26,9 @@ module.exports = {
       config: {
         language: 1033,
         manufacturer: "Zero",
-        icon: "./icons/icon.png",
+        certificateFile: "./src-electron/cert.pfx",
+        certificatePassword: process.env.CERTIFICATE_PASSWORD,
+        icon: "./icons/icon.ico",
       },
     },
     {
@@ -49,12 +52,6 @@ module.exports = {
     //   name: "@electron-forge/maker-dmg",
     //   config: {
     //     icon: "./icons/icon.icns",
-    //   },
-    // },
-    // {
-    //   name: "@electron-forge/maker-wix",
-    //   config: {
-    //     icon: "./icons/icon.ico",
     //   },
     // },
     {
