@@ -21,6 +21,14 @@ module.exports = {
       },
     },
     {
+      name: "@electron-forge/maker-wix",
+      config: {
+        language: 1033,
+        manufacturer: "Zero",
+        icon: "./icons/icon.png",
+      },
+    },
+    {
       name: "@electron-forge/maker-zip",
       platforms: ["darwin"],
       config: {
