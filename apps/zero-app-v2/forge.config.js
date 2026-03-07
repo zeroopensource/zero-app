@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { FusesPlugin } = require("@electron-forge/plugin-fuses");
 const { FuseV1Options, FuseVersion } = require("@electron/fuses");
 
@@ -13,13 +14,28 @@ module.exports = {
     {
       name: "@electron-forge/maker-squirrel",
       config: {
-        certificateFile: "./src-electron/cert.pfx",
-        certificatePassword: process.env.CERTIFICATE_PASSWORD,
+        name: "Zero",
+        shortcutName: "Zero",
+        defaultInstallMode: "perUser",
+        loadingGif: "./icons/loading-gif.gif",
         iconUrl:
           "https://raw.githubusercontent.com/zeroopensource/zero-app/refs/heads/dev/apps/zero-app-v2/icons/icon.ico",
-        setupIcon: "./icons/icon.ico",
+        setupIcon: "./icons/icon-transparent.ico",
+        // certificateFile: "./src-electron/cert.pfx",
+        // certificatePassword: process.env.CERTIFICATE_PASSWORD,
       },
     },
+    // {
+    //   name: "@electron-forge/maker-wix",
+    //   config: {
+    //     defaultInstallMode: "perUser",
+    //     language: 1033,
+    //     manufacturer: "Zero",
+    //     // certificateFile: "./src-electron/cert.pfx",
+    //     // certificatePassword: process.env.CERTIFICATE_PASSWORD,
+    //     icon: "./icons/icon.ico",
+    //   },
+    // },
     {
       name: "@electron-forge/maker-zip",
       platforms: ["darwin"],
@@ -41,12 +57,6 @@ module.exports = {
     //   name: "@electron-forge/maker-dmg",
     //   config: {
     //     icon: "./icons/icon.icns",
-    //   },
-    // },
-    // {
-    //   name: "@electron-forge/maker-wix",
-    //   config: {
-    //     icon: "./icons/icon.ico",
     //   },
     // },
     {
