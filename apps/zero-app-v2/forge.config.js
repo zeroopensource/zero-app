@@ -14,6 +14,7 @@ module.exports = {
     {
       name: "@electron-forge/maker-squirrel",
       config: {
+        defaultInstallMode: "perUser",
         // certificateFile: "./src-electron/cert.pfx",
         // certificatePassword: process.env.CERTIFICATE_PASSWORD,
         iconUrl:
@@ -21,16 +22,17 @@ module.exports = {
         setupIcon: "./icons/icon.ico",
       },
     },
-    {
-      name: "@electron-forge/maker-wix",
-      config: {
-        language: 1033,
-        manufacturer: "Zero",
-        // certificateFile: "./src-electron/cert.pfx",
-        // certificatePassword: process.env.CERTIFICATE_PASSWORD,
-        icon: "./icons/icon.ico",
-      },
-    },
+    // {
+    //   name: "@electron-forge/maker-wix",
+    //   config: {
+    //     defaultInstallMode: "perUser",
+    //     language: 1033,
+    //     manufacturer: "Zero",
+    //     // certificateFile: "./src-electron/cert.pfx",
+    //     // certificatePassword: process.env.CERTIFICATE_PASSWORD,
+    //     icon: "./icons/icon.ico",
+    //   },
+    // },
     {
       name: "@electron-forge/maker-zip",
       platforms: ["darwin"],
