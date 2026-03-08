@@ -23,6 +23,14 @@ module.exports = {
         setupIcon: "./icons/icon.ico",
         // certificateFile: "./src-electron/cert.pfx",
         // certificatePassword: process.env.CERTIFICATE_PASSWORD,
+        // windowsSign: {
+        //   // certificateFile: "./src-electron/cert.pfx",
+        //   // certificatePassword: process.env.CERTIFICATE_PASSWORD,
+        //   // signJavaScript: true,
+        //   // debug: true,
+        //   // signToolPath: ''
+        //   // hookFunction: (fileToSign) => {},
+        // },
       },
     },
     // {

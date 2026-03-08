@@ -28,9 +28,11 @@
     "electron-forge": "electron-forge",
     "start:forge": "electron-forge start",
     "package:forge": "electron-forge package",
-    "make:forge": "electron-forge make"
+    "make:forge": "electron-forge make",
+    "sign:forge": "electron-windows-sign app ./out-electron certificate-file \"./src-electron/cert.pfx\""
   },
   "dependencies": {
+    "@electron/windows-sign": "^2.0.2",
     "@capacitor/android": "^8.1.0",
     "@capacitor/core": "^8.1.0",
     "@capacitor/ios": "^8.1.0",
