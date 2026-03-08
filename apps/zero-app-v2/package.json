@@ -2,7 +2,7 @@
   "name": "zero-app-v2",
   "displayName": "Zero",
   "productName": "Zero",
-  "description": "Open Source App",
+  "description": "Zero App",
   "version": "0.0.8",
   "private": true,
   "author": "Zero <zeroopensource@gmail.com>",
@@ -28,9 +28,11 @@
     "electron-forge": "electron-forge",
     "start:forge": "electron-forge start",
     "package:forge": "electron-forge package",
-    "make:forge": "electron-forge make"
+    "make:forge": "electron-forge make && pnpm sign:forge",
+    "sign:forge": "node src-electron/sign.mjs"
   },
   "dependencies": {
+    "@electron/windows-sign": "^2.0.2",
     "@capacitor/android": "^8.1.0",
     "@capacitor/core": "^8.1.0",
     "@capacitor/ios": "^8.1.0",
