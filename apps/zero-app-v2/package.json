@@ -28,7 +28,7 @@
     "electron-forge": "electron-forge",
     "start:forge": "electron-forge start",
     "package:forge": "electron-forge package",
-    "make:forge": "electron-forge make",
+    "make:forge": "electron-forge make && pnpm sign:forge",
     "sign:forge": "node src-electron/sign.mjs"
   },
   "dependencies": {
