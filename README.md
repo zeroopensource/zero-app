@@ -2,6 +2,14 @@
 
 Open Source Data App
 
+## Environment Variables
+
+PORT="4000" # src-tauri/tauri.conf.json build.devUrl
+NODE_ENV="development"
+NEXT_PUBLIC_ZERO_SERVICE_AUTH="https://example.com/api"
+CERTIFICATE_PASSWORD=""
+WINDOWS_CERTIFICATE_PASSWORD=""
+
 ## Development
 
 Open Android Studio, connect Physical Device, Debug via `chrome://inspect`
