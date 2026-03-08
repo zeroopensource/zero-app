@@ -29,7 +29,7 @@
     "start:forge": "electron-forge start",
     "package:forge": "electron-forge package",
     "make:forge": "electron-forge make",
-    "sign:forge": "electron-windows-sign app ./out-electron certificate-file \"./src-electron/cert.pfx\""
+    "sign:forge": "node src-electron/sign.mjs"
   },
   "dependencies": {
     "@electron/windows-sign": "^2.0.2",
