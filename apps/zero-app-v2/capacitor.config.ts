@@ -10,6 +10,8 @@ const config: CapacitorConfig = {
       keystorePath: process.env.KEYSTORE_PATH,
       keystorePassword: process.env.KEYSTORE_PASSWORD,
       keystoreAlias: process.env.KEYSTORE_ALIAS,
+      keystoreAliasPassword: process.env.KEYSTORE_PASSWORD,
+      signingType: "apksigner",
     },
   },
 };
