@@ -9,6 +9,9 @@ NODE_ENV="development"
 NEXT_PUBLIC_ZERO_SERVICE_AUTH="https://example.com/api"
 CERTIFICATE_PASSWORD=""
 WINDOWS_CERTIFICATE_PASSWORD=""
+KEYSTORE_PATH="C:\\Users\\JohnDoe\\upload-keystore.jks"
+KEYSTORE_PASSWORD=""
+KEYSTORE_ALIAS=""
 
 ## Development
 
