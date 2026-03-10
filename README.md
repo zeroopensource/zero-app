@@ -42,6 +42,16 @@ pnpm --filter zero-app-v2 generate:cap:icon
 zero-code-signing-E656BCE2.cer
 https://github.com/zeroopensource/zero-official/raw/refs/heads/main/packages/zero-official/src/certificates/zero-code-signing-E656BCE2.cer
 
+## build apk/aab
+
+on `capacitor.config.ts`, use default `jarsigner` for `AAB`, use `apksigner` for `APK`
+```ts
+// releaseType: "APK",
+// signingType: "apksigner",
+releaseType: "AAB",
+signingType: "jarsigner",
+```
+
 ## outputs
 
 zero-app\apps\zero-app-v2\android\app\build\outputs\apk\release
