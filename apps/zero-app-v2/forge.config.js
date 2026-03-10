@@ -10,6 +10,11 @@ module.exports = {
     icon: "./icons/icon",
     extraResource: ["out"],
     executableName: packageJson.name,
+    ignore: [
+      /node_modules\/@next\/swc-linux-arm64-gnu/,
+      /node_modules\/@next\/swc-darwin/,
+      /node_modules\/@next\/swc-win32/,
+    ],
   },
   rebuildConfig: {},
   makers: [
