@@ -195,6 +195,9 @@ importers:
       electron:
         specifier: ^40.6.1
         version: 40.7.0
+      fs-xattr:
+        specifier: 0.3.1
+        version: 0.3.1
       serve:
         specifier: ^14.2.5
         version: 14.2.6
@@ -10470,8 +10473,7 @@ snapshots:
       random-path: 0.1.2
     optional: true
 
-  fs-xattr@0.3.1:
-    optional: true
+  fs-xattr@0.3.1: {}
 
   fs.realpath@1.0.0: {}
 
