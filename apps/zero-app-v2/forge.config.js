@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { FusesPlugin } = require("@electron-forge/plugin-fuses");
 const { FuseV1Options, FuseVersion } = require("@electron/fuses");
+const packageJson = require("./package.json");
 
 module.exports = {
   outDir: "out-electron",
@@ -8,6 +9,7 @@ module.exports = {
     asar: true,
     icon: "./icons/icon",
     extraResource: ["out"],
+    executableName: packageJson.name,
   },
   rebuildConfig: {},
   makers: [
