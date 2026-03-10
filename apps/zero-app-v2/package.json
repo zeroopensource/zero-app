@@ -36,7 +36,6 @@
     "build:desktop": "pnpm make:forge && pnpm sign:forge"
   },
   "dependencies": {
-    "sharp": "0.32.6",
     "@electron/windows-sign": "^2.0.2",
     "@capacitor/android": "^8.1.0",
     "@capacitor/core": "^8.1.0",
