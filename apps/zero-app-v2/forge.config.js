@@ -61,12 +61,14 @@ module.exports = {
         },
       },
     },
-    // {
-    //   name: "@electron-forge/maker-dmg",
-    //   config: {
-    //     icon: "./icons/icon.icns",
-    //   },
-    // },
+    {
+      name: "@electron-forge/maker-dmg",
+      config: {
+        icon: "./icons/icon.icns",
+        background: "./src-electron/assets/dmg-background.png",
+        format: "ULFO",
+      },
+    },
     {
       name: "@electron-forge/maker-rpm",
       config: {
