@@ -28,6 +28,11 @@ jobs:
         run: corepack enable
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Install Linux packaging deps
+        if: matrix.os.name == 'linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fakeroot dpkg dpkg-dev
       - name: Publish app
         if: github.ref == 'refs/heads/main'
         env:
