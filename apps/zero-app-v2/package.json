@@ -75,7 +75,6 @@
   },
   "devDependencies": {
     "@electron-forge/maker-wix": "^7.11.1",
-    "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "^8.1.0",
     "@electron-forge/cli": "^7.11.1",
     "@electron-forge/maker-deb": "^7.11.1",
@@ -97,6 +96,9 @@
     "serve": "^14.2.5",
     "tailwindcss": "^4.1.10",
     "tsx": "^4.21.0",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "@zeroopensource/zero-cli": "latest",
+    "sharp": "^0.34.5",
+    "@capacitor/assets": "^3.0.5"
   }
 }
