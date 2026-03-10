@@ -1,0 +1,105 @@
+import { z } from "zod";
+
+export const ZeroSchemaPrimitives = z.object({
+  // #region env
+  /** NODE_ENV ref: https://nextjs.org/docs/pages/guides/environment-variables */
+  NODE_ENV: z.enum(["development", "test", "staging", "production"]),
+  PORT: z.coerce.number(),
+  /** LOG_LEVEL ref: https://github.com/pinojs/pino */
+  LOG_LEVEL: z.enum([
+    "trace",
+    "debug",
+    "info",
+    "warn",
+    "error",
+    "fatal",
+    "silent",
+  ]),
+  /** DATABASE ref: https://orm.drizzle.team/docs/tutorials/drizzle-with-vercel-edge-functions */
+  DATABASE_URL: z.string(),
+  /** DATABASE ref: https://orm.drizzle.team/docs/tutorials/drizzle-with-vercel-edge-functions */
+  DATABASE_AUTH_TOKEN: z.string().optional(),
+  /** BETTER_AUTH ref: https://www.better-auth.com/docs/installation */
+  BETTER_AUTH_URL: z.string(),
+  /** BETTER_AUTH ref: https://www.better-auth.com/docs/installation */
+  BETTER_AUTH_SECRET: z.string(),
+  // #endregion
+
+  // #region date types
+  date: z.iso.date(),
+  time: z.iso.time(),
+  dateTime: z.iso.datetime(),
+  /** timeZone IANA ref: https://github.com/date-fns/date-fns/blob/main/scripts/test/tzIANA.ts */
+  timeZone: z.string(),
+  // #endregion
+
+  summary: z.string(),
+  location: z.string(),
+  /** recurrence ref: http://tools.ietf.org/html/rfc5545#section-3.8.5 */
+  recurrence: z.array(z.string()),
+  email: z.email(),
+  password: z.string().min(1, { message: "Password required" }),
+  newPassword: z
+    .string()
+    .min(8, "Password must be at least 8 characters long")
+    .max(128, "Password must be at most 128 characters long")
+    .regex(/[a-z]/, "Password must include at least one lowercase letter")
+    .regex(/[A-Z]/, "Password must include at least one uppercase letter")
+    .regex(/[0-9]/, "Password must include at least one number")
+    .regex(
+      /[^a-zA-Z0-9]/,
+      "Password must include at least one special character"
+    )
+    // biome-ignore lint/performance/useTopLevelRegex: Intentional
+    .refine((val) => !/\s/.test(val), "Password must not contain spaces"),
+});
+export type ZeroSchemaPrimitives = z.infer<typeof ZeroSchemaPrimitives>;
+
+export const ZeroSchema = z.object({
+  ...ZeroSchemaPrimitives.shape,
+  newConfirmedPassword: z
+    .object({
+      newPassword: ZeroSchemaPrimitives.shape.newPassword,
+      confirmPassword: z.string(),
+    })
+    .refine((data) => data.newPassword === data.confirmPassword, {
+      message: "Passwords do not match",
+      path: ["confirmPassword"],
+    }),
+  /**
+  googleCalendarEvent ref: 
+  https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/gapi.calendar
+  https://developers.google.com/workspace/calendar/api/v3/reference/events
+  */
+  googleCalendarEvent: z.object({
+    summary: ZeroSchemaPrimitives.shape.summary,
+    location: ZeroSchemaPrimitives.shape.location.optional(),
+    recurrence: ZeroSchemaPrimitives.shape.recurrence,
+    start: z.xor([
+      ZeroSchemaPrimitives.pick({
+        date: true,
+        timeZone: true,
+      }),
+      ZeroSchemaPrimitives.pick({
+        dateTime: true,
+        timeZone: true,
+      }),
+    ]),
+    end: z.xor([
+      ZeroSchemaPrimitives.pick({
+        date: true,
+        timeZone: true,
+      }),
+      ZeroSchemaPrimitives.pick({
+        dateTime: true,
+        timeZone: true,
+      }),
+    ]),
+    attendees: z.array(
+      z.object({
+        email: z.email(),
+      })
+    ),
+  }),
+});
+export type ZeroSchema = z.infer<typeof ZeroSchema>;
