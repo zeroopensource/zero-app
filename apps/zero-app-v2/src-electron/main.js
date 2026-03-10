@@ -10,7 +10,7 @@ const appServe = app.isPackaged
 // const version = app.getVersion();
 
 const createWindow = () => {
-  if (require("electron-squirrel-startup")) {
+  if (require("electron-squirrel-startup") === true) {
     app.quit();
   }
   const win = new BrowserWindow({

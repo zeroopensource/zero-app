@@ -5,7 +5,7 @@
   "description": "Zero App",
   "version": "0.0.12",
   "private": true,
-  "author": "Zero <zeroopensource@gmail.com>",
+  "author": "ZeroOpenSource",
   "main": "src-electron/main.js",
   "scripts": {
     "dev:desktop": "concurrently -n \"NEXT,ELECTRON\" -c \"yellow,blue\" --kill-others \"pnpm dev:web\" \"electron .\"",
@@ -33,7 +33,8 @@
     "package:forge": "electron-forge package",
     "make:forge": "electron-forge make",
     "sign:forge": "node src-electron/sign.mjs",
-    "build:desktop": "pnpm make:forge && pnpm sign:forge"
+    "build:desktop": "pnpm build:web && pnpm make:forge && pnpm sign:forge",
+    "publish:forge": "pnpm build:desktop && electron-forge publish"
   },
   "dependencies": {
     "@electron/windows-sign": "^2.0.2",
@@ -74,6 +75,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@electron-forge/publisher-github": "^7.11.1",
     "@electron-forge/maker-wix": "^7.11.1",
     "@capacitor/cli": "^8.1.0",
     "@electron-forge/cli": "^7.11.1",
