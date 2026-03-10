@@ -38,3 +38,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: pnpm run publish
+      - name: Upload build artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ matrix.os.name }}
+          path: |
+            .
+            !**/node_modules/**
+            !**/.git/**
