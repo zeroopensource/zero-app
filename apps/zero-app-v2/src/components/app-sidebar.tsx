@@ -175,6 +175,18 @@ const data = {
   ],
 };
 
+/*
+version
+home
+search
+auth
+settings
+contact
+about zero
+
+support
+*/
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { setOpenMobile } = useSidebar();
   const pathname = usePathname();
