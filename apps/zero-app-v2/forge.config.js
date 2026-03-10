@@ -46,7 +46,7 @@ module.exports = {
     // },
     {
       name: "@electron-forge/maker-zip",
-      platforms: ["darwin"],
+      platforms: ["darwin", "linux"],
       config: {
         options: {
           icon: "./icons/icon.png",
@@ -58,6 +58,8 @@ module.exports = {
       config: {
         options: {
           icon: "./icons/icon.png",
+          maintainer: "ZeroOpenSource",
+          homepage: "https://ZeroOpenSource.org",
         },
       },
     },
