@@ -97,9 +97,8 @@
     "tailwindcss": "^4.1.10",
     "tsx": "^4.21.0",
     "typescript": "catalog:",
-    "@zeroopensource/zero-cli": "latest"
-  },
-  "optionalDependencies": {
+    "@zeroopensource/zero-cli": "latest",
+    "sharp": "^0.34.5",
     "@capacitor/assets": "^3.0.5"
   }
 }
