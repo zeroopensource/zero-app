@@ -22,6 +22,8 @@
     "open:android": "pnpm build:web && cap open android",
     "dev:android": "pnpm build:web && cap run android",
     "build:android": "pnpm build:web && pnpm sync:android-version && cap build android",
+    "alignapk:android": "zipalign -v 4 ./android/app/build/outputs/apk/release/app-release-unsigned.apk ./android/app/build/outputs/apk/release/app-release-aligned.apk",
+    "signapk:android": "",
     "open:ios": "pnpm build:web && cap open ios",
     "dev:ios": "pnpm build:web && cap run ios",
     "build:ios": "pnpm build:web && cap build ios",
