@@ -8,7 +8,10 @@ const config: CapacitorConfig = {
   backgroundColor: "#09090B",
   android: {
     buildOptions: {
-      // releaseType: "APK", // "AAB" | "APK"
+      // releaseType: "APK",
+      // signingType: "apksigner",
+      releaseType: "AAB",
+      signingType: "jarsigner",
       keystorePath: process.env.KEYSTORE_PATH,
       keystorePassword: process.env.KEYSTORE_PASSWORD,
       keystoreAlias: process.env.KEYSTORE_ALIAS,
