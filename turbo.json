@@ -24,6 +24,17 @@
         "!.next/cache/**"
       ]
     },
+    "publish": {
+      "dependsOn": ["^publish"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [
+        "build/**",
+        ".vercel/**",
+        "dist/**",
+        ".next/**",
+        "!.next/cache/**"
+      ]
+    },
     "typecheck": {
       "dependsOn": ["^build"]
     },

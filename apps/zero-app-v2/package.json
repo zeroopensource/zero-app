@@ -34,7 +34,7 @@
     "make:forge": "electron-forge make",
     "sign:forge": "node src-electron/sign.mjs",
     "build:desktop": "pnpm build:web && pnpm make:forge && pnpm sign:forge",
-    "publish:forge": "pnpm build:desktop && electron-forge publish"
+    "publish": "pnpm build:desktop && electron-forge publish"
   },
   "dependencies": {
     "@electron/windows-sign": "^2.0.2",
