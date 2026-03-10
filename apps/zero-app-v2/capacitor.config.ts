@@ -5,8 +5,10 @@ const config: CapacitorConfig = {
   appId: "org.zeroopensource.zeroapp",
   appName: "Zero",
   webDir: "out",
+  backgroundColor: "#09090B",
   android: {
     buildOptions: {
+      // releaseType: "APK", // "AAB" | "APK"
       keystorePath: process.env.KEYSTORE_PATH,
       keystorePassword: process.env.KEYSTORE_PASSWORD,
       keystoreAlias: process.env.KEYSTORE_ALIAS,
