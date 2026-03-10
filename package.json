@@ -7,6 +7,7 @@
   ],
   "type": "module",
   "scripts": {
+    "publish": "turbo run publish",
     "build": "turbo run build",
     "build:web": "turbo run build:web --force",
     "clean": "turbo run clean",
