@@ -39,7 +39,8 @@
     "make:forge": "electron-forge make",
     "sign:forge": "node src-electron/sign.mjs",
     "build:desktop": "pnpm build:web && pnpm make:forge && pnpm sign:forge",
-    "publish": "pnpm build:desktop && electron-forge publish"
+    "publish": "pnpm build:desktop && electron-forge publish",
+    "build:macos-alias": "cd node_modules/macos-alias && node-gyp rebuild && cd ../fs-xattr && node-gyp rebuild && cd ../.."
   },
   "dependencies": {
     "@electron/windows-sign": "^2.0.2",
