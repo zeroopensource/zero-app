@@ -3,7 +3,7 @@
   "displayName": "Zero",
   "productName": "Zero",
   "description": "Zero App",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "private": true,
   "author": "Zero <zeroopensource@gmail.com>",
   "main": "src-electron/main.js",
