@@ -23,8 +23,6 @@ const baseConfig: CapacitorConfig = {
   },
 };
 
-console.log("RELEASE_TYPE", process.env.RELEASE_TYPE);
-
 switch (process.env.RELEASE_TYPE) {
   case "APK":
     config = {
