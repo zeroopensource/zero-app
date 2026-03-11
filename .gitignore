@@ -129,6 +129,9 @@ app-example
 # electron
 out-electron
 
+# capacitor
+out-capacitor
+
 # signing
 keystore.properties
 upload-keystore.jks

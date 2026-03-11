@@ -11,11 +11,12 @@ jobs:
     if: github.ref == 'refs/heads/main'
     strategy:
       matrix:
-        os:
-          [
+        os: [
             { name: 'linux', image: 'ubuntu-latest' },
             { name: 'windows', image: 'windows-latest' },
             { name: 'macos', image: 'macos-latest' },
+            { name: 'android', image: 'ubuntu-latest' },
+            # { name: 'ios', image: 'macos-latest' },
           ]
     runs-on: ${{ matrix.os.image }}
     steps:
@@ -40,7 +41,8 @@ jobs:
       - name: Rebuild macos
         if: matrix.os.name == 'macos'
         run: pnpm --filter zero-app-v2 rebuild:macos
-      - name: Build app
+      - name: Build Desktop app
+        if: matrix.os.name == 'linux' || matrix.os.name == 'windows' || matrix.os.name == 'macos'
         run: pnpm run build:desktop
       - name: Restore Windows certificate
         if: matrix.os.name == 'windows'
@@ -51,10 +53,29 @@ jobs:
         env:
           WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
         run: pnpm --filter zero-app-v2 sign:windows
-      - name: Publish app
+      - name: Publish Desktop app
+        if: matrix.os.name == 'linux' || matrix.os.name == 'windows' || matrix.os.name == 'macos'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm --filter zero-app-v2 publish:desktop
+      - name: Build Android app
+        if: matrix.os.name == 'android'
+        run: pnpm run build:android
+      - name: Install GitHub CLI
+        if: matrix.os.name == 'android'
+        run: sudo apt-get install gh -y
+      - name: Upload Android outputs to release
+        if: matrix.os.name == 'android'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(node -p "require('./apps/zero-app-v2/package.json').version")
+          TAG="v$VERSION"
+
+          for file in apps/zero-app-v2/out-capacitor/*; do
+            echo "Uploading $file"
+            gh release upload "$TAG" "$file" --clobber
+          done
       - name: Upload build artifacts
         if: always()
         uses: actions/upload-artifact@v4
