@@ -17,7 +17,7 @@ const baseConfig: CapacitorConfig = {
       // signingType: "jarsigner",
       keystorePath: path.resolve("./src-capacitor/upload-keystore.jks"),
       keystorePassword: process.env.KEYSTORE_PASSWORD,
-      keystoreAlias: process.env.KEYSTORE_ALIAS,
+      keystoreAlias: "upload",
       keystoreAliasPassword: process.env.KEYSTORE_PASSWORD,
     },
   },
@@ -62,6 +62,6 @@ console.log(
   path.resolve("./src-capacitor/upload-keystore.jks")
 );
 console.log("KEYSTORE_PASSWORD", process.env.KEYSTORE_PASSWORD);
-console.log("config", config)
+console.log("config", config);
 
 export default config;
