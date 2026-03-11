@@ -61,12 +61,6 @@ jobs:
       - name: Build Android app
         if: matrix.os.name == 'android'
         run: pnpm run build:android
-      - name: Upload Android outputs
-        if: matrix.os.name == 'android'
-        uses: actions/upload-artifact@v4
-        with:
-          name: android-outputs
-          path: apps/zero-app-v2/out-capacitor/**
       - name: Install GitHub CLI
         if: matrix.os.name == 'android'
         run: sudo apt-get install gh -y
