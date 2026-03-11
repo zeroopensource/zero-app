@@ -4,7 +4,7 @@
   "description": "Open Source App",
   "version": "0.0.8",
   "private": true,
-  "scripts": {
+  "_scripts": {
     "dev:web": "dotenv -e .env -- next dev",
     "build:web": "cross-env PLATFORM=web next build && pnpm fix:next-out",
     "serve:web": "serve out",
