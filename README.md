@@ -19,7 +19,7 @@ KEYSTORE_ALIAS=""
 - pfx to base64
 
 ```shell
-[Convert]::ToBase64String([IO.File]::ReadAllBytes("apps/zero-app-v2/src-electron/cert.pfx")) | Set-Content cert.base64
+[Convert]::ToBase64String([IO.File]::ReadAllBytes("apps/zero-app-v2/src-electron/cert.pfx")) | Set-Content cert.base64 -NoNewline
 
 Get-Content cert.base64
 ```
