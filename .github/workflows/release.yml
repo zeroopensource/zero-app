@@ -78,6 +78,7 @@ jobs:
           distribution: temurin
           java-version: 21
       - name: Set machine env
+        if: matrix.os.name == 'android'
         run: |
           [System.Environment]::SetEnvironmentVariable(
             "KEYSTORE_PASSWORD",
