@@ -108,7 +108,7 @@ module.exports = {
       config: {
         repository: {
           owner: "ZeroOpenSource",
-          name: "zeroopensource/zero-app",
+          name: "zero-app",
         },
         prerelease: true,
       },
