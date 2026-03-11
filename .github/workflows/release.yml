@@ -44,7 +44,7 @@ jobs:
         run: pnpm --filter zero-app-v2 sign:windows
       - name: Publish app
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm run publish
       - name: Upload build artifacts
         if: always()
