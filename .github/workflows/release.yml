@@ -72,6 +72,7 @@ jobs:
           echo "ANDROID_HOME=$sdk" >> $env:GITHUB_ENV
           "sdk.dir=$sdk" | Out-File -Encoding ascii apps/zero-app-v2/android/local.properties
       - name: Setup Java
+        if: matrix.os.name == 'android'
         uses: actions/setup-java@v4
         with:
           distribution: temurin
