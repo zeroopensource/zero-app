@@ -23,6 +23,7 @@ const files = [
   },
 ];
 
+await fs.rm(outDir, { recursive: true, force: true });
 await fs.mkdir(outDir, { recursive: true });
 
 for (const file of files) {
