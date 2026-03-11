@@ -80,11 +80,7 @@ jobs:
       - name: Set KEYSTORE_PASSWORD env
         if: matrix.os.name == 'android'
         run: |
-          [System.Environment]::SetEnvironmentVariable(
-            "KEYSTORE_PASSWORD",
-            "${{ secrets.KEYSTORE_PASSWORD }}",
-            "Machine"
-          )
+          "KEYSTORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}" >> $env:GITHUB_ENV
       - name: Build Android app
         if: matrix.os.name == 'android'
         run: pnpm run build:android
