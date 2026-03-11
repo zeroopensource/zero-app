@@ -21,7 +21,7 @@
     "start:web": "dotenv -e .env -- next start",
     "open:android": "pnpm build:web && cap open android",
     "dev:android": "pnpm build:web && cap run android",
-    "build:android": "pnpm build:android:apk && pnpm build:android:aab",
+    "build:android": "pnpm build:android:apk && pnpm build:android:aab && pnpm move:capacitor-outputs",
     "build:android:apk": "pnpm build:web && pnpm sync:android-version && cap build android --androidreleasetype APK --signing-type apksigner",
     "build:android:aab": "pnpm build:web && pnpm sync:android-version && cap build android --androidreleasetype AAB --signing-type jarsigner",
     "open:ios": "pnpm build:web && cap open ios",
