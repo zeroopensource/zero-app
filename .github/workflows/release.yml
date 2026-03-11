@@ -77,10 +77,12 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-      - name: Set KEYSTORE_PASSWORD env
+      - name: Dump env to .env
         if: matrix.os.name == 'android'
         run: |
-          "KEYSTORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}" >> $env:GITHUB_ENV
+          node -e "const fs=require('fs');fs.writeFileSync('.env',Object.entries(process.env).map(([k,v])=>k+'='+String(v).replace(/\n/g,'\\n')).join('\n'))"
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
       - name: Build Android app
         if: matrix.os.name == 'android'
         run: pnpm run build:android
