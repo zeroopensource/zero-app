@@ -36,6 +36,9 @@ jobs:
       - name: Rebuild macos
         if: matrix.os.name == 'macos'
         run: pnpm --filter zero-app-v2 rebuild:macos
+      - name: Sign Windows
+        if: matrix.os.name == 'windows'
+        run: pnpm --filter zero-app-v2 sign:windows
       - name: Publish app
         if: github.ref == 'refs/heads/main'
         env:

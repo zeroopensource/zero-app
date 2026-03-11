@@ -37,8 +37,8 @@
     "start:forge": "electron-forge start",
     "package:forge": "electron-forge package",
     "make:forge": "electron-forge make",
-    "sign:forge": "node src-electron/sign.mjs",
-    "build:desktop": "pnpm build:web && pnpm make:forge && pnpm sign:forge",
+    "sign:windows": "node src-electron/sign.mjs",
+    "build:desktop": "pnpm build:web && pnpm make:forge",
     "publish": "pnpm build:desktop && electron-forge publish",
     "rebuild:macos": "node-gyp rebuild --directory node_modules/macos-alias && node-gyp rebuild --directory node_modules/fs-xattr"
   },
