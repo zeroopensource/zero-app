@@ -1,11 +1,6 @@
 import type { CapacitorConfig } from "@capacitor/cli";
 import "dotenv/config";
-
 import path from "node:path";
-
-const keystorePath = process.env.KEYSTORE_PATH
-  ? path.resolve(process.env.KEYSTORE_PATH)
-  : undefined;
 
 const config: CapacitorConfig = {
   appId: "org.zeroopensource.zeroapp",
@@ -19,7 +14,7 @@ const config: CapacitorConfig = {
       // signingType: "apksigner",
       // releaseType: "AAB",
       // signingType: "jarsigner",
-      keystorePath,
+      keystorePath: path.resolve("./src-capacitor/upload-keystore.jks"),
       keystorePassword: process.env.KEYSTORE_PASSWORD,
       keystoreAlias: process.env.KEYSTORE_ALIAS,
       keystoreAliasPassword: process.env.KEYSTORE_PASSWORD,

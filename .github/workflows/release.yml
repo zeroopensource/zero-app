@@ -58,6 +58,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm --filter zero-app-v2 publish:desktop
+      - name: Restore Android certificate
+        if: matrix.os.name == 'android'
+        shell: bash
+        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > apps/zero-app-v2/src-capacitor/upload-keystore.jks
       - name: Build Android app
         if: matrix.os.name == 'android'
         run: pnpm run build:android
