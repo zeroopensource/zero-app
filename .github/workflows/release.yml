@@ -48,6 +48,8 @@ jobs:
         run: echo "${{ secrets.WINDOWS_CERTIFICATE_BASE64 }}" | base64 --decode > apps/zero-app-v2/src-electron/cert.pfx
       - name: Sign Windows
         if: matrix.os.name == 'windows'
+        env:
+          WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
         run: pnpm --filter zero-app-v2 sign:windows
       - name: Publish app
         env:
