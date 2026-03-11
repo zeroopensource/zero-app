@@ -11,17 +11,18 @@ NEXT_PUBLIC_ZERO_SERVICE_AUTH="https://example.com/api"
 CERTIFICATE_PASSWORD=""
 WINDOWS_CERTIFICATE_PASSWORD=""
 WINDOWS_CERTIFICATE_BASE64=""
-KEYSTORE_PATH="C:\\Users\\JohnDoe\\upload-keystore.jks"
 KEYSTORE_PASSWORD=""
 KEYSTORE_ALIAS=""
+KEYSTORE_BASE64=""
 ```
 
-- pfx to base64
+- base64
 
 ```shell
 [Convert]::ToBase64String([IO.File]::ReadAllBytes("apps/zero-app-v2/src-electron/cert.pfx")) | Set-Content cert.base64 -NoNewline
-
 Get-Content cert.base64
+[Convert]::ToBase64String([IO.File]::ReadAllBytes("apps/zero-app-v2/src-capacitor/upload-keystore.jks")) | Set-Content upload-keystore.base64 -NoNewline
+Get-Content upload-keystore.base64
 ```
 
 ## Development
