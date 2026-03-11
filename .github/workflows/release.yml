@@ -68,6 +68,9 @@ jobs:
         run: |
           $sdk="$env:ANDROID_SDK_ROOT"
           if (-not $sdk) { $sdk="$env:ANDROID_HOME" }
+
+          $sdk = $sdk -replace '\\','\\\\'
+
           echo "ANDROID_HOME=$sdk" >> $env:GITHUB_ENV
           "sdk.dir=$sdk" | Out-File -Encoding ascii apps/zero-app-v2/android/local.properties
       - name: Build Android app
