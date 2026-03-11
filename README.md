@@ -10,9 +10,18 @@ NODE_ENV="development"
 NEXT_PUBLIC_ZERO_SERVICE_AUTH="https://example.com/api"
 CERTIFICATE_PASSWORD=""
 WINDOWS_CERTIFICATE_PASSWORD=""
+WINDOWS_CERTIFICATE_BASE64=""
 KEYSTORE_PATH="C:\\Users\\JohnDoe\\upload-keystore.jks"
 KEYSTORE_PASSWORD=""
 KEYSTORE_ALIAS=""
+```
+
+- pfx to base64
+
+```shell
+[Convert]::ToBase64String([IO.File]::ReadAllBytes("apps/zero-app-v2/src-electron/cert.pfx")) | Set-Content cert.base64
+
+Get-Content cert.base64
 ```
 
 ## Development
