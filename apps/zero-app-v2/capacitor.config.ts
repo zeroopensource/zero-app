@@ -23,11 +23,6 @@ const baseConfig: CapacitorConfig = {
   },
 };
 
-console.log(
-  "keystorePath",
-  path.resolve("./src-capacitor/upload-keystore.jks")
-);
-
 switch (process.env.RELEASE_TYPE) {
   case "APK":
     config = {
@@ -61,5 +56,12 @@ switch (process.env.RELEASE_TYPE) {
     };
     break;
 }
+
+console.log(
+  "keystorePath",
+  path.resolve("./src-capacitor/upload-keystore.jks")
+);
+console.log("KEYSTORE_PASSWORD", process.env.KEYSTORE_PASSWORD);
+console.log("config", config)
 
 export default config;
