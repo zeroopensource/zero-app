@@ -34,6 +34,9 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y fakeroot dpkg dpkg-dev
+      - name: Rebuild windows
+        if: matrix.os.name == 'windows'
+        run: pnpm --filter zero-app-v2 rebuild:windows
       - name: Rebuild macos
         if: matrix.os.name == 'macos'
         run: pnpm --filter zero-app-v2 rebuild:macos
