@@ -41,7 +41,7 @@ jobs:
         if: matrix.os.name == 'macos'
         run: pnpm --filter zero-app-v2 rebuild:macos
       - name: Build app
-        run: pnpm run build
+        run: pnpm run build:desktop
       - name: Sign Windows
         if: matrix.os.name == 'windows'
         run: pnpm --filter zero-app-v2 sign:windows
