@@ -78,10 +78,10 @@ jobs:
           distribution: temurin
           java-version: 21
       - name: Build Android app
-        env:
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
         if: matrix.os.name == 'android'
-        run: pnpm run build:android
+        run: |
+          export KEYSTORE_PASSWORD="${{ secrets.KEYSTORE_PASSWORD }}"
+          pnpm run build:android
       - name: Install GitHub CLI
         if: matrix.os.name == 'android'
         run: choco install gh -y
