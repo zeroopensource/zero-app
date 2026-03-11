@@ -15,8 +15,8 @@ jobs:
             { name: 'linux', image: 'ubuntu-latest' },
             { name: 'windows', image: 'windows-latest' },
             { name: 'macos', image: 'macos-latest' },
-            { name: 'android', image: 'windows-latest' },
-            # { name: 'ios', image: 'windows-latest' },
+            { name: 'android', image: 'ubuntu-latest' },
+            # { name: 'ios', image: 'macos-latest' },
           ]
     runs-on: ${{ matrix.os.image }}
     steps:
@@ -44,9 +44,6 @@ jobs:
       - name: Build Desktop app
         if: matrix.os.name == 'linux' || matrix.os.name == 'windows' || matrix.os.name == 'macos'
         run: pnpm run build:desktop
-      - name: Build Android app
-        if: matrix.os.name == 'android'
-        run: pnpm run build:android
       - name: Restore Windows certificate
         if: matrix.os.name == 'windows'
         shell: bash
@@ -61,6 +58,30 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm --filter zero-app-v2 publish:desktop
+      - name: Build Android app
+        if: matrix.os.name == 'android'
+        run: pnpm run build:android
+      - name: Upload Android outputs
+        if: matrix.os.name == 'android'
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-outputs
+          path: apps/zero-app-v2/out-capacitor/**
+      - name: Install GitHub CLI
+        if: matrix.os.name == 'android'
+        run: sudo apt-get install gh -y
+      - name: Upload Android outputs to release
+        if: matrix.os.name == 'android'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(node -p "require('./apps/zero-app-v2/package.json').version")
+          TAG="v$VERSION"
+
+          for file in apps/zero-app-v2/out-capacitor/*; do
+            echo "Uploading $file"
+            gh release upload "$TAG" "$file" --clobber
+          done
       - name: Upload build artifacts
         if: always()
         uses: actions/upload-artifact@v4
