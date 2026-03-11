@@ -15,7 +15,7 @@ jobs:
             { name: 'linux', image: 'ubuntu-latest' },
             { name: 'windows', image: 'windows-latest' },
             { name: 'macos', image: 'macos-latest' },
-            { name: 'android', image: 'ubuntu-latest' },
+            { name: 'android', image: 'windows-latest' },
             # { name: 'ios', image: 'macos-latest' },
           ]
     runs-on: ${{ matrix.os.image }}
@@ -64,12 +64,16 @@ jobs:
         run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > apps/zero-app-v2/src-capacitor/upload-keystore.jks
       - name: Build Android app
         if: matrix.os.name == 'android'
+        env:
+          KEYSTORE_ALIAS: ${{ secrets.KEYSTORE_ALIAS }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
         run: pnpm run build:android
       - name: Install GitHub CLI
         if: matrix.os.name == 'android'
-        run: sudo apt-get install gh -y
+        run: choco install gh -y
       - name: Upload Android outputs to release
         if: matrix.os.name == 'android'
+        shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
