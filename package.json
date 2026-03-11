@@ -9,6 +9,7 @@
   "scripts": {
     "publish": "turbo run publish",
     "build": "turbo run build --force",
+    "build:android": "turbo run build:android --force",
     "build:desktop": "turbo run build:desktop --force",
     "build:web": "turbo run build:web --force",
     "clean": "turbo run clean",
