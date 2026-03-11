@@ -41,7 +41,10 @@ jobs:
         if: matrix.os.name == 'macos'
         run: pnpm --filter zero-app-v2 rebuild:macos
       - name: Build app
-        run: pnpm run build
+        run: pnpm run build:desktop
+      - name: Restore Windows certificate
+        if: matrix.os.name == 'windows'
+        run: echo "${{ secrets.WINDOWS_CERTIFICATE_BASE64 }}" | base64 --decode > apps/zero-app-v2/src-electron/cert.pfx
       - name: Sign Windows
         if: matrix.os.name == 'windows'
         run: pnpm --filter zero-app-v2 sign:windows
