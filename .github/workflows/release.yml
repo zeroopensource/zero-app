@@ -8,6 +8,7 @@ permissions:
   contents: write
 jobs:
   build:
+    if: github.ref == 'refs/heads/main'
     strategy:
       matrix:
         os:
@@ -39,8 +40,9 @@ jobs:
       - name: Sign Windows
         if: matrix.os.name == 'windows'
         run: pnpm --filter zero-app-v2 sign:windows
+      - name: Build app
+        run: pnpm run build
       - name: Publish app
-        if: github.ref == 'refs/heads/main'
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: pnpm run publish
