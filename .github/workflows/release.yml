@@ -54,7 +54,7 @@ jobs:
       - name: Publish app
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: pnpm run publish
+        run: pnpm --filter zero-app-v2 publish:desktop
       - name: Upload build artifacts
         if: always()
         uses: actions/upload-artifact@v4
