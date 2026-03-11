@@ -2,7 +2,8 @@ import type { CapacitorConfig } from "@capacitor/cli";
 import "dotenv/config";
 import path from "node:path";
 
-const config: CapacitorConfig = {
+let config: CapacitorConfig;
+const baseConfig: CapacitorConfig = {
   appId: "org.zeroopensource.zeroapp",
   appName: "Zero",
   webDir: "out",
@@ -21,5 +22,41 @@ const config: CapacitorConfig = {
     },
   },
 };
+
+console.log("RELEASE_TYPE", process.env.RELEASE_TYPE);
+
+switch (process.env.RELEASE_TYPE) {
+  case "APK":
+    config = {
+      ...baseConfig,
+      android: {
+        ...baseConfig.android,
+        buildOptions: {
+          ...baseConfig.android?.buildOptions,
+          releaseType: "APK",
+          signingType: "apksigner",
+        },
+      },
+    };
+    break;
+  case "AAB":
+    config = {
+      ...baseConfig,
+      android: {
+        ...baseConfig.android,
+        buildOptions: {
+          ...baseConfig.android?.buildOptions,
+          releaseType: "AAB",
+          signingType: "jarsigner",
+        },
+      },
+    };
+    break;
+  default:
+    config = {
+      ...baseConfig,
+    };
+    break;
+}
 
 export default config;
