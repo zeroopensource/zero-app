@@ -78,10 +78,9 @@ jobs:
           distribution: temurin
           java-version: 21
       - name: Build Android app
-        if: matrix.os.name == 'android'
         env:
-          KEYSTORE_ALIAS: ${{ secrets.KEYSTORE_ALIAS }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+        if: matrix.os.name == 'android'
         run: pnpm run build:android
       - name: Install GitHub CLI
         if: matrix.os.name == 'android'
