@@ -77,13 +77,16 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-      - name: Debug Node env
-        run: node -e "console.log('KEYSTORE_PASSWORD exists:', process.env.KEYSTORE_PASSWORD)"
-        env:
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+      - name: Set machine env
+        run: |
+          [System.Environment]::SetEnvironmentVariable(
+            "KEYSTORE_PASSWORD",
+            "${{ secrets.KEYSTORE_PASSWORD }}",
+            "Machine"
+          )
       - name: Build Android app
         if: matrix.os.name == 'android'
-        run: cross-env RELEASE_TYPE=${{ secrets.KEYSTORE_PASSWORD }} pnpm run build:android
+        run: pnpm run build:android
       - name: Install GitHub CLI
         if: matrix.os.name == 'android'
         run: choco install gh -y
