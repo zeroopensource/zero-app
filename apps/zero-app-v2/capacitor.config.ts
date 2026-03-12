@@ -57,8 +57,4 @@ switch (process.env.RELEASE_TYPE) {
     break;
 }
 
-console.log("KEYSTORE_PASSWORD", process.env.KEYSTORE_PASSWORD);
-console.log("config", config);
-console.log("process.env", process.env);
-
 export default config;
