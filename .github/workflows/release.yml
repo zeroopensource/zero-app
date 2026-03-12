@@ -79,6 +79,8 @@ jobs:
           java-version: 21
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+      - name: Install build tools
+        run: sdkmanager "build-tools;34.0.0"
       - name: Inject KEYSTORE_PASSWORD
         if: matrix.os.name == 'android'
         run: |
