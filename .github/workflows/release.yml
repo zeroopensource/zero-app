@@ -41,6 +41,18 @@ jobs:
       - name: Rebuild macos
         if: matrix.os.name == 'macos'
         run: pnpm --filter zero-app-v2 rebuild:macos
+      - name: Create .env from secrets
+        shell: bash
+        run: |
+          mkdir -p apps/zero-app-v2
+          {
+            echo "PORT=${{ secrets.PORT}}"
+            echo "NEXT_PUBLIC_AUTH_API=${{ secrets.NEXT_PUBLIC_AUTH_API }}"
+            echo "NEXT_PUBLIC_API=${{ secrets.NEXT_PUBLIC_API }}"
+            echo "KEYSTORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}"
+            echo "CERTIFICATE_PASSWORD=${{ secrets.CERTIFICATE_PASSWORD }}"
+            echo "WINDOWS_CERTIFICATE_PASSWORD=${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}"
+          } > apps/zero-app-v2/.env
       - name: Build Desktop app
         if: matrix.os.name == 'linux' || matrix.os.name == 'windows' || matrix.os.name == 'macos'
         run: pnpm run build:desktop
@@ -104,17 +116,7 @@ jobs:
         run: |
           VERSION=$(node -p "require('./apps/zero-app-v2/package.json').version")
           TAG="v$VERSION"
-
           for file in apps/zero-app-v2/out-capacitor/*; do
             echo "Uploading $file"
             gh release upload "$TAG" "$file" --clobber
           done
-      - name: Upload build artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-${{ matrix.os.name }}
-          path: |
-            .
-            !**/node_modules/**
-            !**/.git/**
