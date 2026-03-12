@@ -77,12 +77,13 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-      - name: Dump env to .env
+      - name: Inject KEYSTORE_PASSWORD
         if: matrix.os.name == 'android'
         run: |
-          node -e "const fs=require('fs');fs.writeFileSync('.env',Object.entries(process.env).map(([k,v])=>k+'='+String(v).replace(/\n/g,'\\n')).join('\n'))"
-        env:
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          $file = "apps/zero-app-v2/capacitor.config.ts"
+          (Get-Content $file) `
+            -replace 'process\.env\.KEYSTORE_PASSWORD', '"${{ secrets.KEYSTORE_PASSWORD }}"' `
+            | Set-Content $file
       - name: Build Android app
         if: matrix.os.name == 'android'
         run: pnpm run build:android
