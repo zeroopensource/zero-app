@@ -1,4 +1,3 @@
-// import "@zero-app-1/env/web";
 import type { NextConfig } from "next";
 
 const webNextConfig: NextConfig = {
@@ -13,6 +12,6 @@ const tauriNextConfig: NextConfig = {
 };
 
 const nextConfig =
-  process.env.PLATFORM === "web" ? webNextConfig : tauriNextConfig;
+  process.env.PLATFORM === "tauri" ? tauriNextConfig : webNextConfig;
 
 export default nextConfig;
