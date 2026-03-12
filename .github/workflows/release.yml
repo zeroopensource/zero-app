@@ -96,9 +96,6 @@ jobs:
       - name: Build Android app
         if: matrix.os.name == 'android'
         run: pnpm run build:android
-      - name: Install GitHub CLI
-        if: matrix.os.name == 'android'
-        run: choco install gh -y
       - name: Upload Android outputs to release
         if: matrix.os.name == 'android'
         shell: bash
