@@ -78,10 +78,13 @@ jobs:
           distribution: temurin
           java-version: 21
       - name: Setup Android SDK
+        if: matrix.os.name == 'android'
         uses: android-actions/setup-android@v3
       - name: Install build tools
+        if: matrix.os.name == 'android'
         run: sdkmanager "build-tools;34.0.0"
       - name: Add build-tools to PATH
+        if: matrix.os.name == 'android'
         run: echo "$env:ANDROID_SDK_ROOT\build-tools\34.0.0" >> $env:GITHUB_PATH
       - name: Inject KEYSTORE_PASSWORD
         if: matrix.os.name == 'android'
