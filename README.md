@@ -5,13 +5,14 @@ Open Source Data App
 ## Environment Variables
 
 ```shell
-PORT="4000" # src-tauri/tauri.conf.json build.devUrl
+PORT="4122"
 NODE_ENV="development"
-NEXT_PUBLIC_ZERO_SERVICE_AUTH="https://example.com/api"
+NEXT_PUBLIC_AUTH_API="https://localhost:4080/auth/api"
+NEXT_PUBLIC_API="https://localhost:4080/api"
 CERTIFICATE_PASSWORD=""
 WINDOWS_CERTIFICATE_PASSWORD=""
-WINDOWS_CERTIFICATE_BASE64=""
 KEYSTORE_PASSWORD=""
+WINDOWS_CERTIFICATE_BASE64=""
 KEYSTORE_BASE64=""
 ```
 
