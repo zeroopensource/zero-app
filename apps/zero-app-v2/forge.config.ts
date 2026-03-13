@@ -1,20 +1,19 @@
-require("dotenv").config();
-const { FusesPlugin } = require("@electron-forge/plugin-fuses");
-const { FuseV1Options, FuseVersion } = require("@electron/fuses");
+// require("dotenv").config();
+// const { FusesPlugin } = require("@electron-forge/plugin-fuses");
+// const { FuseV1Options, FuseVersion } = require("@electron/fuses");
 const packageJson = require("./package.json");
+import "dotenv/config";
+import { FuseV1Options, FuseVersion } from "@electron/fuses";
+import { FusesPlugin } from "@electron-forge/plugin-fuses";
+import type { ForgeConfig } from "@electron-forge/shared-types";
 
-module.exports = {
+const config: ForgeConfig = {
   outDir: "out-electron",
   packagerConfig: {
     asar: true,
     icon: "./icons/icon",
     extraResource: ["out"],
     executableName: packageJson.name,
-    ignore: [
-      /node_modules\/@next\/swc-linux-arm64-gnu/,
-      /node_modules\/@next\/swc-darwin/,
-      /node_modules\/@next\/swc-win32/,
-    ],
   },
   rebuildConfig: {},
   makers: [
@@ -31,13 +30,14 @@ module.exports = {
         // certificateFile: "./src-electron/cert.pfx",
         // certificatePassword: process.env.CERTIFICATE_PASSWORD,
         // windowsSign: {
+        //   // signToolPath: '',
+        //   // signWithParams: "",
         //   // certificateFile: "./src-electron/cert.pfx",
         //   // certificatePassword: process.env.CERTIFICATE_PASSWORD,
-        //   // signJavaScript: true,
-        //   // debug: true,
-        //   // signToolPath: ''
-        //   // hookFunction: (fileToSign) => {},
-        // },
+        //   // signJavaScript: false,
+        //   debug: true,
+        //   // hookFunction: (fileToSign) => signWinApp(fileToSign),
+        // }
       },
     },
     // {
@@ -118,3 +118,5 @@ module.exports = {
     },
   ],
 };
+
+export default config;
