@@ -56,6 +56,11 @@ jobs:
       - name: Build Desktop app
         if: matrix.os.name == 'linux' || matrix.os.name == 'windows' || matrix.os.name == 'macos'
         run: pnpm run build:desktop
+      - name: Publish Desktop app
+        if: matrix.os.name == 'linux' || matrix.os.name == 'windows' || matrix.os.name == 'macos'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pnpm --filter zero-app-v2 publish:desktop
       - name: Restore Windows certificate
         if: matrix.os.name == 'windows'
         shell: bash
@@ -65,20 +70,18 @@ jobs:
         env:
           WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
         run: pnpm --filter zero-app-v2 sign:windows
-      - name: Upload build artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-${{ matrix.os.name }}
-          path: |
-            apps/zero-app-v2/out/**
-            apps/zero-app-v2/out-capacitor/**
-            apps/zero-app-v2/out-electron/**
-      - name: Publish Desktop app
-        if: matrix.os.name == 'linux' || matrix.os.name == 'windows' || matrix.os.name == 'macos'
+      - name: Republish Signed Windows
+        if: matrix.os.name == 'windows'
+        shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: pnpm --filter zero-app-v2 publish:desktop
+        run: |
+          VERSION=$(node -p "require('./apps/zero-app-v2/package.json').version")
+          TAG="v$VERSION"
+          for file in apps/zero-app-v2/out-electron/make/squirrel.windows/x64/*; do
+            echo "Uploading $file"
+            gh release upload "$TAG" "$file" --clobber
+          done
       - name: Restore Android certificate
         if: matrix.os.name == 'android'
         shell: bash
@@ -129,3 +132,12 @@ jobs:
             echo "Uploading $file"
             gh release upload "$TAG" "$file" --clobber
           done
+      - name: Upload build artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ matrix.os.name }}
+          path: |
+            apps/zero-app-v2/out/**
+            apps/zero-app-v2/out-capacitor/**
+            apps/zero-app-v2/out-electron/**
