@@ -126,6 +126,6 @@ jobs:
         with:
           name: build-${{ matrix.os.name }}
           path: |
-            out
-            out-capacitor/**
-            out-electron/**
+            apps/zero-app-v2/out/**
+            apps/zero-app-v2/out-capacitor/**
+            apps/zero-app-v2/out-electron/**
