@@ -120,3 +120,12 @@ jobs:
             echo "Uploading $file"
             gh release upload "$TAG" "$file" --clobber
           done
+      - name: Upload build artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ matrix.os.name }}
+          path: |
+            out
+            out-capacitor/**
+            out-electron/**
