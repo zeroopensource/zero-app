@@ -16,8 +16,9 @@ async function downloadCer() {
   console.log("Downloading Cer...");
   const res = await fetch(publicCerUrl);
   const filename = path.basename(new URL(publicCerUrl).pathname);
-  const dest = path.join(appDir, filename);
-  await fs.mkdir(appDir, { recursive: true });
+  const extrasDir = path.join(appDir, "extras");
+  const dest = path.join(extrasDir, filename);
+  await fs.mkdir(extrasDir, { recursive: true });
   await fs.writeFile(dest, Buffer.from(await res.arrayBuffer()));
   console.log("Saved public cert →", dest);
 }
