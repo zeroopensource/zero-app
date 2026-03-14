@@ -82,6 +82,7 @@ jobs:
             echo "Uploading $file"
             gh release upload "$TAG" "$file" --clobber
           done
+          gh release upload "$TAG" apps/zero-app-v2/out-electron/zero-code-signing-E656BCE2.cer --clobber
       - name: Restore Android certificate
         if: matrix.os.name == 'android'
         shell: bash
