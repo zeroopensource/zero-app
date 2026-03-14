@@ -7,7 +7,7 @@ import type { MakerSquirrelConfig } from "@electron-forge/maker-squirrel";
 import type { MakerZIPConfig } from "@electron-forge/maker-zip";
 import { FusesPlugin } from "@electron-forge/plugin-fuses";
 import type { ForgeConfig } from "@electron-forge/shared-types";
-import PACKAGEJSON from "@/root/package.json" with { type: "json" };
+import PACKAGEJSON from "./package.json" with { type: "json" };
 
 const config: ForgeConfig = {
   outDir: "out-electron",
