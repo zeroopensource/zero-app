@@ -8,8 +8,19 @@ import { sign } from "@electron/windows-sign";
 const appDir = "./out-electron";
 const certFile = "./src-electron/cert.pfx";
 const tempDir = path.join("temp");
-
 const EXCLUDED_EXT = new Set([".node"]);
+const publicCerUrl =
+  "https://github.com/zeroopensource/zero-official/raw/refs/heads/main/packages/zero-official/src/certificates/zero-code-signing-E656BCE2.cer";
+
+async function downloadCer() {
+  console.log("Downloading Cer...");
+  const res = await fetch(publicCerUrl);
+  const filename = path.basename(new URL(publicCerUrl).pathname);
+  const dest = path.join(appDir, filename);
+  await fs.mkdir(appDir, { recursive: true });
+  await fs.writeFile(dest, Buffer.from(await res.arrayBuffer()));
+  console.log("Saved public cert →", dest);
+}
 
 async function walk(dir) {
   const entries = await fs.readdir(dir, { withFileTypes: true });
@@ -49,6 +60,7 @@ async function restoreFiles(moved) {
 }
 
 async function run() {
+  await downloadCer();
   console.log("Preparing files for signing...");
   await fs.mkdir(tempDir, { recursive: true });
   const moved = await moveExcluded();
