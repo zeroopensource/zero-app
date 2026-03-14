@@ -1,11 +1,13 @@
-// require("dotenv").config();
-// const { FusesPlugin } = require("@electron-forge/plugin-fuses");
-// const { FuseV1Options, FuseVersion } = require("@electron/fuses");
-const packageJson = require("./package.json");
 import "dotenv/config";
 import { FuseV1Options, FuseVersion } from "@electron/fuses";
+import type { MakerDebConfig } from "@electron-forge/maker-deb";
+import type { MakerDMGConfig } from "@electron-forge/maker-dmg";
+import type { MakerRpmConfig } from "@electron-forge/maker-rpm";
+import type { MakerSquirrelConfig } from "@electron-forge/maker-squirrel";
+import type { MakerZIPConfig } from "@electron-forge/maker-zip";
 import { FusesPlugin } from "@electron-forge/plugin-fuses";
 import type { ForgeConfig } from "@electron-forge/shared-types";
+import PACKAGEJSON from "@/root/package.json" with { type: "json" };
 
 const config: ForgeConfig = {
   outDir: "out-electron",
@@ -13,7 +15,12 @@ const config: ForgeConfig = {
     asar: true,
     icon: "./icons/icon",
     extraResource: ["out"],
-    executableName: packageJson.name,
+    executableName: PACKAGEJSON.name,
+    ignore: [
+      /node_modules\/@next\/swc-linux-arm64-gnu/,
+      /node_modules\/@next\/swc-darwin/,
+      /node_modules\/@next\/swc-win32/,
+    ],
   },
   rebuildConfig: {},
   makers: [
@@ -21,8 +28,8 @@ const config: ForgeConfig = {
       name: "@electron-forge/maker-squirrel",
       config: {
         name: "Zero",
-        shortcutName: "Zero",
-        defaultInstallMode: "perUser",
+        // shortcutName: "Zero",
+        // defaultInstallMode: "perUser",
         loadingGif: "./icons/loading-gif.gif",
         iconUrl:
           "https://raw.githubusercontent.com/zeroopensource/zero-app/refs/heads/dev/apps/zero-app-v2/icons/icon.ico",
@@ -38,7 +45,7 @@ const config: ForgeConfig = {
         //   debug: true,
         //   // hookFunction: (fileToSign) => signWinApp(fileToSign),
         // }
-      },
+      } satisfies MakerSquirrelConfig,
     },
     // {
     //   name: "@electron-forge/maker-wix",
@@ -49,16 +56,12 @@ const config: ForgeConfig = {
     //     // certificateFile: "./src-electron/cert.pfx",
     //     // certificatePassword: process.env.CERTIFICATE_PASSWORD,
     //     icon: "./icons/icon.ico",
-    //   },
+    //   } satisfies MakerWixConfig,
     // },
     {
       name: "@electron-forge/maker-zip",
       platforms: ["darwin", "linux"],
-      config: {
-        options: {
-          icon: "./icons/icon.png",
-        },
-      },
+      config: {} satisfies MakerZIPConfig,
     },
     {
       name: "@electron-forge/maker-deb",
@@ -68,7 +71,7 @@ const config: ForgeConfig = {
           maintainer: "ZeroOpenSource",
           homepage: "https://ZeroOpenSource.org",
         },
-      },
+      } satisfies MakerDebConfig,
     },
     {
       name: "@electron-forge/maker-dmg",
@@ -76,13 +79,15 @@ const config: ForgeConfig = {
         icon: "./icons/icon.icns",
         background: "./src-electron/assets/dmg-background.png",
         format: "ULFO",
-      },
+      } satisfies MakerDMGConfig,
     },
     {
       name: "@electron-forge/maker-rpm",
       config: {
-        icon: "./icons/icon.png",
-      },
+        options: {
+          icon: "./icons/icon.png",
+        },
+      } satisfies MakerRpmConfig,
     },
   ],
   plugins: [
