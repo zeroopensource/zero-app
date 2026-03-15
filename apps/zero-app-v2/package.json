@@ -80,10 +80,12 @@
   },
   "devDependencies": {
     "fs-xattr": "0.3.1",
+    "@electron-forge/maker-msix": "^7.11.1",
     "@electron-forge/publisher-github": "^7.11.1",
     "@electron-forge/maker-wix": "^7.11.1",
     "@capacitor/cli": "^8.1.0",
     "@electron-forge/cli": "^7.11.1",
+    "@electron-forge/maker-appx": "^7.11.1",
     "@electron-forge/maker-dmg": "^7.11.1",
     "@electron-forge/maker-deb": "^7.11.1",
     "@electron-forge/maker-rpm": "^7.11.1",
