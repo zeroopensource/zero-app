@@ -13,7 +13,7 @@ const config: ForgeConfig = {
   outDir: "out-electron",
   packagerConfig: {
     asar: true,
-    icon: "./icons/icon",
+    icon: "./src-electron/assets/icon",
     extraResource: ["out"],
     executableName: PACKAGEJSON.name,
     ignore: [
@@ -30,10 +30,10 @@ const config: ForgeConfig = {
         name: "Zero",
         // shortcutName: "Zero",
         // defaultInstallMode: "perUser",
-        loadingGif: "./icons/loading-gif.gif",
+        loadingGif: "./src-electron/assets/loading-gif.gif",
         iconUrl:
-          "https://raw.githubusercontent.com/zeroopensource/zero-app/refs/heads/dev/apps/zero-app-v2/icons/icon.ico",
-        setupIcon: "./icons/icon.ico",
+          "https://raw.githubusercontent.com/zeroopensource/zero-app/refs/heads/dev/apps/zero-app-v2/src-electron/assets/icon.ico",
+        setupIcon: "./src-electron/assets/icon.ico",
         // certificateFile: "./src-electron/cert.pfx",
         // certificatePassword: process.env.CERTIFICATE_PASSWORD,
         // windowsSign: {
@@ -48,6 +48,14 @@ const config: ForgeConfig = {
       } satisfies MakerSquirrelConfig,
     },
     // {
+    //   name: "@electron-forge/maker-appx",
+    //   config: {
+    //     publisher: "CN=developmentca",
+    //     devCert: "C:\\devcert.pfx",
+    //     certPass: "abcd",
+    //   },
+    // },
+    // {
     //   name: "@electron-forge/maker-wix",
     //   config: {
     //     defaultInstallMode: "perUser",
@@ -55,7 +63,7 @@ const config: ForgeConfig = {
     //     manufacturer: "Zero",
     //     // certificateFile: "./src-electron/cert.pfx",
     //     // certificatePassword: process.env.CERTIFICATE_PASSWORD,
-    //     icon: "./icons/icon.ico",
+    //     icon: "./src-electron/assets/icon.ico",
     //   } satisfies MakerWixConfig,
     // },
     {
@@ -67,7 +75,7 @@ const config: ForgeConfig = {
       name: "@electron-forge/maker-deb",
       config: {
         options: {
-          icon: "./icons/icon.png",
+          icon: "./src-electron/assets/icon.png",
           maintainer: "ZeroOpenSource",
           homepage: "https://ZeroOpenSource.org",
         },
@@ -76,7 +84,7 @@ const config: ForgeConfig = {
     {
       name: "@electron-forge/maker-dmg",
       config: {
-        icon: "./icons/icon.icns",
+        icon: "./src-electron/assets/icon.icns",
         background: "./src-electron/assets/dmg-background.png",
         format: "ULFO",
       } satisfies MakerDMGConfig,
@@ -85,7 +93,7 @@ const config: ForgeConfig = {
       name: "@electron-forge/maker-rpm",
       config: {
         options: {
-          icon: "./icons/icon.png",
+          icon: "./src-electron/assets/icon.png",
         },
       } satisfies MakerRpmConfig,
     },
