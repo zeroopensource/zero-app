@@ -1,7 +1,9 @@
 import "dotenv/config";
 import { FuseV1Options, FuseVersion } from "@electron/fuses";
+//import type { MakerAppXConfig } from "@electron-forge/maker-appx";
 import type { MakerDebConfig } from "@electron-forge/maker-deb";
 import type { MakerDMGConfig } from "@electron-forge/maker-dmg";
+import type { MakerMSIXConfig } from "@electron-forge/maker-msix";
 import type { MakerRpmConfig } from "@electron-forge/maker-rpm";
 import type { MakerSquirrelConfig } from "@electron-forge/maker-squirrel";
 import type { MakerZIPConfig } from "@electron-forge/maker-zip";
@@ -15,7 +17,7 @@ const config: ForgeConfig = {
     asar: true,
     icon: "./src-electron/assets/icon",
     extraResource: ["out"],
-    executableName: PACKAGEJSON.name,
+    executableName: PACKAGEJSON.productName,
     ignore: [
       /node_modules\/@next\/swc-linux-arm64-gnu/,
       /node_modules\/@next\/swc-darwin/,
@@ -50,11 +52,23 @@ const config: ForgeConfig = {
     // {
     //   name: "@electron-forge/maker-appx",
     //   config: {
-    //     publisher: "CN=developmentca",
-    //     devCert: "C:\\devcert.pfx",
-    //     certPass: "abcd",
-    //   },
+    //     packageExecutable: `app/${executableName}.exe`,
+    //     publisher: "CN=F40B0E04-7AD0-49C9-9D77-44BB51D82F85",
+    //     // devCert: path.resolve("./src-electron/cert.pfx"),
+    //     // certPass: process.env.CERTIFICATE_PASSWORD,
+    //   } satisfies MakerAppXConfig,
     // },
+    {
+      name: "@electron-forge/maker-msix",
+      config: {
+        // logLevel: "debug",
+        packageName: `${PACKAGEJSON.productName}-${PACKAGEJSON.version}`,
+        sign: false,
+        manifestVariables: {
+          publisher: "CN=F40B0E04-7AD0-49C9-9D77-44BB51D82F85",
+        },
+      } satisfies MakerMSIXConfig,
+    },
     // {
     //   name: "@electron-forge/maker-wix",
     //   config: {
@@ -75,6 +89,8 @@ const config: ForgeConfig = {
       name: "@electron-forge/maker-deb",
       config: {
         options: {
+          name: PACKAGEJSON.productName,
+          productName: PACKAGEJSON.productName,
           icon: "./src-electron/assets/icon.png",
           maintainer: "ZeroOpenSource",
           homepage: "https://ZeroOpenSource.org",
@@ -93,6 +109,8 @@ const config: ForgeConfig = {
       name: "@electron-forge/maker-rpm",
       config: {
         options: {
+          name: PACKAGEJSON.productName,
+          productName: PACKAGEJSON.productName,
           icon: "./src-electron/assets/icon.png",
         },
       } satisfies MakerRpmConfig,
