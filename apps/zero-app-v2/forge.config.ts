@@ -11,15 +11,13 @@ import { FusesPlugin } from "@electron-forge/plugin-fuses";
 import type { ForgeConfig } from "@electron-forge/shared-types";
 import PACKAGEJSON from "./package.json" with { type: "json" };
 
-const executableName = `${PACKAGEJSON.productName.toLocaleLowerCase()}`;
-
 const config: ForgeConfig = {
   outDir: "out-electron",
   packagerConfig: {
     asar: true,
     icon: "./src-electron/assets/icon",
     extraResource: ["out"],
-    executableName,
+    executableName: PACKAGEJSON.productName,
     ignore: [
       /node_modules\/@next\/swc-linux-arm64-gnu/,
       /node_modules\/@next\/swc-darwin/,
@@ -64,6 +62,8 @@ const config: ForgeConfig = {
       name: "@electron-forge/maker-msix",
       config: {
         // logLevel: "debug",
+        packageName: `${PACKAGEJSON.productName}-${PACKAGEJSON.version}`,
+        sign: false,
         manifestVariables: {
           publisher: "CN=F40B0E04-7AD0-49C9-9D77-44BB51D82F85",
         },
@@ -89,6 +89,8 @@ const config: ForgeConfig = {
       name: "@electron-forge/maker-deb",
       config: {
         options: {
+          name: PACKAGEJSON.productName,
+          productName: PACKAGEJSON.productName,
           icon: "./src-electron/assets/icon.png",
           maintainer: "ZeroOpenSource",
           homepage: "https://ZeroOpenSource.org",
@@ -107,6 +109,8 @@ const config: ForgeConfig = {
       name: "@electron-forge/maker-rpm",
       config: {
         options: {
+          name: PACKAGEJSON.productName,
+          productName: PACKAGEJSON.productName,
           icon: "./src-electron/assets/icon.png",
         },
       } satisfies MakerRpmConfig,
