@@ -1,10 +1,9 @@
 import "dotenv/config";
-import path from "node:path";
 import { FuseV1Options, FuseVersion } from "@electron/fuses";
-import type { MakerAppXConfig } from "@electron-forge/maker-appx";
+//import type { MakerAppXConfig } from "@electron-forge/maker-appx";
 import type { MakerDebConfig } from "@electron-forge/maker-deb";
 import type { MakerDMGConfig } from "@electron-forge/maker-dmg";
-// import type { MakerMSIXConfig } from "@electron-forge/maker-msix";
+import type { MakerMSIXConfig } from "@electron-forge/maker-msix";
 import type { MakerRpmConfig } from "@electron-forge/maker-rpm";
 import type { MakerSquirrelConfig } from "@electron-forge/maker-squirrel";
 import type { MakerZIPConfig } from "@electron-forge/maker-zip";
@@ -52,24 +51,24 @@ const config: ForgeConfig = {
         // }
       } satisfies MakerSquirrelConfig,
     },
-    {
-      name: "@electron-forge/maker-appx",
-      config: {
-        packageExecutable: `app/${executableName}.exe`,
-        publisher: "CN=F40B0E04-7AD0-49C9-9D77-44BB51D82F85",
-        devCert: path.resolve("./src-electron/cert.pfx"),
-        certPass: process.env.CERTIFICATE_PASSWORD,
-      } satisfies MakerAppXConfig,
-    },
     // {
-    //   name: "@electron-forge/maker-msix",
+    //   name: "@electron-forge/maker-appx",
     //   config: {
-    //     logLevel: "debug",
-    //     manifestVariables: {
-    //       publisher: "CN=F40B0E04-7AD0-49C9-9D77-44BB51D82F85",
-    //     },
-    //   } satisfies MakerMSIXConfig,
+    //     packageExecutable: `app/${executableName}.exe`,
+    //     publisher: "CN=F40B0E04-7AD0-49C9-9D77-44BB51D82F85",
+    //     // devCert: path.resolve("./src-electron/cert.pfx"),
+    //     // certPass: process.env.CERTIFICATE_PASSWORD,
+    //   } satisfies MakerAppXConfig,
     // },
+    {
+      name: "@electron-forge/maker-msix",
+      config: {
+        // logLevel: "debug",
+        manifestVariables: {
+          publisher: "CN=F40B0E04-7AD0-49C9-9D77-44BB51D82F85",
+        },
+      } satisfies MakerMSIXConfig,
+    },
     // {
     //   name: "@electron-forge/maker-wix",
     //   config: {
