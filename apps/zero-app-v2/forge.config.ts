@@ -55,7 +55,7 @@ const config: ForgeConfig = {
     {
       name: "@electron-forge/maker-appx",
       config: {
-        packageExecutable: `${executableName}.exe`,
+        packageExecutable: `app/${executableName}.exe`,
         publisher: "CN=F40B0E04-7AD0-49C9-9D77-44BB51D82F85",
         devCert: path.resolve("./src-electron/cert.pfx"),
         certPass: process.env.CERTIFICATE_PASSWORD,
