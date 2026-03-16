@@ -63,10 +63,9 @@ const config: ForgeConfig = {
       name: "@electron-forge/maker-msix",
       config: {
         // logLevel: "debug",
-        packageName: `${PACKAGEJSON.productName}-${PACKAGEJSON.version}.msix`,
         sign: false,
         manifestVariables: {
-          // appExecutable: PACKAGEJSON.productName,
+          appExecutable: PACKAGEJSON.name,
           publisher: "CN=F40B0E04-7AD0-49C9-9D77-44BB51D82F85",
         },
       } satisfies MakerMSIXConfig,
