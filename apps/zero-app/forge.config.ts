@@ -64,6 +64,7 @@ const config: ForgeConfig = {
       config: {
         // logLevel: "debug",
         sign: false,
+        packageName: `${PACKAGEJSON.name}-${PACKAGEJSON.version}.msix`,
         manifestVariables: {
           appExecutable: `${PACKAGEJSON.name}.exe`,
           publisher: "Zero Open Source",
