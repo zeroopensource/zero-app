@@ -32,7 +32,7 @@
     "package:forge": "electron-forge package",
     "dev:desktop": "concurrently -n \"NEXT,ELECTRON\" -c \"yellow,blue\" --kill-others \"pnpm dev:web\" \"electron .\"",
     "build:desktop": "pnpm clean && pnpm build:web && electron-forge make",
-    "publish:desktop": "electron-forge publish",
+    "publish:desktop": "pnpm clean && electron-forge publish",
     "sign:windows": "node src-electron/sign.mjs",
     "rebuild:windows": "cd node_modules/electron && node install.js && cd ../electron-winstaller && node script/select-7z-arch.js",
     "rebuild:macos": "node-gyp rebuild --directory node_modules/macos-alias && node-gyp rebuild --directory node_modules/fs-xattr",
