@@ -1,7 +1,9 @@
 import "dotenv/config";
 import { FuseV1Options, FuseVersion } from "@electron/fuses";
+// import type { MakerAppXConfig } from "@electron-forge/maker-appx";
 import type { MakerDebConfig } from "@electron-forge/maker-deb";
 import type { MakerDMGConfig } from "@electron-forge/maker-dmg";
+import type { MakerMSIXConfig } from "@electron-forge/maker-msix";
 import type { MakerRpmConfig } from "@electron-forge/maker-rpm";
 import type { MakerSquirrelConfig } from "@electron-forge/maker-squirrel";
 import type { MakerZIPConfig } from "@electron-forge/maker-zip";
@@ -13,9 +15,9 @@ const config: ForgeConfig = {
   outDir: "out-electron",
   packagerConfig: {
     asar: true,
-    icon: "./icons/icon",
+    icon: "./src-electron/assets/icon",
     extraResource: ["out"],
-    executableName: PACKAGEJSON.name,
+    executableName: PACKAGEJSON.productName,
     ignore: [
       /node_modules\/@next\/swc-linux-arm64-gnu/,
       /node_modules\/@next\/swc-darwin/,
@@ -30,10 +32,10 @@ const config: ForgeConfig = {
         name: "Zero",
         // shortcutName: "Zero",
         // defaultInstallMode: "perUser",
-        loadingGif: "./icons/loading-gif.gif",
+        loadingGif: "./src-electron/assets/loading-gif.gif",
         iconUrl:
-          "https://raw.githubusercontent.com/zeroopensource/zero-app/refs/heads/dev/apps/zero-app-v2/icons/icon.ico",
-        setupIcon: "./icons/icon.ico",
+          "https://raw.githubusercontent.com/zeroopensource/zero-app/refs/heads/dev/apps/zero-app-v2/src-electron/assets/icon.ico",
+        setupIcon: "./src-electron/assets/icon.ico",
         // certificateFile: "./src-electron/cert.pfx",
         // certificatePassword: process.env.CERTIFICATE_PASSWORD,
         // windowsSign: {
@@ -48,6 +50,27 @@ const config: ForgeConfig = {
       } satisfies MakerSquirrelConfig,
     },
     // {
+    //   name: "@electron-forge/maker-appx",
+    //   config: {
+    //     packageExecutable: `app/${PACKAGEJSON.productName}.exe`,
+    //     publisher: "CN=F40B0E04-7AD0-49C9-9D77-44BB51D82F85",
+    //     devCert: path.resolve("./src-electron/cert.pfx"),
+    //     certPass: process.env.CERTIFICATE_PASSWORD,
+    //     makeVersionWinStoreCompatible: true,
+    //   } satisfies MakerAppXConfig,
+    // },
+    {
+      name: "@electron-forge/maker-msix",
+      config: {
+        // logLevel: "debug",
+        packageName: `${PACKAGEJSON.productName}-${PACKAGEJSON.version}.msix`,
+        sign: false,
+        manifestVariables: {
+          publisher: "CN=F40B0E04-7AD0-49C9-9D77-44BB51D82F85",
+        },
+      } satisfies MakerMSIXConfig,
+    },
+    // {
     //   name: "@electron-forge/maker-wix",
     //   config: {
     //     defaultInstallMode: "perUser",
@@ -55,7 +78,7 @@ const config: ForgeConfig = {
     //     manufacturer: "Zero",
     //     // certificateFile: "./src-electron/cert.pfx",
     //     // certificatePassword: process.env.CERTIFICATE_PASSWORD,
-    //     icon: "./icons/icon.ico",
+    //     icon: "./src-electron/assets/icon.ico",
     //   } satisfies MakerWixConfig,
     // },
     {
@@ -67,7 +90,9 @@ const config: ForgeConfig = {
       name: "@electron-forge/maker-deb",
       config: {
         options: {
-          icon: "./icons/icon.png",
+          name: PACKAGEJSON.productName,
+          productName: PACKAGEJSON.productName,
+          icon: "./src-electron/assets/icon.png",
           maintainer: "ZeroOpenSource",
           homepage: "https://ZeroOpenSource.org",
         },
@@ -76,7 +101,7 @@ const config: ForgeConfig = {
     {
       name: "@electron-forge/maker-dmg",
       config: {
-        icon: "./icons/icon.icns",
+        icon: "./src-electron/assets/icon.icns",
         background: "./src-electron/assets/dmg-background.png",
         format: "ULFO",
       } satisfies MakerDMGConfig,
@@ -85,7 +110,9 @@ const config: ForgeConfig = {
       name: "@electron-forge/maker-rpm",
       config: {
         options: {
-          icon: "./icons/icon.png",
+          name: PACKAGEJSON.productName,
+          productName: PACKAGEJSON.productName,
+          icon: "./src-electron/assets/icon.png",
         },
       } satisfies MakerRpmConfig,
     },
