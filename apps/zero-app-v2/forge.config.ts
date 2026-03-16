@@ -17,7 +17,7 @@ const config: ForgeConfig = {
     asar: true,
     icon: "./src-electron/assets/icon",
     extraResource: ["out"],
-    executableName: PACKAGEJSON.productName,
+    executableName: PACKAGEJSON.name,
     ignore: [
       /node_modules\/@next\/swc-linux-arm64-gnu/,
       /node_modules\/@next\/swc-darwin/,
