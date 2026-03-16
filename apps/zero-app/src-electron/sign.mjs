@@ -71,6 +71,7 @@ async function run() {
     appDirectory: path.resolve(appDir),
     certificateFile: path.resolve(certFile),
     certificatePassword: process.env.WINDOWS_CERTIFICATE_PASSWORD,
+    hashes: ["sha256"],
     debug: true,
   });
   console.log("Restoring files...");
