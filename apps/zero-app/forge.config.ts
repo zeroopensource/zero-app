@@ -62,7 +62,7 @@ const config: ForgeConfig = {
     {
       name: "@electron-forge/maker-msix",
       config: {
-        logLevel: "debug",
+        // logLevel: "debug",
         sign: false,
         manifestVariables: {
           appExecutable: `${PACKAGEJSON.name}.exe`,
