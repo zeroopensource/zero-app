@@ -132,8 +132,12 @@ jobs:
         run: |
           VERSION=$(node -p "require('./apps/zero-app/package.json').version")
           TAG="v$VERSION"
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG not found, creating it"
+            gh release create "$TAG" --title "$TAG" --notes "Release $TAG"
+          fi
           for file in apps/zero-app/out-capacitor/*; do
-            echo "Uploading $file"
+            echo "Uploading $file to release $TAG"
             gh release upload "$TAG" "$file" --clobber
           done
       - name: Upload build artifacts
