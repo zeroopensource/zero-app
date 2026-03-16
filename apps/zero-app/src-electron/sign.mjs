@@ -8,7 +8,7 @@ import { sign } from "@electron/windows-sign";
 const appDir = "./out-electron";
 const certFile = "./src-electron/cert.pfx";
 const tempDir = path.join("temp");
-const EXCLUDED_EXT = new Set([".node"]);
+const EXCLUDED_EXT = new Set([".node", ".msix"]);
 const publicCerUrl =
   "https://github.com/zeroopensource/zero-official/raw/refs/heads/main/packages/zero-official/src/certificates/zero-code-signing-E656BCE2.cer";
 
