@@ -14,9 +14,7 @@ import {
   Settings2,
   SquareTerminal,
 } from "lucide-react";
-import { usePathname } from "next/navigation";
 import type * as React from "react";
-import { useEffect } from "react";
 import { NavMain } from "@/components/nav-main";
 import { NavProjects } from "@/components/nav-projects";
 import { NavSecondary } from "@/components/nav-secondary";
@@ -27,11 +25,7 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  useSidebar,
 } from "@/components/ui/sidebar";
-import { PLATFORMS, usePlatform } from "../hooks/use-platform";
-import { PACKAGEJSON } from "../lib/packagejson";
-import { NavPlatform } from "./nav-platform";
 import { TeamSwitcher } from "./team-switcher";
 
 const data = {
@@ -175,29 +169,7 @@ const data = {
   ],
 };
 
-/*
-version
-home
-search
-auth
-settings
-contact
-about zero
-
-support
-*/
-
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { setOpenMobile } = useSidebar();
-  const pathname = usePathname();
-  const platform = usePlatform();
-  // biome-ignore lint/correctness/useExhaustiveDependencies: Intentional
-  useEffect(() => {
-    setOpenMobile(false);
-  }, [pathname, setOpenMobile]);
-
-  const versionCode = `${PACKAGEJSON.displayName} v${PACKAGEJSON.version}+${PLATFORMS[platform].versionSuffix}`;
-
   return (
     <Sidebar
       className="top-(--header-height) h-[calc(100svh-var(--header-height))]!"
@@ -211,7 +183,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <NavMain items={data.navMain} />
           <NavProjects projects={data.projects} />
           <NavSecondary className="mt-auto" items={data.navSecondary} />
-          <NavPlatform label={versionCode} />
         </ScrollArea>
       </SidebarContent>
       <SidebarFooter>
