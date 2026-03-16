@@ -34,7 +34,7 @@ const config: ForgeConfig = {
         // defaultInstallMode: "perUser",
         loadingGif: "./src-electron/assets/loading-gif.gif",
         iconUrl:
-          "https://raw.githubusercontent.com/zeroopensource/zero-app/refs/heads/dev/apps/zero-app-v2/src-electron/assets/icon.ico",
+          "https://raw.githubusercontent.com/zeroopensource/zero-app/refs/heads/dev/apps/zero-app/src-electron/assets/icon.ico",
         setupIcon: "./src-electron/assets/icon.ico",
         // certificateFile: "./src-electron/cert.pfx",
         // certificatePassword: process.env.CERTIFICATE_PASSWORD,
@@ -62,10 +62,10 @@ const config: ForgeConfig = {
     {
       name: "@electron-forge/maker-msix",
       config: {
-        // logLevel: "debug",
+        logLevel: "debug",
         sign: false,
         manifestVariables: {
-          appExecutable: PACKAGEJSON.name,
+          appExecutable: `${PACKAGEJSON.name}.exe`,
           publisher: "CN=F40B0E04-7AD0-49C9-9D77-44BB51D82F85",
         },
       } satisfies MakerMSIXConfig,
