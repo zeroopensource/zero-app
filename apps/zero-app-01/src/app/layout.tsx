@@ -1,7 +1,7 @@
 "use client";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../index.css";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import type { CSSProperties } from "react";
 import { useEffect } from "react";
 import { toast } from "sonner";
@@ -43,11 +43,9 @@ export default function RootLayout({
     session,
     // user
   } = authSession || {};
-  const pathname = usePathname();
-  const isAuthPathname = pathname.startsWith("/auth");
 
   useEffect(() => {
-    // const pathname = window.location.pathname;
+    const pathname = window.location.pathname;
     const toasterId = "LOADING_SESSION_TOAST_ID";
     if (isPendingSession) {
       toast.loading("Loading Session.", { dismissible: false, id: toasterId });
@@ -55,17 +53,14 @@ export default function RootLayout({
       toast.dismiss(toasterId);
       if (error) {
         toast.error(error.message);
-        router.push("/auth/signin");
       }
-      if (!(session || isAuthPathname)) {
+      if (!(session || pathname.startsWith("/auth"))) {
         router.push("/auth/signin");
       } else if (session && !pathname.startsWith("/app")) {
         router.push("/app");
       }
     }
-  }, [isPendingSession, router, session, error, pathname, isAuthPathname]);
-
-  const isSidebarEnabled = !isPendingSession && !!session;
+  }, [isPendingSession, router, session, error]);
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -76,8 +71,7 @@ export default function RootLayout({
           <div className="[--header-height:calc(--spacing(10))]">
             <SidebarProvider
               className="flex flex-col"
-              open={isSidebarEnabled ? undefined : false}
-              openMobile={isSidebarEnabled ? undefined : false}
+              open={session ? undefined : false}
               style={
                 {
                   "--sidebar-width": "16rem",
