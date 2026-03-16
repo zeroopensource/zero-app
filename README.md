@@ -19,9 +19,9 @@ KEYSTORE_BASE64=""
 - base64
 
 ```shell
-[Convert]::ToBase64String([IO.File]::ReadAllBytes("apps/zero-app-v2/src-electron/cert.pfx")) | Set-Content cert.base64 -NoNewline
+[Convert]::ToBase64String([IO.File]::ReadAllBytes("apps/zero-app/src-electron/cert.pfx")) | Set-Content cert.base64 -NoNewline
 Get-Content cert.base64
-[Convert]::ToBase64String([IO.File]::ReadAllBytes("apps/zero-app-v2/src-capacitor/upload-keystore.jks")) | Set-Content upload-keystore.base64 -NoNewline
+[Convert]::ToBase64String([IO.File]::ReadAllBytes("apps/zero-app/src-capacitor/upload-keystore.jks")) | Set-Content upload-keystore.base64 -NoNewline
 Get-Content upload-keystore.base64
 ```
 
@@ -35,10 +35,10 @@ Open Android Studio, connect Physical Device, Debug via `chrome://inspect`
 pnpm approve-builds
 ```
 ```bash
-pnpm --filter zero-app-v2 install:electron
+pnpm --filter zero-app install:electron
 ```
 ```bash
-pnpm --filter zero-app-v2 install:electron-winstaller
+pnpm --filter zero-app install:electron-winstaller
 ```
 
 ## Update Icons
@@ -46,7 +46,7 @@ pnpm --filter zero-app-v2 install:electron-winstaller
 place icons in `src-capacitor/assets`
 
 ```bash
-pnpm --filter zero-app-v2 generate:cap:icon
+pnpm --filter zero-app generate:cap:icon
 ```
 
 ## Trust Zero Cerficate
@@ -66,9 +66,9 @@ signingType: "jarsigner",
 
 ## outputs
 
-zero-app\apps\zero-app-v2\android\app\build\outputs\apk\release
-zero-app\apps\zero-app-v2\android\app\build\outputs\apk\debug
-zero-app\apps\zero-app-v2\android\app\build\outputs\bundle\release
+zero-app\apps\zero-app\android\app\build\outputs\apk\release
+zero-app\apps\zero-app\android\app\build\outputs\apk\debug
+zero-app\apps\zero-app\android\app\build\outputs\bundle\release
 
 ## Official Links
 

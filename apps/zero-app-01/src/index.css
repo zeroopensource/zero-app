@@ -125,9 +125,4 @@
   html {
     @apply font-sans;
   }
-  html,
-  body {
-    background: #09090b;
-    color: #ffffff;
-  }
 }

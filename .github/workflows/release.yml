@@ -37,14 +37,14 @@ jobs:
           sudo apt-get install -y fakeroot dpkg dpkg-dev
       - name: Rebuild windows
         if: matrix.os.name == 'windows'
-        run: pnpm --filter zero-app-v2 rebuild:windows
+        run: pnpm --filter zero-app rebuild:windows
       - name: Rebuild macos
         if: matrix.os.name == 'macos'
-        run: pnpm --filter zero-app-v2 rebuild:macos
+        run: pnpm --filter zero-app rebuild:macos
       - name: Create .env from secrets
         shell: bash
         run: |
-          mkdir -p apps/zero-app-v2
+          mkdir -p apps/zero-app
           {
             echo "PORT=${{ secrets.PORT}}"
             echo "NEXT_PUBLIC_AUTH_API=${{ secrets.NEXT_PUBLIC_AUTH_API }}"
@@ -52,7 +52,7 @@ jobs:
             echo "KEYSTORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}"
             echo "CERTIFICATE_PASSWORD=${{ secrets.CERTIFICATE_PASSWORD }}"
             echo "WINDOWS_CERTIFICATE_PASSWORD=${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}"
-          } > apps/zero-app-v2/.env
+          } > apps/zero-app/.env
       - name: Build Desktop app
         if: matrix.os.name == 'linux' || matrix.os.name == 'windows' || matrix.os.name == 'macos'
         run: pnpm run build:desktop
@@ -60,36 +60,36 @@ jobs:
         if: matrix.os.name == 'linux' || matrix.os.name == 'windows' || matrix.os.name == 'macos'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: pnpm --filter zero-app-v2 publish:desktop
+        run: pnpm --filter zero-app publish:desktop
       - name: Restore Windows certificate
         if: matrix.os.name == 'windows'
         shell: bash
-        run: echo "${{ secrets.WINDOWS_CERTIFICATE_BASE64 }}" | base64 --decode > apps/zero-app-v2/src-electron/cert.pfx
+        run: echo "${{ secrets.WINDOWS_CERTIFICATE_BASE64 }}" | base64 --decode > apps/zero-app/src-electron/cert.pfx
       - name: Sign Windows
         if: matrix.os.name == 'windows'
         env:
           WINDOWS_CERTIFICATE_PASSWORD: ${{ secrets.WINDOWS_CERTIFICATE_PASSWORD }}
-        run: pnpm --filter zero-app-v2 sign:windows
+        run: pnpm --filter zero-app sign:windows
       - name: Republish Signed Windows
         if: matrix.os.name == 'windows'
         shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          VERSION=$(node -p "require('./apps/zero-app-v2/package.json').version")
+          VERSION=$(node -p "require('./apps/zero-app/package.json').version")
           TAG="v$VERSION"
-          for file in apps/zero-app-v2/out-electron/make/squirrel.windows/x64/*; do
+          for file in apps/zero-app/out-electron/make/squirrel.windows/x64/*; do
             echo "Uploading $file"
             gh release upload "$TAG" "$file" --clobber
           done
-          for file in apps/zero-app-v2/out-electron/extras/*; do
+          for file in apps/zero-app/out-electron/extras/*; do
             echo "Uploading $file"
             gh release upload "$TAG" "$file" --clobber
           done
       - name: Restore Android certificate
         if: matrix.os.name == 'android'
         shell: bash
-        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > apps/zero-app-v2/src-capacitor/upload-keystore.jks
+        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > apps/zero-app/src-capacitor/upload-keystore.jks
       - name: Configure Android SDK
         if: matrix.os.name == 'android'
         shell: pwsh
@@ -98,7 +98,7 @@ jobs:
           if (-not $sdk) { $sdk="$env:ANDROID_HOME" }
           $sdk = $sdk -replace '\\','\\\\'
           echo "ANDROID_HOME=$sdk" >> $env:GITHUB_ENV
-          "sdk.dir=$sdk" | Out-File -Encoding ascii apps/zero-app-v2/android/local.properties
+          "sdk.dir=$sdk" | Out-File -Encoding ascii apps/zero-app/android/local.properties
       - name: Setup Java
         if: matrix.os.name == 'android'
         uses: actions/setup-java@v4
@@ -117,7 +117,7 @@ jobs:
       - name: Inject KEYSTORE_PASSWORD
         if: matrix.os.name == 'android'
         run: |
-          $file = "apps/zero-app-v2/capacitor.config.ts"
+          $file = "apps/zero-app/capacitor.config.ts"
           (Get-Content $file) `
             -replace 'process\.env\.KEYSTORE_PASSWORD', '"${{ secrets.KEYSTORE_PASSWORD }}"' `
             | Set-Content $file
@@ -130,9 +130,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          VERSION=$(node -p "require('./apps/zero-app-v2/package.json').version")
+          VERSION=$(node -p "require('./apps/zero-app/package.json').version")
           TAG="v$VERSION"
-          for file in apps/zero-app-v2/out-capacitor/*; do
+          for file in apps/zero-app/out-capacitor/*; do
             echo "Uploading $file"
             gh release upload "$TAG" "$file" --clobber
           done
@@ -142,6 +142,6 @@ jobs:
         with:
           name: build-${{ matrix.os.name }}
           path: |
-            apps/zero-app-v2/out/**
-            apps/zero-app-v2/out-capacitor/**
-            apps/zero-app-v2/out-electron/**
+            apps/zero-app/out/**
+            apps/zero-app/out-capacitor/**
+            apps/zero-app/out-electron/**
