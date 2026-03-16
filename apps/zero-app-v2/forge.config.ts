@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { FuseV1Options, FuseVersion } from "@electron/fuses";
-//import type { MakerAppXConfig } from "@electron-forge/maker-appx";
+// import type { MakerAppXConfig } from "@electron-forge/maker-appx";
 import type { MakerDebConfig } from "@electron-forge/maker-deb";
 import type { MakerDMGConfig } from "@electron-forge/maker-dmg";
 import type { MakerMSIXConfig } from "@electron-forge/maker-msix";
@@ -52,10 +52,11 @@ const config: ForgeConfig = {
     // {
     //   name: "@electron-forge/maker-appx",
     //   config: {
-    //     packageExecutable: `app/${executableName}.exe`,
+    //     packageExecutable: `app/${PACKAGEJSON.productName}.exe`,
     //     publisher: "CN=F40B0E04-7AD0-49C9-9D77-44BB51D82F85",
-    //     // devCert: path.resolve("./src-electron/cert.pfx"),
-    //     // certPass: process.env.CERTIFICATE_PASSWORD,
+    //     devCert: path.resolve("./src-electron/cert.pfx"),
+    //     certPass: process.env.CERTIFICATE_PASSWORD,
+    //     makeVersionWinStoreCompatible: true,
     //   } satisfies MakerAppXConfig,
     // },
     {
