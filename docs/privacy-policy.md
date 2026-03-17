@@ -17,7 +17,7 @@ In addition, the Application may collect certain information automatically, incl
 
 **Does the Application collect precise real time location information of the device?**
 
-This Application does not gather precise information about the location of your mobile device.
+This Application does not gather precise information about the location of your device.
 
 This Application collects your device's location, which helps the Service Provider determine your approximate geographical location and make use of in below ways:
 
@@ -37,7 +37,7 @@ The Service Provider may disclose User Provided and Automatically Collected Info
 
 **What are my opt-out rights?**
 
-You can halt all collection of information by the Application easily by uninstalling the Application. You may use the standard uninstall processes as may be available as part of your mobile device or via the mobile application marketplace or network.
+You can halt all collection of information by the Application easily by uninstalling the Application. You may use the standard uninstall processes as may be available as part of your device or via the device's application marketplace or network.
 
 **Data Retention Policy, Managing Your Information**
 
