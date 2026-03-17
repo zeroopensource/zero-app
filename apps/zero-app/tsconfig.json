@@ -2,7 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -21,9 +25,15 @@
       }
     ],
     "paths": {
-      "@/root/*": ["./*"],
-      "@/*": ["./src/*"],
-      "fumadocs-mdx:collections/*": [".source/*"]
+      "@/root/*": [
+        "./*"
+      ],
+      "@/*": [
+        "./src/*"
+      ],
+      "fumadocs-mdx:collections/*": [
+        ".source/*"
+      ]
     }
   },
   "include": [
@@ -33,7 +43,11 @@
     "./.next/types/**/*.ts",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "./src-electron/electron-env.d.ts"
+    "./src-electron/electron-env.d.ts",
+    ".next/dev/dev/types/**/*.ts"
   ],
-  "exclude": ["./node_modules", "src-tauri"]
+  "exclude": [
+    "./node_modules",
+    "src-tauri"
+  ]
 }

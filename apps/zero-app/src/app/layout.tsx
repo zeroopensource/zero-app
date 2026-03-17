@@ -1,6 +1,6 @@
 "use client";
-import { Geist, Geist_Mono } from "next/font/google";
-import "../index.css";
+import { Geist_Mono, Inter } from "next/font/google";
+import "./globals.css";
 import { usePathname, useRouter } from "next/navigation";
 import type { CSSProperties } from "react";
 import { useEffect } from "react";
@@ -11,15 +11,13 @@ import Providers from "@/components/providers";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
+import { cn } from "@/lib/utils";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const fontMono = Geist_Mono({
   subsets: ["latin"],
+  variable: "--font-mono",
 });
 
 // export const metadata: Metadata = {
@@ -70,7 +68,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn(
+          "antialiased",
+          fontMono.variable,
+          "font-sans",
+          inter.variable
+        )}
       >
         <Providers>
           <div className="[--header-height:calc(--spacing(10))]">
@@ -91,8 +94,8 @@ export default function RootLayout({
               </div>
             </SidebarProvider>
           </div>
+          <Toaster />
         </Providers>
-        <Toaster />
       </body>
     </html>
   );
