@@ -5,9 +5,9 @@ import { usePathname, useRouter } from "next/navigation";
 import type { CSSProperties } from "react";
 import { useEffect } from "react";
 import { toast } from "sonner";
-import { AppSidebar } from "@/components/app-sidebar";
 import { useAuthSession } from "@/components/auth-client";
 import Providers from "@/components/providers";
+import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
@@ -43,9 +43,9 @@ export default function RootLayout({
   } = authSession || {};
   const pathname = usePathname();
   const isAuthPathname = pathname.startsWith("/auth");
+  // const isSidebarEnabled = !isPendingSession && !!session;
 
   useEffect(() => {
-    // const pathname = window.location.pathname;
     const toasterId = "LOADING_SESSION_TOAST_ID";
     if (isPendingSession) {
       toast.loading("Loading Session.", { dismissible: false, id: toasterId });
@@ -53,7 +53,7 @@ export default function RootLayout({
       toast.dismiss(toasterId);
       if (error) {
         toast.error(error.message);
-        router.push("/auth/signin");
+        // router.push("/auth/signin");
       }
       if (!(session || isAuthPathname)) {
         router.push("/auth/signin");
@@ -62,8 +62,6 @@ export default function RootLayout({
       }
     }
   }, [isPendingSession, router, session, error, pathname, isAuthPathname]);
-
-  const isSidebarEnabled = !isPendingSession && !!session;
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -79,8 +77,8 @@ export default function RootLayout({
           <div className="[--header-height:calc(--spacing(10))]">
             <SidebarProvider
               className="flex flex-col"
-              open={isSidebarEnabled ? undefined : false}
-              openMobile={isSidebarEnabled ? undefined : false}
+              // open={isSidebarEnabled ? undefined : false}
+              // openMobile={isSidebarEnabled ? undefined : false}
               style={
                 {
                   "--sidebar-width": "16rem",

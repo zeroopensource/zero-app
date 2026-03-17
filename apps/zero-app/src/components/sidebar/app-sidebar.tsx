@@ -18,9 +18,11 @@ import { usePathname } from "next/navigation";
 import type * as React from "react";
 import { useEffect } from "react";
 import { NavMain } from "@/components/nav-main";
+import { NavPlatform } from "@/components/nav-platform";
 import { NavProjects } from "@/components/nav-projects";
 import { NavSecondary } from "@/components/nav-secondary";
 import { NavUser } from "@/components/nav-user";
+import { TeamSwitcher } from "@/components/team-switcher";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sidebar,
@@ -29,10 +31,8 @@ import {
   SidebarHeader,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { PLATFORMS, usePlatform } from "../hooks/use-platform";
-import { PACKAGEJSON } from "../lib/packagejson";
-import { NavPlatform } from "./nav-platform";
-import { TeamSwitcher } from "./team-switcher";
+import { PLATFORMS, usePlatform } from "@/hooks/use-platform";
+import { PACKAGEJSON } from "@/lib/packagejson";
 
 const data = {
   teams: [
