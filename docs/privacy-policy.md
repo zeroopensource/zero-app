@@ -19,7 +19,7 @@ In addition, the Application may collect certain information automatically, incl
 
 This Application does not gather precise information about the location of your device.
 
-This Application collects your device's location, which helps the Service Provider determine your approximate geographical location and make use of in below ways:
+This Application collects your device's location, which helps the Service Provider determine your approximate geographical location and make use of in the following ways:
 
 - Geolocation Services: The Service Provider utilizes location data to provide features such as personalized content, relevant recommendations, and location-based services.
 - Analytics and Improvements: Aggregated and anonymized location data helps the Service Provider to analyze user behavior, identify trends, and improve the overall performance and functionality of the Application.
@@ -37,7 +37,7 @@ The Service Provider may disclose User Provided and Automatically Collected Info
 
 **What are my opt-out rights?**
 
-You can halt all collection of information by the Application easily by uninstalling the Application. You may use the standard uninstall processes as may be available as part of your device or via the device's application marketplace or network.
+You can halt all collection of information by the Application easily by uninstalling the Application. You may use the standard uninstall processes as may be available as part of your device or via your device, operating system, application marketplace, or other distribution platform.
 
 **Data Retention Policy, Managing Your Information**
 
