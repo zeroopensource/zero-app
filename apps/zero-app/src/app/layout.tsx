@@ -94,8 +94,8 @@ export default function RootLayout({
               </div>
             </SidebarProvider>
           </div>
+          <Toaster />
         </Providers>
-        <Toaster />
       </body>
     </html>
   );
