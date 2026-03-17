@@ -13,7 +13,7 @@ The Service Provider may also use the information you provided them to contact y
 
 **Automatically Collected Information**
 
-In addition, the Application may collect certain information automatically, including, but not limited to, the type of mobile device you use, your mobile devices unique device ID, the IP address of your mobile device, your mobile operating system, the type of mobile Internet browsers you use, and information about the way you use the Application.
+In addition, the Application may collect certain information automatically, including, but not limited to, the type of device or system you use, your device’s unique identifiers (if available), the IP address of your device, your operating system, the type of Internet browsers you use, and information about the way you use the Application.
 
 **Does the Application collect precise real time location information of the device?**
 
