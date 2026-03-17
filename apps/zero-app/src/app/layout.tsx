@@ -1,6 +1,6 @@
 "use client";
 import { Geist, Geist_Mono } from "next/font/google";
-import "../index.css";
+import "./globals.css";
 import { usePathname, useRouter } from "next/navigation";
 import type { CSSProperties } from "react";
 import { useEffect } from "react";
