@@ -67,7 +67,8 @@ const config: ForgeConfig = {
         packageName: `${PACKAGEJSON.name}-${PACKAGEJSON.version}.msix`,
         manifestVariables: {
           appExecutable: `${PACKAGEJSON.name}.exe`,
-          publisher: "Zero Open Source",
+          packageIdentity: "ZeroOpenSource.ZeroApp",
+          publisher: "CN=F40B0E04-7AD0-49C9-9D77-44BB51D82F85",
           packageMinOSVersion: "10.0.26100.0",
         },
       } satisfies MakerMSIXConfig,
