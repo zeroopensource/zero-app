@@ -42,7 +42,11 @@ export default function RootLayout({
     // user
   } = authSession || {};
   const pathname = usePathname();
-  const isAuthPathname = pathname.startsWith("/auth");
+  const authedRoutes = ["/app"];
+  const isInAuthedRoute = authedRoutes.some((route) =>
+    pathname.startsWith(route)
+  );
+  const isInAuthRoute = pathname.startsWith("/auth");
   // const isSidebarEnabled = !isPendingSession && !!session;
 
   useEffect(() => {
@@ -55,13 +59,20 @@ export default function RootLayout({
         toast.error(error.message);
         // router.push("/auth/signin");
       }
-      if (!(session || isAuthPathname)) {
+      if (!session && isInAuthedRoute) {
         router.push("/auth/signin");
-      } else if (session && !pathname.startsWith("/app")) {
+      } else if (session && isInAuthRoute) {
         router.push("/app");
       }
     }
-  }, [isPendingSession, router, session, error, pathname, isAuthPathname]);
+  }, [
+    isPendingSession,
+    router,
+    session,
+    error,
+    isInAuthedRoute,
+    isInAuthRoute,
+  ]);
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -81,7 +92,8 @@ export default function RootLayout({
               // openMobile={isSidebarEnabled ? undefined : false}
               style={
                 {
-                  "--sidebar-width": "16rem",
+                  "--sidebar-width": "12rem",
+                  "--sidebar-width-mobile": "12rem",
                 } as CSSProperties
               }
             >

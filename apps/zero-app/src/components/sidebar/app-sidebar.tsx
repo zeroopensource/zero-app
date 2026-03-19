@@ -17,11 +17,6 @@ import {
 import { usePathname } from "next/navigation";
 import type * as React from "react";
 import { useEffect } from "react";
-import { NavMain } from "@/components/nav-main";
-import { NavPlatform } from "@/components/nav-platform";
-import { NavProjects } from "@/components/nav-projects";
-import { NavSecondary } from "@/components/nav-secondary";
-import { NavUser } from "@/components/nav-user";
 import { TeamSwitcher } from "@/components/team-switcher";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
@@ -33,6 +28,11 @@ import {
 } from "@/components/ui/sidebar";
 import { PLATFORMS, usePlatform } from "@/hooks/use-platform";
 import { PACKAGEJSON } from "@/lib/packagejson";
+import { NavMain } from "./nav-main";
+import { NavMisc } from "./nav-misc";
+import { NavPlatform } from "./nav-platform";
+import { NavProjects } from "./nav-projects";
+import { NavUser } from "./nav-user";
 
 const data = {
   teams: [
@@ -210,7 +210,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <ScrollArea className="h-full">
           <NavMain items={data.navMain} />
           <NavProjects projects={data.projects} />
-          <NavSecondary className="mt-auto" items={data.navSecondary} />
+          <NavMisc items={data.navMain} />
+          {/* <NavSecondary className="mt-auto" items={data.navSecondary} /> */}
           <NavPlatform label={versionCode} />
         </ScrollArea>
       </SidebarContent>
