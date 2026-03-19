@@ -1,10 +1,12 @@
 import type { MDXComponents } from "mdx/types";
 
-// import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 const components: MDXComponents = {
   wrapper: ({ children }) => (
-    <article className="markdown-body">{children}</article>
+    <article className={cn("markdown-body", "!text-zinc-200")}>
+      {children}
+    </article>
   ),
 };
 
