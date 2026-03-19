@@ -210,7 +210,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <ScrollArea className="h-full">
           <NavMain items={data.navMain} />
           <NavProjects projects={data.projects} />
-          <NavMisc projects={data.projects} />
+          <NavMisc items={data.navMain} />
           {/* <NavSecondary className="mt-auto" items={data.navSecondary} /> */}
           <NavPlatform label={versionCode} />
         </ScrollArea>
