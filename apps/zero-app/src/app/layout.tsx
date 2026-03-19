@@ -86,9 +86,11 @@ export default function RootLayout({
               }
             >
               <SiteHeader />
-              <div className="flex flex-1">
+              <div className="flex flex-1 overflow-auto">
                 <AppSidebar />
-                <SidebarInset>{!isPendingSession && children}</SidebarInset>
+                <SidebarInset className="min-w-0">
+                  {!isPendingSession && children}
+                </SidebarInset>
               </div>
             </SidebarProvider>
           </div>
