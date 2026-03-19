@@ -1,10 +1,10 @@
 "use client";
-import Test from "./test.mdx";
+import PrivacyPolicy from "./privacy-policy.mdx";
 
 export default function Page() {
   return (
     <div className="flex flex-col gap-4 overflow-auto p-4">
-      <Test />
+      <PrivacyPolicy />
     </div>
   );
 }
