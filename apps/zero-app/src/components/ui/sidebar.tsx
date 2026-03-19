@@ -38,6 +38,7 @@ type SidebarContextProps = {
   setOpenMobile: (open: boolean) => void;
   isMobile: boolean;
   toggleSidebar: () => void;
+  style?: React.CSSProperties;
 };
 
 const SidebarContext = React.createContext<SidebarContextProps | null>(null);
@@ -122,6 +123,7 @@ function SidebarProvider({
       openMobile: openMobileProp ?? openMobile,
       setOpenMobile,
       toggleSidebar,
+      style,
     }),
     [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar]
   );
@@ -137,6 +139,7 @@ function SidebarProvider({
         style={
           {
             "--sidebar-width": SIDEBAR_WIDTH,
+            "--sidebar-width-mobile": SIDEBAR_WIDTH_MOBILE,
             "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
             ...style,
           } as React.CSSProperties
@@ -161,7 +164,10 @@ function Sidebar({
   variant?: "sidebar" | "floating" | "inset";
   collapsible?: "offcanvas" | "icon" | "none";
 }) {
-  const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
+  const { isMobile, state, openMobile, setOpenMobile, style } = useSidebar();
+  const styleVars: React.CSSProperties = Object.fromEntries(
+    Object.entries(style ?? {}).filter(([k]) => k.startsWith("--"))
+  );
 
   if (collapsible === "none") {
     return (
@@ -182,14 +188,15 @@ function Sidebar({
     return (
       <Sheet onOpenChange={setOpenMobile} open={openMobile} {...props}>
         <SheetContent
-          className="w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+          className="!w-(--sidebar-width-mobile) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
           data-mobile="true"
           data-sidebar="sidebar"
           data-slot="sidebar"
           side={side}
           style={
             {
-              "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
+              "--sidebar-width-mobile": SIDEBAR_WIDTH_MOBILE,
+              ...styleVars,
             } as React.CSSProperties
           }
         >

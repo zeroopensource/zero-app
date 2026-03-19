@@ -92,7 +92,8 @@ export default function RootLayout({
               // openMobile={isSidebarEnabled ? undefined : false}
               style={
                 {
-                  "--sidebar-width": "16rem",
+                  "--sidebar-width": "12rem",
+                  "--sidebar-width-mobile": "12rem",
                 } as CSSProperties
               }
             >
