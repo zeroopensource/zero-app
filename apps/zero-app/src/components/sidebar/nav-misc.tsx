@@ -25,57 +25,67 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-
-const navMisc: {
-  title: string;
-  url: string;
-  icon?: LucideIcon;
-  isActive?: boolean;
-  disabled?: boolean;
-  items?: {
-    title: string;
-    url: UrlObject | Route<string>;
-    disabled?: boolean;
-  }[];
-}[] = [
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings2,
-    disabled: true,
-    items: [
-      {
-        title: "General",
-        url: "#",
-      },
-      {
-        title: "Usage",
-        url: "#",
-      },
-      {
-        title: "Billing",
-        url: "#",
-      },
-    ],
-  },
-  {
-    title: "Documentation",
-    url: "#",
-    icon: BookOpen,
-    items: [
-      {
-        title: "Terms & Conditions",
-        url: "/docs/terms-and-conditions",
-      },
-      {
-        title: "Privacy Policy",
-        url: "/docs/privacy-policy",
-      },
-    ],
-  },
-];
+import { PLATFORMS, usePlatform } from "@/hooks/use-platform";
+import { PACKAGEJSON } from "@/lib/packagejson";
 
 export const NavMisc = () => {
+  const platform = usePlatform();
+  const versionCode = `${PACKAGEJSON.displayName} v${PACKAGEJSON.version}+${PLATFORMS[platform].versionSuffix}`;
+
+  const navMisc: {
+    title: string;
+    url: string;
+    icon?: LucideIcon;
+    isActive?: boolean;
+    disabled?: boolean;
+    items?: {
+      title: string;
+      url: UrlObject | Route<string>;
+      disabled?: boolean;
+    }[];
+  }[] = [
+    {
+      title: "Settings",
+      url: "#",
+      icon: Settings2,
+      disabled: true,
+      items: [
+        {
+          title: "General",
+          url: "#",
+        },
+        {
+          title: "Usage",
+          url: "#",
+        },
+        {
+          title: "Billing",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Documentation",
+      url: "#",
+      icon: BookOpen,
+      items: [
+        {
+          title: versionCode,
+          url: "#",
+          disabled: true,
+        },
+        {
+          title: "Terms & Conditions",
+          url: "/docs/terms-and-conditions",
+        },
+        {
+          title: "Privacy Policy",
+          url: "/docs/privacy-policy",
+        },
+      ],
+    },
+  ];
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Misc</SidebarGroupLabel>

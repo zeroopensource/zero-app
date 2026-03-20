@@ -30,7 +30,6 @@ import { PLATFORMS, usePlatform } from "@/hooks/use-platform";
 import { PACKAGEJSON } from "@/lib/packagejson";
 import { NavMain } from "./nav-main";
 import { NavMisc } from "./nav-misc";
-import { NavPlatform } from "./nav-platform";
 import { NavUser } from "./nav-user";
 
 const data = {
@@ -210,7 +209,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           {/* <NavProjects projects={data.projects} /> */}
           <NavMisc />
           {/* <NavSecondary className="mt-auto" items={data.navSecondary} /> */}
-          <NavPlatform label={versionCode} />
+          {/* <NavPlatform label={versionCode} /> */}
         </ScrollArea>
       </SidebarContent>
       <SidebarFooter>
