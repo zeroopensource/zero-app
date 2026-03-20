@@ -31,7 +31,6 @@ import { PACKAGEJSON } from "@/lib/packagejson";
 import { NavMain } from "./nav-main";
 import { NavMisc } from "./nav-misc";
 import { NavPlatform } from "./nav-platform";
-import { NavProjects } from "./nav-projects";
 import { NavUser } from "./nav-user";
 
 const data = {
@@ -183,7 +182,6 @@ auth
 settings
 contact
 about zero
-
 support
 */
 
@@ -209,8 +207,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <ScrollArea className="h-full">
           <NavMain items={data.navMain} />
-          <NavProjects projects={data.projects} />
-          <NavMisc items={data.navMain} />
+          {/* <NavProjects projects={data.projects} /> */}
+          <NavMisc />
           {/* <NavSecondary className="mt-auto" items={data.navSecondary} /> */}
           <NavPlatform label={versionCode} />
         </ScrollArea>

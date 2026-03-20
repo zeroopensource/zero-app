@@ -16,7 +16,7 @@
     "clean": "rimraf out out-electron out-capacitor",
     "shadcn": "shadcn",
     "shadcn:addzero": "pnpm shadcn add https://zerocn.zeroopensource.org/r/all.json -y -o",
-    "dev:web": "dotenv -e .env -- next dev",
+    "dev:web": "rimraf .next && dotenv -e .env -- next dev",
     "build:web": "next build && tsx scripts/fix-next-out.ts && pnpm sync:android",
     "serve:web": "serve out",
     "start:web": "dotenv -e .env -- next start",

@@ -1,7 +1,14 @@
 "use client";
 
-import { ChevronRight, type LucideIcon } from "lucide-react";
-
+import type { UrlObject } from "node:url";
+import {
+  BookOpen,
+  ChevronRight,
+  type LucideIcon,
+  Settings2,
+} from "lucide-react";
+import type { Route } from "next";
+import Link from "next/link";
 import {
   Collapsible,
   CollapsibleContent,
@@ -18,25 +25,62 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 
-export function NavMisc({
-  items,
-}: {
-  items: {
+const navMisc: {
+  title: string;
+  url: string;
+  icon?: LucideIcon;
+  isActive?: boolean;
+  items?: {
     title: string;
-    url: string;
-    icon?: LucideIcon;
-    isActive?: boolean;
-    items?: {
-      title: string;
-      url: string;
-    }[];
+    url: UrlObject | Route<string>;
   }[];
-}) {
+}[] = [
+  {
+    title: "Documentation",
+    url: "#",
+    icon: BookOpen,
+    items: [
+      {
+        title: "Terms & Conditions",
+        url: "/docs/terms-and-conditions",
+      },
+      {
+        title: "Privacy Policy",
+        url: "/docs/privacy-policy",
+      },
+    ],
+  },
+  {
+    title: "Settings",
+    url: "#",
+    icon: Settings2,
+    items: [
+      {
+        title: "General",
+        url: "#",
+      },
+      {
+        title: "Team",
+        url: "#",
+      },
+      {
+        title: "Billing",
+        url: "#",
+      },
+      {
+        title: "Limits",
+        url: "#",
+      },
+    ],
+  },
+];
+
+export const NavMisc = () => {
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Misc</SidebarGroupLabel>
       <SidebarMenu>
-        {items.map((item) => (
+        {navMisc.map((item) => (
           <Collapsible
             asChild
             className="group/collapsible"
@@ -56,9 +100,9 @@ export function NavMisc({
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
                       <SidebarMenuSubButton asChild>
-                        <a href={subItem.url}>
+                        <Link href={subItem.url}>
                           <span>{subItem.title}</span>
-                        </a>
+                        </Link>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                   ))}
@@ -70,4 +114,4 @@ export function NavMisc({
       </SidebarMenu>
     </SidebarGroup>
   );
-}
+};

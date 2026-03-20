@@ -1,5 +1,12 @@
-/* https://github.com/sindresorhus/github-markdown-css */
+/* patches */
+.markdown-body ul {
+  list-style-type: disc;
+}
+.markdown-body ol {
+  list-style-type: decimal;
+}
 
+/* https://github.com/sindresorhus/github-markdown-css */
 .markdown-body {
   --base-size-16: 1rem;
   --base-size-24: 1.5rem;

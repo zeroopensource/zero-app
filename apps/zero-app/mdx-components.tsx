@@ -4,7 +4,9 @@ import { cn } from "@/lib/utils";
 
 const components: MDXComponents = {
   wrapper: ({ children }) => (
-    <article className={cn("markdown-body", "!text-zinc-300")}>
+    <article
+      className={cn("markdown-body", "!text-zinc-300 !mx-auto max-w-3xl")}
+    >
       {children}
     </article>
   ),
