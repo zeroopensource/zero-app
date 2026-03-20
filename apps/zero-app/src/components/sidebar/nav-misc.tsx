@@ -48,18 +48,20 @@ export const NavMisc = () => {
       title: "Settings",
       url: "#",
       icon: Settings2,
-      disabled: true,
       items: [
         {
           title: "General",
+          disabled: true,
           url: "#",
         },
         {
           title: "Usage",
+          disabled: true,
           url: "#",
         },
         {
           title: "Billing",
+          disabled: true,
           url: "#",
         },
       ],

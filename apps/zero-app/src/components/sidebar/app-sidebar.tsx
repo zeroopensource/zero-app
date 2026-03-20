@@ -26,8 +26,6 @@ import {
   SidebarHeader,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { PLATFORMS, usePlatform } from "@/hooks/use-platform";
-import { PACKAGEJSON } from "@/lib/packagejson";
 import { NavMain } from "./nav-main";
 import { NavMisc } from "./nav-misc";
 import { NavUser } from "./nav-user";
@@ -187,13 +185,10 @@ support
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { setOpenMobile } = useSidebar();
   const pathname = usePathname();
-  const platform = usePlatform();
   // biome-ignore lint/correctness/useExhaustiveDependencies: Intentional
   useEffect(() => {
     setOpenMobile(false);
   }, [pathname, setOpenMobile]);
-
-  const versionCode = `${PACKAGEJSON.displayName} v${PACKAGEJSON.version}+${PLATFORMS[platform].versionSuffix}`;
 
   return (
     <Sidebar
