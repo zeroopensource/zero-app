@@ -30,11 +30,33 @@ const navMisc: {
   url: string;
   icon?: LucideIcon;
   isActive?: boolean;
+  disabled?: boolean;
   items?: {
     title: string;
     url: UrlObject | Route<string>;
+    disabled?: boolean;
   }[];
 }[] = [
+  {
+    title: "Settings",
+    url: "#",
+    icon: Settings2,
+    disabled: true,
+    items: [
+      {
+        title: "General",
+        url: "#",
+      },
+      {
+        title: "Usage",
+        url: "#",
+      },
+      {
+        title: "Billing",
+        url: "#",
+      },
+    ],
+  },
   {
     title: "Documentation",
     url: "#",
@@ -47,29 +69,6 @@ const navMisc: {
       {
         title: "Privacy Policy",
         url: "/docs/privacy-policy",
-      },
-    ],
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings2,
-    items: [
-      {
-        title: "General",
-        url: "#",
-      },
-      {
-        title: "Team",
-        url: "#",
-      },
-      {
-        title: "Billing",
-        url: "#",
-      },
-      {
-        title: "Limits",
-        url: "#",
       },
     ],
   },
@@ -97,15 +96,24 @@ export const NavMisc = () => {
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <SidebarMenuSub>
-                  {item.items?.map((subItem) => (
-                    <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton asChild>
-                        <Link href={subItem.url}>
-                          <span>{subItem.title}</span>
-                        </Link>
-                      </SidebarMenuSubButton>
-                    </SidebarMenuSubItem>
-                  ))}
+                  {item.items?.map((subItem) => {
+                    const disabled = item.disabled || subItem.disabled;
+                    return (
+                      <SidebarMenuSubItem key={subItem.title}>
+                        <SidebarMenuSubButton
+                          asChild
+                          className={disabled ? "brightness-40" : ""}
+                          onClick={
+                            disabled ? (e) => e.preventDefault() : undefined
+                          }
+                        >
+                          <Link href={subItem.url}>
+                            <span>{subItem.title}</span>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    );
+                  })}
                 </SidebarMenuSub>
               </CollapsibleContent>
             </SidebarMenuItem>
