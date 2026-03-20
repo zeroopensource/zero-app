@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
+import { toast } from "sonner";
 import {
   Collapsible,
   CollapsibleContent,
@@ -104,7 +105,12 @@ export const NavMisc = () => {
                           asChild
                           className={disabled ? "brightness-40" : ""}
                           onClick={
-                            disabled ? (e) => e.preventDefault() : undefined
+                            disabled
+                              ? (e) => {
+                                  e.preventDefault();
+                                  toast("Disabled");
+                                }
+                              : undefined
                           }
                         >
                           <Link href={subItem.url}>
