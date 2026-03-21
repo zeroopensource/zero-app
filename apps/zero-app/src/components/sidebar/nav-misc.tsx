@@ -40,6 +40,7 @@ export const NavMisc = () => {
     isActive?: boolean;
     disabled?: boolean;
     items?: {
+      target?: string;
       title: string;
       url: UrlObject | Route<string>;
       disabled?: boolean;
@@ -75,37 +76,37 @@ export const NavMisc = () => {
         {
           title: "ZeroOpenSource.org",
           url: "https://zeroopensource.org/",
-          disabled: true,
+          target: "_blank",
         },
         {
           title: "Github",
           url: "https://github.com/zeroopensource",
-          disabled: true,
+          target: "_blank",
         },
         {
           title: "Discord",
           url: "https://discord.gg/2a5HcmxvgC",
-          disabled: true,
+          target: "_blank",
         },
         {
           title: "X (Twitter)",
           url: "https://x.com/ZeroOpenSource",
-          disabled: true,
+          target: "_blank",
         },
         {
           title: "Facebook",
           url: "https://www.facebook.com/ZeroOpenSource",
-          disabled: true,
+          target: "_blank",
         },
         {
           title: "Github Sponsor",
           url: "https://github.com/sponsors/zeroopensource",
-          disabled: true,
+          target: "_blank",
         },
         {
           title: "Buy Me A Coffee",
           url: "https://buymeacoffee.com/zeroopensource",
-          disabled: true,
+          target: "_blank",
         },
       ],
     },
@@ -178,7 +179,7 @@ export const NavMisc = () => {
                               : undefined
                           }
                         >
-                          <Link href={subItem.url}>
+                          <Link href={subItem.url} target={subItem.target}>
                             <span>{subItem.title}</span>
                           </Link>
                         </SidebarMenuSubButton>
