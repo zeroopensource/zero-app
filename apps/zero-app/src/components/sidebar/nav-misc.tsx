@@ -5,6 +5,7 @@ import {
   BookOpen,
   ChevronRight,
   type LucideIcon,
+  Link as LucideLink,
   Settings2,
 } from "lucide-react";
 import type { Route } from "next";
@@ -67,12 +68,64 @@ export const NavMisc = () => {
       ],
     },
     {
+      title: "Links",
+      url: "#",
+      icon: LucideLink,
+      items: [
+        {
+          title: "ZeroOpenSource.org",
+          url: "https://zeroopensource.org/",
+          disabled: true,
+        },
+        {
+          title: "Github",
+          url: "https://github.com/zeroopensource",
+          disabled: true,
+        },
+        {
+          title: "Discord",
+          url: "https://discord.gg/2a5HcmxvgC",
+          disabled: true,
+        },
+        {
+          title: "X (Twitter)",
+          url: "https://x.com/ZeroOpenSource",
+          disabled: true,
+        },
+        {
+          title: "Facebook",
+          url: "https://www.facebook.com/ZeroOpenSource",
+          disabled: true,
+        },
+        {
+          title: "Github Sponsor",
+          url: "https://github.com/sponsors/zeroopensource",
+          disabled: true,
+        },
+        {
+          title: "Buy Me A Coffee",
+          url: "https://buymeacoffee.com/zeroopensource",
+          disabled: true,
+        },
+      ],
+    },
+    {
       title: "Documentation",
       url: "#",
       icon: BookOpen,
       items: [
         {
+          title: "Help",
+          url: "#",
+          disabled: true,
+        },
+        {
           title: versionCode,
+          url: "#",
+          disabled: true,
+        },
+        {
+          title: "About Zero",
           url: "#",
           disabled: true,
         },

@@ -26,7 +26,6 @@ import {
   SidebarHeader,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { NavMain } from "./nav-main";
 import { NavMisc } from "./nav-misc";
 import { NavUser } from "./nav-user";
 
@@ -172,14 +171,10 @@ const data = {
 };
 
 /*
-version
 home
 search
 auth
-settings
 contact
-about zero
-support
 */
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -200,7 +195,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <ScrollArea className="h-full">
-          <NavMain items={data.navMain} />
+          {/* <NavMain items={data.navMain} /> */}
           {/* <NavProjects projects={data.projects} /> */}
           <NavMisc />
           {/* <NavSecondary className="mt-auto" items={data.navSecondary} /> */}
