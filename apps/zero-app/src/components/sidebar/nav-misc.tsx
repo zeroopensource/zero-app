@@ -143,7 +143,7 @@ export const NavMisc = () => {
   ];
 
   return (
-    <SidebarGroup>
+    <SidebarGroup className="px-0">
       <SidebarGroupLabel>Misc</SidebarGroupLabel>
       <SidebarMenu>
         {navMisc.map((item) => (
