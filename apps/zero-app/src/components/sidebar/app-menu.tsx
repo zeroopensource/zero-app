@@ -1,8 +1,13 @@
 "use client";
 
-import { ChevronsUpDown, Plus } from "lucide-react";
+import {
+  AudioWaveform,
+  ChevronsUpDown,
+  Command,
+  GalleryVerticalEnd,
+  Plus,
+} from "lucide-react";
 import { useState } from "react";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,15 +24,25 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-export function TeamSwitcher({
-  teams,
-}: {
-  teams: {
-    name: string;
-    logo: React.ElementType;
-    plan: string;
-  }[];
-}) {
+const teams = [
+  {
+    name: "Acme Inc",
+    logo: GalleryVerticalEnd,
+    plan: "Enterprise",
+  },
+  {
+    name: "Acme Corp.",
+    logo: AudioWaveform,
+    plan: "Startup",
+  },
+  {
+    name: "Evil Corp.",
+    logo: Command,
+    plan: "Free",
+  },
+];
+
+export function AppMenu() {
   const { isMobile } = useSidebar();
   const [activeTeam, setActiveTeam] = useState(teams[0]);
 
