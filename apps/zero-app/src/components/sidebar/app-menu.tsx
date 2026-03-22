@@ -26,7 +26,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-const teams = [
+const accounts = [
   {
     name: "Acme Inc",
     logo: GalleryVerticalEnd,
@@ -47,7 +47,7 @@ const teams = [
 export function AppMenu() {
   const router = useRouter();
   const { isMobile } = useSidebar();
-  const [activeTeam, setActiveTeam] = useState(teams[0]);
+  const [activeAccount, setActiveAccount] = useState(accounts[0]);
   // const { data: authSession } = useAuthSession();
   // const {
   //   // session,
@@ -61,7 +61,7 @@ export function AppMenu() {
 
   console.log("data", data);
 
-  if (!activeTeam) {
+  if (!activeAccount) {
     return null;
   }
 
@@ -75,11 +75,13 @@ export function AppMenu() {
               size="lg"
             >
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                <activeTeam.logo className="size-4" />
+                <activeAccount.logo className="size-4" />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{activeTeam.name}</span>
-                <span className="truncate text-xs">{activeTeam.plan}</span>
+                <span className="truncate font-medium">
+                  {activeAccount.name}
+                </span>
+                <span className="truncate text-xs">{activeAccount.plan}</span>
               </div>
               <ChevronsUpDown className="ml-auto" />
             </SidebarMenuButton>
@@ -93,16 +95,16 @@ export function AppMenu() {
             <DropdownMenuLabel className="text-muted-foreground text-xs">
               Accounts
             </DropdownMenuLabel>
-            {teams.map((team) => (
+            {accounts.map((account) => (
               <DropdownMenuItem
                 className="gap-2 p-2"
-                key={team.name}
-                onClick={() => setActiveTeam(team)}
+                key={account.name}
+                onClick={() => setActiveAccount(account)}
               >
                 <div className="flex size-6 items-center justify-center rounded-md border">
-                  <team.logo className="size-3.5 shrink-0" />
+                  <account.logo className="size-3.5 shrink-0" />
                 </div>
-                {team.name}
+                {account.name}
               </DropdownMenuItem>
             ))}
             <DropdownMenuSeparator />
