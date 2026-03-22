@@ -5,16 +5,17 @@ import {
   ChevronsUpDown,
   Command,
   GalleryVerticalEnd,
+  LogOut,
   Plus,
 } from "lucide-react";
 import { useState } from "react";
+import { authClient, useAuthSession } from "@/components/auth-client";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -45,10 +46,20 @@ const teams = [
 export function AppMenu() {
   const { isMobile } = useSidebar();
   const [activeTeam, setActiveTeam] = useState(teams[0]);
+  const { data: authSession } = useAuthSession();
+  const {
+    // session,
+    user,
+  } = authSession || {};
+  const signOut = async () => {
+    await authClient.signOut();
+  };
 
   if (!activeTeam) {
     return null;
   }
+
+  console.log(activeTeam);
 
   return (
     <SidebarMenu>
@@ -76,9 +87,9 @@ export function AppMenu() {
             sideOffset={4}
           >
             <DropdownMenuLabel className="text-muted-foreground text-xs">
-              Teams
+              Accounts
             </DropdownMenuLabel>
-            {teams.map((team, index) => (
+            {teams.map((team) => (
               <DropdownMenuItem
                 className="gap-2 p-2"
                 key={team.name}
@@ -88,7 +99,6 @@ export function AppMenu() {
                   <team.logo className="size-3.5 shrink-0" />
                 </div>
                 {team.name}
-                <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
               </DropdownMenuItem>
             ))}
             <DropdownMenuSeparator />
@@ -96,7 +106,17 @@ export function AppMenu() {
               <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
                 <Plus className="size-4" />
               </div>
-              <div className="font-medium text-muted-foreground">Add team</div>
+              <div className="font-medium text-muted-foreground">
+                Add Account
+              </div>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="gap-2 p-2" onClick={() => signOut()}>
+              <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
+                <LogOut className="size-4" />
+              </div>
+              <div className="font-medium text-muted-foreground">
+                Sign out Accounts
+              </div>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

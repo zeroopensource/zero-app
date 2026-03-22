@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/sidebar";
 import { AppMenu } from "./app-menu";
 import { NavMisc } from "./nav-misc";
-import { NavUser } from "./nav-user";
 
 /*
 home
@@ -36,7 +35,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     >
       <SidebarHeader>
         <AppMenu />
-        <NavUser />
+        {/* <NavUser /> */}
       </SidebarHeader>
       <SidebarContent>
         <ScrollArea className="h-full">
