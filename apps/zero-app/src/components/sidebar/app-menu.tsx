@@ -56,10 +56,11 @@ export function AppMenu() {
   const signOut = async () => {
     await authClient.signOut();
   };
-  const { data, error, isPending } =
-    authClient.multiSession.listDeviceSessions();
+  // const { data, error } =
+  //   await authClient.multiSession.listDeviceSessions();
+  // const data = authClient.multiSession.listDeviceSessions();
 
-  console.log("data", data);
+  // console.log("data", data);
 
   if (!activeAccount) {
     return null;
