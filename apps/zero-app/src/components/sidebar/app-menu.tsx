@@ -8,8 +8,9 @@ import {
   LogOut,
   Plus,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { authClient, useAuthSession } from "@/components/auth-client";
+import { authClient } from "@/components/auth-client";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -44,22 +45,25 @@ const teams = [
 ];
 
 export function AppMenu() {
+  const router = useRouter();
   const { isMobile } = useSidebar();
   const [activeTeam, setActiveTeam] = useState(teams[0]);
-  const { data: authSession } = useAuthSession();
-  const {
-    // session,
-    user,
-  } = authSession || {};
+  // const { data: authSession } = useAuthSession();
+  // const {
+  //   // session,
+  //   user,
+  // } = authSession || {};
   const signOut = async () => {
     await authClient.signOut();
   };
+  const { data, error, isPending } =
+    authClient.multiSession.listDeviceSessions();
+
+  console.log("data", data);
 
   if (!activeTeam) {
     return null;
   }
-
-  console.log(activeTeam);
 
   return (
     <SidebarMenu>
@@ -102,21 +106,20 @@ export function AppMenu() {
               </DropdownMenuItem>
             ))}
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="gap-2 p-2">
+            <DropdownMenuItem
+              className="gap-2 p-2"
+              onClick={() => router.push("/auth/signin")}
+            >
               <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
                 <Plus className="size-4" />
               </div>
-              <div className="font-medium text-muted-foreground">
-                Add Account
-              </div>
+              <div className="font-medium">Add Account</div>
             </DropdownMenuItem>
             <DropdownMenuItem className="gap-2 p-2" onClick={() => signOut()}>
               <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
                 <LogOut className="size-4" />
               </div>
-              <div className="font-medium text-muted-foreground">
-                Sign out Accounts
-              </div>
+              <div className="font-medium">Sign out Accounts</div>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
