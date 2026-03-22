@@ -1,14 +1,7 @@
 "use client";
 
 import type { UrlObject } from "node:url";
-import {
-  BookOpen,
-  Bot,
-  ChevronRight,
-  type LucideIcon,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react";
+import { ChevronRight, type LucideIcon, SquareTerminal } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -42,94 +35,94 @@ const items: {
   }[];
 }[] = [
   {
-    title: "Playground",
+    title: "Index",
     url: "#",
     icon: SquareTerminal,
     isActive: true,
     disabled: true,
     items: [
       {
-        title: "History",
+        title: "Library",
         url: "#",
       },
-      {
-        title: "Starred",
-        url: "#",
-      },
-      {
-        title: "Settings",
-        url: "#",
-      },
+      // {
+      //   title: "Starred",
+      //   url: "#",
+      // },
+      // {
+      //   title: "Settings",
+      //   url: "#",
+      // },
     ],
   },
-  {
-    title: "Models",
-    url: "#",
-    icon: Bot,
-    disabled: true,
-    items: [
-      {
-        title: "Genesis",
-        url: "#",
-      },
-      {
-        title: "Explorer",
-        url: "#",
-      },
-      {
-        title: "Quantum",
-        url: "#",
-      },
-    ],
-  },
-  {
-    title: "Documentation",
-    url: "#",
-    icon: BookOpen,
-    disabled: true,
-    items: [
-      {
-        title: "Introduction",
-        url: "#",
-      },
-      {
-        title: "Get Started",
-        url: "#",
-      },
-      {
-        title: "Tutorials",
-        url: "#",
-      },
-      {
-        title: "Changelog",
-        url: "#",
-      },
-    ],
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings2,
-    disabled: true,
-    items: [
-      {
-        title: "General",
-        url: "#",
-      },
-      {
-        title: "Team",
-        url: "#",
-      },
-      {
-        title: "Billing",
-        url: "#",
-      },
-      {
-        title: "Limits",
-        url: "#",
-      },
-    ],
-  },
+  // {
+  //   title: "Models",
+  //   url: "#",
+  //   icon: Bot,
+  //   disabled: true,
+  //   items: [
+  //     {
+  //       title: "Genesis",
+  //       url: "#",
+  //     },
+  //     {
+  //       title: "Explorer",
+  //       url: "#",
+  //     },
+  //     {
+  //       title: "Quantum",
+  //       url: "#",
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: "Documentation",
+  //   url: "#",
+  //   icon: BookOpen,
+  //   disabled: true,
+  //   items: [
+  //     {
+  //       title: "Introduction",
+  //       url: "#",
+  //     },
+  //     {
+  //       title: "Get Started",
+  //       url: "#",
+  //     },
+  //     {
+  //       title: "Tutorials",
+  //       url: "#",
+  //     },
+  //     {
+  //       title: "Changelog",
+  //       url: "#",
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: "Settings",
+  //   url: "#",
+  //   icon: Settings2,
+  //   disabled: true,
+  //   items: [
+  //     {
+  //       title: "General",
+  //       url: "#",
+  //     },
+  //     {
+  //       title: "Team",
+  //       url: "#",
+  //     },
+  //     {
+  //       title: "Billing",
+  //       url: "#",
+  //     },
+  //     {
+  //       title: "Limits",
+  //       url: "#",
+  //     },
+  //   ],
+  // },
 ];
 
 export function NavMain() {
