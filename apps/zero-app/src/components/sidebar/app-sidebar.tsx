@@ -11,12 +11,12 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { AppMenu } from "./app-menu";
+import { NavMain } from "./nav-main";
 import { NavMisc } from "./nav-misc";
 
 /*
 home
 search
-auth
 contact
 */
 
@@ -39,7 +39,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <ScrollArea className="h-full">
-          {/* <NavMain items={data.navMain} /> */}
+          <NavMain />
           {/* <NavProjects projects={data.projects} /> */}
           <NavMisc />
           {/* <NavSecondary className="mt-auto" items={data.navSecondary} /> */}
