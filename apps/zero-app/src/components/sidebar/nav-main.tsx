@@ -1,5 +1,6 @@
 "use client";
 
+import type { UrlObject } from "node:url";
 import {
   BookOpen,
   Bot,
@@ -8,7 +9,9 @@ import {
   Settings2,
   SquareTerminal,
 } from "lucide-react";
-
+import type { Route } from "next";
+import Link from "next/link";
+import { toast } from "sonner";
 import {
   Collapsible,
   CollapsibleContent,
@@ -27,12 +30,15 @@ import {
 
 const items: {
   title: string;
-  url: string;
+  url: UrlObject | Route<string>;
   icon?: LucideIcon;
   isActive?: boolean;
+  disabled?: boolean;
   items?: {
+    target?: string;
     title: string;
-    url: string;
+    url: UrlObject | Route<string>;
+    disabled?: boolean;
   }[];
 }[] = [
   {
@@ -40,6 +46,7 @@ const items: {
     url: "#",
     icon: SquareTerminal,
     isActive: true,
+    disabled: true,
     items: [
       {
         title: "History",
@@ -59,6 +66,7 @@ const items: {
     title: "Models",
     url: "#",
     icon: Bot,
+    disabled: true,
     items: [
       {
         title: "Genesis",
@@ -78,6 +86,7 @@ const items: {
     title: "Documentation",
     url: "#",
     icon: BookOpen,
+    disabled: true,
     items: [
       {
         title: "Introduction",
@@ -101,6 +110,7 @@ const items: {
     title: "Settings",
     url: "#",
     icon: Settings2,
+    disabled: true,
     items: [
       {
         title: "General",
@@ -144,15 +154,29 @@ export function NavMain() {
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <SidebarMenuSub>
-                  {item.items?.map((subItem) => (
-                    <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton asChild>
-                        <a href={subItem.url}>
-                          <span>{subItem.title}</span>
-                        </a>
-                      </SidebarMenuSubButton>
-                    </SidebarMenuSubItem>
-                  ))}
+                  {item.items?.map((subItem) => {
+                    const disabled = item.disabled || subItem.disabled;
+                    return (
+                      <SidebarMenuSubItem key={subItem.title}>
+                        <SidebarMenuSubButton
+                          asChild
+                          className={disabled ? "brightness-40" : ""}
+                          onClick={
+                            disabled
+                              ? (e) => {
+                                  e.preventDefault();
+                                  toast("Disabled");
+                                }
+                              : undefined
+                          }
+                        >
+                          <Link href={subItem.url} target={subItem.target}>
+                            <span>{subItem.title}</span>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    );
+                  })}
                 </SidebarMenuSub>
               </CollapsibleContent>
             </SidebarMenuItem>
