@@ -59,7 +59,7 @@ export function AppMenu() {
       dismissible: false,
       id: toasterId,
     });
-    mutate(null, {
+    mutate(undefined, {
       onSuccess: () => {
         toast.dismiss(toasterId);
       },
