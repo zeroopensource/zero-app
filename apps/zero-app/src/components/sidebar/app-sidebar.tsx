@@ -15,9 +15,7 @@ import { NavMain } from "./nav-main";
 import { NavMisc } from "./nav-misc";
 
 /*
-home
 search
-contact
 */
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
