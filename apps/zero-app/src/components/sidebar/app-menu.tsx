@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import {
   useAuthDeviceSessions,
+  useAuthSession,
   useAuthSignOut,
 } from "@/components/auth-client";
 import {
@@ -28,6 +29,9 @@ export function AppMenu() {
   const { isMobile } = useSidebar();
   // const [activeAccount, setActiveAccount] = useState(accounts[0]);
   const { mutate } = useAuthSignOut();
+  const { data: activeSession } = useAuthSession();
+  console.log("activeSession", activeSession);
+
   const signOut = () => {
     toast.loading("Signing Out", {
       dismissible: false,
@@ -60,7 +64,9 @@ export function AppMenu() {
                 {/* <activeAccount.logo className="size-4" /> */}
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{"123"}</span>
+                <span className="truncate font-medium">
+                  {activeSession?.user.email}
+                </span>
                 <span className="truncate text-xs">{"Free"}</span>
               </div>
               <ChevronsUpDown className="ml-auto" />
