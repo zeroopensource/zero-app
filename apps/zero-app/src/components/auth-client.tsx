@@ -1,8 +1,9 @@
 "use client";
 // import { NEXTENV } from "@/lib/next-env";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { multiSessionClient } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
+import { toast } from "sonner";
 
 export const authClient = createAuthClient({
   // baseURL: NEXTENV.NEXT_PUBLIC_AUTH_API,
@@ -27,6 +28,8 @@ export const useAuthDeviceSessions = () => {
 };
 
 export const useAuthSignIn = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: async (value: { email: string; password: string }) => {
       const { data, error } = await authClient.signIn.email({
@@ -36,6 +39,22 @@ export const useAuthSignIn = () => {
       if (error) {
         throw error;
       }
+      queryClient.invalidateQueries({ queryKey: ["auth-device-sessions"] });
+      return data;
+    },
+  });
+};
+
+export const useAuthSignOut = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async () => {
+      const { data, error } = await authClient.signOut();
+      if (error) {
+        toast.error(error.message);
+        throw error;
+      }
+      queryClient.invalidateQueries({ queryKey: ["auth-device-sessions"] });
       return data;
     },
   });

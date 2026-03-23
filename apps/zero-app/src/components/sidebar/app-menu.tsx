@@ -10,7 +10,11 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { authClient, useAuthDeviceSessions } from "@/components/auth-client";
+import { toast } from "sonner";
+import {
+  useAuthDeviceSessions,
+  useAuthSignOut,
+} from "@/components/auth-client";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -45,27 +49,27 @@ const accounts = [
 ];
 
 export function AppMenu() {
+  const toasterId = "LOADING_SIGNOUT_TOAST_ID";
   const router = useRouter();
   const { isMobile } = useSidebar();
   const [activeAccount, setActiveAccount] = useState(accounts[0]);
-  // const { data: authSession } = useAuthSession();
-  // const {
-  //   // session,
-  //   user,
-  // } = authSession || {};
-  const signOut = async () => {
-    await authClient.signOut();
+  const { mutate, isPending } = useAuthSignOut();
+  const signOut = () => {
+    toast.loading("Signing Out", {
+      dismissible: false,
+      id: toasterId,
+    });
+    mutate(null, {
+      onSuccess: () => {
+        toast.dismiss(toasterId);
+      },
+      onError: () => {
+        toast.dismiss(toasterId);
+      },
+    });
   };
-  // const { data, error, useSession } =
-  //   authClient.multiSession.listDeviceSessions();
-  // const {
-  //     data: authSession,
-  //     isPending: isPendingSession,
-  //     error,
-  //     // refetch,
-  //   } = useAuthSession();
-  // const data = authClient.multiSession.listDeviceSessions();
-  const { data, error, isLoading } = useAuthDeviceSessions();
+
+  const { data } = useAuthDeviceSessions();
 
   console.log("data", data);
 

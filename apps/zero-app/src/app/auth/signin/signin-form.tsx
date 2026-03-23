@@ -27,7 +27,7 @@ export function SigninForm({
   ...props
 }: React.ComponentProps<typeof Card>) {
   const router = useRouter();
-  const { mutate: signin, isError, isSuccess, isPending } = useAuthSignIn();
+  const { mutate: signIn, isPending } = useAuthSignIn();
   const form = useForm({
     defaultValues: {
       email: "",
@@ -37,7 +37,7 @@ export function SigninForm({
       onSubmit: formSchema,
     },
     onSubmit: ({ value }) => {
-      signin(
+      signIn(
         { email: value.email, password: value.password },
         {
           onSuccess: () => {
