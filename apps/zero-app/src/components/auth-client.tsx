@@ -11,6 +11,8 @@ export const authClient = createAuthClient({
   plugins: [multiSessionClient()],
 });
 
+export type AuthSession = typeof authClient.$Infer.Session;
+
 export const { useSession: useAuthSession } = authClient;
 
 export const useAuthDeviceSessions = () => {

@@ -4,6 +4,7 @@ import { ChevronsUpDown, LogOut, Plus, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import {
+  type AuthSession,
   useAuthDeviceSessions,
   useAuthRevokeSession,
   useAuthSession,
@@ -36,7 +37,7 @@ export function AppMenu() {
   const { mutate: mutateSetActiveSession } = useAuthSetActiveSession();
   const { mutate: mutateRevokeSession } = useAuthRevokeSession();
 
-  const revokeSession = (session: any) => {
+  const revokeSession = (session: AuthSession) => {
     toast.loading("Signing Out", {
       dismissible: false,
       id: toasterId,
@@ -54,7 +55,7 @@ export function AppMenu() {
     );
   };
 
-  const setActiveSession = (session: any) => {
+  const setActiveSession = (session: AuthSession) => {
     toast.loading("Switching Account", {
       dismissible: false,
       id: toasterId,
