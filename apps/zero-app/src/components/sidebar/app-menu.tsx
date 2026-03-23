@@ -53,7 +53,7 @@ export function AppMenu() {
   const router = useRouter();
   const { isMobile } = useSidebar();
   const [activeAccount, setActiveAccount] = useState(accounts[0]);
-  const { mutate, isPending } = useAuthSignOut();
+  const { mutate } = useAuthSignOut();
   const signOut = () => {
     toast.loading("Signing Out", {
       dismissible: false,
