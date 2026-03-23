@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronsUpDown, LogOut, Plus } from "lucide-react";
+import { ChevronsUpDown, LogOut, Plus, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import {
@@ -8,6 +8,7 @@ import {
   useAuthSession,
   useAuthSignOut,
 } from "@/components/auth-client";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,10 +29,8 @@ export function AppMenu() {
   const toasterId = "LOADING_SIGNOUT_TOAST_ID";
   const router = useRouter();
   const { isMobile } = useSidebar();
-  // const [activeAccount, setActiveAccount] = useState(accounts[0]);
   const { mutate } = useAuthSignOut();
   const { data: activeSession } = useAuthSession();
-  console.log("activeSession", activeSession);
 
   const signOut = () => {
     toast.loading("Signing Out", {
@@ -47,10 +46,7 @@ export function AppMenu() {
       },
     });
   };
-
   const { data: sessions } = useAuthDeviceSessions();
-
-  console.log("data", sessions);
 
   return (
     <SidebarMenu>
@@ -88,18 +84,28 @@ export function AppMenu() {
               return (
                 <DropdownMenuItem
                   className={cn(
-                    "gap-2 bg-transparent p-2 focus:bg-transparent",
+                    "flex flex-col items-start gap-2 bg-transparent p-2 focus:bg-transparent",
                     isSessionActive && "!bg-accent"
                   )}
                   key={session.user.email}
-                  onClick={() => {
-                    //setActiveAccount(session.session?.token || "")
-                  }}
+                  // onClick={() => {
+                  //   //setActiveAccount(session.session?.token || "")
+                  // }}
                 >
-                  <div className="flex size-6 items-center justify-center rounded-md border">
-                    {/* <account.logo className="size-3.5 shrink-0" /> */}
+                  <div className="flex items-center gap-2">
+                    <div className="flex size-6 items-center justify-center rounded-md border">
+                      <User className="size-3.5 shrink-0" />
+                    </div>
+                    <div className="flex flex-col text-xs">
+                      {session.user.email}
+                      <div className="*:!text-zinc-300 flex gap-1 *:px-0">
+                        <Button className="" variant="link">
+                          Switch Account
+                        </Button>
+                        <Button variant="link">Sign Out</Button>
+                      </div>
+                    </div>
                   </div>
-                  {session.user.email}
                 </DropdownMenuItem>
               );
             })}
