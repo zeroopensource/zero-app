@@ -46,7 +46,7 @@ export default function RootLayout({
   const isInAuthedRoute = authedRoutes.some((route) =>
     pathname.startsWith(route)
   );
-  const isInAuthRoute = pathname.startsWith("/auth");
+  // const isInAuthRoute = pathname.startsWith("/auth");
   // const isSidebarEnabled = !isPendingSession && !!session;
 
   useEffect(() => {
@@ -61,18 +61,9 @@ export default function RootLayout({
       }
       if (!session && isInAuthedRoute) {
         router.push("/auth/signin");
-      } else if (session && isInAuthRoute) {
-        router.push("/app");
       }
     }
-  }, [
-    isPendingSession,
-    router,
-    session,
-    error,
-    isInAuthedRoute,
-    isInAuthRoute,
-  ]);
+  }, [isPendingSession, router, session, error, isInAuthedRoute]);
 
   return (
     <html lang="en" suppressHydrationWarning>
