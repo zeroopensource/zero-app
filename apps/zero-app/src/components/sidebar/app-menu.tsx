@@ -1,15 +1,7 @@
 "use client";
 
-import {
-  AudioWaveform,
-  ChevronsUpDown,
-  Command,
-  GalleryVerticalEnd,
-  LogOut,
-  Plus,
-} from "lucide-react";
+import { ChevronsUpDown, LogOut, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { toast } from "sonner";
 import {
   useAuthDeviceSessions,
@@ -30,29 +22,11 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-const accounts = [
-  {
-    name: "Acme Inc",
-    logo: GalleryVerticalEnd,
-    plan: "Enterprise",
-  },
-  {
-    name: "Acme Corp.",
-    logo: AudioWaveform,
-    plan: "Startup",
-  },
-  {
-    name: "Evil Corp.",
-    logo: Command,
-    plan: "Free",
-  },
-];
-
 export function AppMenu() {
   const toasterId = "LOADING_SIGNOUT_TOAST_ID";
   const router = useRouter();
   const { isMobile } = useSidebar();
-  const [activeAccount, setActiveAccount] = useState(accounts[0]);
+  // const [activeAccount, setActiveAccount] = useState(accounts[0]);
   const { mutate } = useAuthSignOut();
   const signOut = () => {
     toast.loading("Signing Out", {
@@ -69,13 +43,9 @@ export function AppMenu() {
     });
   };
 
-  const { data } = useAuthDeviceSessions();
+  const { data: sessions } = useAuthDeviceSessions();
 
-  console.log("data", data);
-
-  if (!activeAccount) {
-    return null;
-  }
+  console.log("data", sessions);
 
   return (
     <SidebarMenu>
@@ -87,13 +57,11 @@ export function AppMenu() {
               size="lg"
             >
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                <activeAccount.logo className="size-4" />
+                {/* <activeAccount.logo className="size-4" /> */}
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">
-                  {activeAccount.name}
-                </span>
-                <span className="truncate text-xs">{activeAccount.plan}</span>
+                <span className="truncate font-medium">{"123"}</span>
+                <span className="truncate text-xs">{"Free"}</span>
               </div>
               <ChevronsUpDown className="ml-auto" />
             </SidebarMenuButton>
@@ -107,16 +75,18 @@ export function AppMenu() {
             <DropdownMenuLabel className="text-muted-foreground text-xs">
               Accounts
             </DropdownMenuLabel>
-            {accounts.map((account) => (
+            {sessions?.map((session) => (
               <DropdownMenuItem
                 className="gap-2 p-2"
-                key={account.name}
-                onClick={() => setActiveAccount(account)}
+                key={session.user.email}
+                onClick={() => {
+                  //setActiveAccount(session.session?.token || "")
+                }}
               >
                 <div className="flex size-6 items-center justify-center rounded-md border">
-                  <account.logo className="size-3.5 shrink-0" />
+                  {/* <account.logo className="size-3.5 shrink-0" /> */}
                 </div>
-                {account.name}
+                {session.user.email}
               </DropdownMenuItem>
             ))}
             <DropdownMenuSeparator />
