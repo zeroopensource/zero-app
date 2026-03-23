@@ -67,7 +67,7 @@ export function AppMenu() {
   // const data = authClient.multiSession.listDeviceSessions();
   const { data, error, isLoading } = useAuthDeviceSessions();
 
-  // console.log("data", data);
+  console.log("data", data);
 
   if (!activeAccount) {
     return null;

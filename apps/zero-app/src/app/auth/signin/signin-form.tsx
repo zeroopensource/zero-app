@@ -2,7 +2,7 @@ import { useForm } from "@tanstack/react-form";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { z } from "zod";
-import { authClient } from "@/components/auth-client";
+import { useAuthSignIn } from "@/components/auth-client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -12,6 +12,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 import { ZeroLogo } from "@/components/ui/zero-logo";
 import { ZeroSchema } from "@/lib/zero-schema";
 import { AuthFormFooter } from "../auth-form-footer";
@@ -26,6 +27,7 @@ export function SigninForm({
   ...props
 }: React.ComponentProps<typeof Card>) {
   const router = useRouter();
+  const { mutate: signin, isError, isSuccess, isPending } = useAuthSignIn();
   const form = useForm({
     defaultValues: {
       email: "",
@@ -34,20 +36,15 @@ export function SigninForm({
     validators: {
       onSubmit: formSchema,
     },
-    onSubmit: async ({ value }) => {
-      await authClient.signIn.email(
+    onSubmit: ({ value }) => {
+      signin(
+        { email: value.email, password: value.password },
         {
-          email: value.email,
-          password: value.password,
-        },
-        {
-          onSuccess: (
-            // ctx
-          ) => {
+          onSuccess: () => {
             router.push("/app");
           },
-          onError: (ctx) => {
-            toast.error(ctx.error.message);
+          onError: (error) => {
+            toast.error(error.message);
           },
         }
       );
@@ -122,8 +119,9 @@ export function SigninForm({
               name="password"
             />
             <Field>
-              <Button form="signin-form" type="submit">
+              <Button disabled={isPending} form="signin-form" type="submit">
                 Sign in
+                {isPending && <Spinner />}
               </Button>
             </Field>
             <AuthFormFooter />

@@ -1,6 +1,6 @@
 "use client";
 // import { NEXTENV } from "@/lib/next-env";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { multiSessionClient } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
 
@@ -18,6 +18,21 @@ export const useAuthDeviceSessions = () => {
     queryFn: async () => {
       const { data, error } =
         await authClient.multiSession.listDeviceSessions();
+      if (error) {
+        throw error;
+      }
+      return data;
+    },
+  });
+};
+
+export const useAuthSignIn = () => {
+  return useMutation({
+    mutationFn: async (value: { email: string; password: string }) => {
+      const { data, error } = await authClient.signIn.email({
+        email: value.email,
+        password: value.password,
+      });
       if (error) {
         throw error;
       }
