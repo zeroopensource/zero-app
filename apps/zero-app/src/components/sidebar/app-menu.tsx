@@ -5,7 +5,9 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import {
   useAuthDeviceSessions,
+  useAuthRevokeSession,
   useAuthSession,
+  useAuthSetActiveSession,
   useAuthSignOut,
 } from "@/components/auth-client";
 import { Button } from "@/components/ui/button";
@@ -29,15 +31,53 @@ export function AppMenu() {
   const toasterId = "LOADING_SIGNOUT_TOAST_ID";
   const router = useRouter();
   const { isMobile } = useSidebar();
-  const { mutate } = useAuthSignOut();
+  const { mutate: mutateSignOut } = useAuthSignOut();
   const { data: activeSession } = useAuthSession();
+  const { mutate: mutateSetActiveSession } = useAuthSetActiveSession();
+  const { mutate: mutateRevokeSession } = useAuthRevokeSession();
+
+  const revokeSession = (session: any) => {
+    toast.loading("Signing Out", {
+      dismissible: false,
+      id: toasterId,
+    });
+    mutateRevokeSession(
+      { sessionToken: session.session.token },
+      {
+        onSuccess: () => {
+          toast.dismiss(toasterId);
+        },
+        onError: () => {
+          toast.dismiss(toasterId);
+        },
+      }
+    );
+  };
+
+  const setActiveSession = (session: any) => {
+    toast.loading("Switching Account", {
+      dismissible: false,
+      id: toasterId,
+    });
+    mutateSetActiveSession(
+      { sessionToken: session.session.token },
+      {
+        onSuccess: () => {
+          toast.dismiss(toasterId);
+        },
+        onError: () => {
+          toast.dismiss(toasterId);
+        },
+      }
+    );
+  };
 
   const signOut = () => {
     toast.loading("Signing Out", {
       dismissible: false,
       id: toasterId,
     });
-    mutate(undefined, {
+    mutateSignOut(undefined, {
       onSuccess: () => {
         toast.dismiss(toasterId);
       },
@@ -99,7 +139,12 @@ export function AppMenu() {
                     <div className="flex flex-col text-xs">
                       {session.user.email}
                       <div className="*:!text-zinc-300 flex gap-1 *:px-0">
-                        <Button className="" variant="link">
+                        <Button
+                          className=""
+                          disabled={isSessionActive}
+                          onClick={() => setActiveSession({ session })}
+                          variant="link"
+                        >
                           Switch Account
                         </Button>
                         <Button variant="link">Sign Out</Button>
