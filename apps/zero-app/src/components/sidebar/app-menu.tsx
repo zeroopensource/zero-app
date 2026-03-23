@@ -141,14 +141,14 @@ export function AppMenu() {
                       <div className="*:!text-zinc-300 flex gap-1 *:px-0">
                         <Button
                           disabled={isSessionActive}
-                          onClick={() => setActiveSession({ session })}
+                          onClick={() => setActiveSession(session)}
                           variant="link"
                         >
                           Switch Account
                         </Button>
                         <Button
                           disabled={isSessionActive}
-                          onClick={() => revokeSession({ session })}
+                          onClick={() => revokeSession(session)}
                           variant="link"
                         >
                           Sign Out
