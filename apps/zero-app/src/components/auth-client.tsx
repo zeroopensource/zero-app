@@ -29,7 +29,6 @@ export const useAuthDeviceSessions = () => {
 
 export const useAuthSignIn = () => {
   const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: async (value: { email: string; password: string }) => {
       const { data, error } = await authClient.signIn.email({
@@ -52,6 +51,38 @@ export const useAuthSignOut = () => {
       const { data, error } = await authClient.signOut();
       if (error) {
         toast.error(error.message);
+        throw error;
+      }
+      queryClient.invalidateQueries({ queryKey: ["auth-device-sessions"] });
+      return data;
+    },
+  });
+};
+
+export const useAuthRevokeSession = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (value: { sessionToken: string }) => {
+      const { data, error } = await authClient.multiSession.revoke({
+        sessionToken: value.sessionToken,
+      });
+      if (error) {
+        throw error;
+      }
+      queryClient.invalidateQueries({ queryKey: ["auth-device-sessions"] });
+      return data;
+    },
+  });
+};
+
+export const useAuthSetActiveSession = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (value: { sessionToken: string }) => {
+      const { data, error } = await authClient.multiSession.setActive({
+        sessionToken: value.sessionToken,
+      });
+      if (error) {
         throw error;
       }
       queryClient.invalidateQueries({ queryKey: ["auth-device-sessions"] });
