@@ -25,6 +25,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { useAuthSession } from "@/components/auth-client";
 
 const accounts = [
   {
@@ -56,8 +57,14 @@ export function AppMenu() {
   const signOut = async () => {
     await authClient.signOut();
   };
-  // const { data, error } =
-  //   await authClient.multiSession.listDeviceSessions();
+  // const { data, error, useSession } =
+  //   authClient.multiSession.listDeviceSessions();
+  const {
+      data: authSession,
+      isPending: isPendingSession,
+      error,
+      // refetch,
+    } = useAuthSession();
   // const data = authClient.multiSession.listDeviceSessions();
 
   // console.log("data", data);

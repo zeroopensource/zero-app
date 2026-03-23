@@ -51,7 +51,7 @@ export default function RootLayout({
 
   useEffect(() => {
     const toasterId = "LOADING_SESSION_TOAST_ID";
-    if (isPendingSession) {
+    if (isPendingSession !== false) {
       toast.loading("Loading Session.", { dismissible: false, id: toasterId });
     } else {
       toast.dismiss(toasterId);
@@ -100,9 +100,7 @@ export default function RootLayout({
               <SiteHeader />
               <div className="flex flex-1 overflow-auto">
                 <AppSidebar />
-                <SidebarInset className="min-w-0">
-                  {!isPendingSession && children}
-                </SidebarInset>
+                <SidebarInset className="min-w-0">{children}</SidebarInset>
               </div>
             </SidebarProvider>
           </div>
