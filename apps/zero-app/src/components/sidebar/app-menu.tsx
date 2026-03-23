@@ -22,6 +22,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { cn } from "@/lib/utils";
 
 export function AppMenu() {
   const toasterId = "LOADING_SIGNOUT_TOAST_ID";
@@ -81,20 +82,27 @@ export function AppMenu() {
             <DropdownMenuLabel className="text-muted-foreground text-xs">
               Accounts
             </DropdownMenuLabel>
-            {sessions?.map((session) => (
-              <DropdownMenuItem
-                className="gap-2 p-2"
-                key={session.user.email}
-                onClick={() => {
-                  //setActiveAccount(session.session?.token || "")
-                }}
-              >
-                <div className="flex size-6 items-center justify-center rounded-md border">
-                  {/* <account.logo className="size-3.5 shrink-0" /> */}
-                </div>
-                {session.user.email}
-              </DropdownMenuItem>
-            ))}
+            {sessions?.map((session) => {
+              const isSessionActive =
+                session.session.token === activeSession?.session.token;
+              return (
+                <DropdownMenuItem
+                  className={cn(
+                    "gap-2 bg-transparent p-2 focus:bg-transparent",
+                    isSessionActive && "!bg-accent"
+                  )}
+                  key={session.user.email}
+                  onClick={() => {
+                    //setActiveAccount(session.session?.token || "")
+                  }}
+                >
+                  <div className="flex size-6 items-center justify-center rounded-md border">
+                    {/* <account.logo className="size-3.5 shrink-0" /> */}
+                  </div>
+                  {session.user.email}
+                </DropdownMenuItem>
+              );
+            })}
             <DropdownMenuSeparator />
             <DropdownMenuItem
               className="gap-2 p-2"
