@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { authClient } from "@/components/auth-client";
+import { authClient, useAuthDeviceSessions } from "@/components/auth-client";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,7 +25,6 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { useAuthSession } from "@/components/auth-client";
 
 const accounts = [
   {
@@ -59,13 +58,14 @@ export function AppMenu() {
   };
   // const { data, error, useSession } =
   //   authClient.multiSession.listDeviceSessions();
-  const {
-      data: authSession,
-      isPending: isPendingSession,
-      error,
-      // refetch,
-    } = useAuthSession();
+  // const {
+  //     data: authSession,
+  //     isPending: isPendingSession,
+  //     error,
+  //     // refetch,
+  //   } = useAuthSession();
   // const data = authClient.multiSession.listDeviceSessions();
+  const { data, error, isLoading } = useAuthDeviceSessions();
 
   // console.log("data", data);
 
