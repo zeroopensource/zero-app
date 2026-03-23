@@ -140,14 +140,19 @@ export function AppMenu() {
                       {session.user.email}
                       <div className="*:!text-zinc-300 flex gap-1 *:px-0">
                         <Button
-                          className=""
                           disabled={isSessionActive}
                           onClick={() => setActiveSession({ session })}
                           variant="link"
                         >
                           Switch Account
                         </Button>
-                        <Button variant="link">Sign Out</Button>
+                        <Button
+                          disabled={isSessionActive}
+                          onClick={() => revokeSession({ session })}
+                          variant="link"
+                        >
+                          Sign Out
+                        </Button>
                       </div>
                     </div>
                   </div>
