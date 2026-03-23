@@ -1,7 +1,10 @@
 "use client";
 
-import { ChevronRight, type LucideIcon } from "lucide-react";
-
+import type { UrlObject } from "node:url";
+import { ChevronRight, type LucideIcon, SquareTerminal } from "lucide-react";
+import type { Route } from "next";
+import Link from "next/link";
+import { toast } from "sonner";
 import {
   Collapsible,
   CollapsibleContent,
@@ -18,23 +21,114 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 
-export function NavMain({
-  items,
-}: {
-  items: {
+const items: {
+  title: string;
+  url: UrlObject | Route<string>;
+  icon?: LucideIcon;
+  isActive?: boolean;
+  disabled?: boolean;
+  items?: {
+    target?: string;
     title: string;
-    url: string;
-    icon?: LucideIcon;
-    isActive?: boolean;
-    items?: {
-      title: string;
-      url: string;
-    }[];
+    url: UrlObject | Route<string>;
+    disabled?: boolean;
   }[];
-}) {
+}[] = [
+  {
+    title: "Index",
+    url: "#",
+    icon: SquareTerminal,
+    isActive: true,
+    disabled: true,
+    items: [
+      {
+        title: "Library",
+        url: "#",
+      },
+      // {
+      //   title: "Starred",
+      //   url: "#",
+      // },
+      // {
+      //   title: "Settings",
+      //   url: "#",
+      // },
+    ],
+  },
+  // {
+  //   title: "Models",
+  //   url: "#",
+  //   icon: Bot,
+  //   disabled: true,
+  //   items: [
+  //     {
+  //       title: "Genesis",
+  //       url: "#",
+  //     },
+  //     {
+  //       title: "Explorer",
+  //       url: "#",
+  //     },
+  //     {
+  //       title: "Quantum",
+  //       url: "#",
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: "Documentation",
+  //   url: "#",
+  //   icon: BookOpen,
+  //   disabled: true,
+  //   items: [
+  //     {
+  //       title: "Introduction",
+  //       url: "#",
+  //     },
+  //     {
+  //       title: "Get Started",
+  //       url: "#",
+  //     },
+  //     {
+  //       title: "Tutorials",
+  //       url: "#",
+  //     },
+  //     {
+  //       title: "Changelog",
+  //       url: "#",
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: "Settings",
+  //   url: "#",
+  //   icon: Settings2,
+  //   disabled: true,
+  //   items: [
+  //     {
+  //       title: "General",
+  //       url: "#",
+  //     },
+  //     {
+  //       title: "Team",
+  //       url: "#",
+  //     },
+  //     {
+  //       title: "Billing",
+  //       url: "#",
+  //     },
+  //     {
+  //       title: "Limits",
+  //       url: "#",
+  //     },
+  //   ],
+  // },
+];
+
+export function NavMain() {
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+    <SidebarGroup className="px-0">
+      <SidebarGroupLabel>App</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible
@@ -53,15 +147,29 @@ export function NavMain({
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <SidebarMenuSub>
-                  {item.items?.map((subItem) => (
-                    <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton asChild>
-                        <a href={subItem.url}>
-                          <span>{subItem.title}</span>
-                        </a>
-                      </SidebarMenuSubButton>
-                    </SidebarMenuSubItem>
-                  ))}
+                  {item.items?.map((subItem) => {
+                    const disabled = item.disabled || subItem.disabled;
+                    return (
+                      <SidebarMenuSubItem key={subItem.title}>
+                        <SidebarMenuSubButton
+                          asChild
+                          className={disabled ? "brightness-40" : ""}
+                          onClick={
+                            disabled
+                              ? (e) => {
+                                  e.preventDefault();
+                                  toast("Disabled");
+                                }
+                              : undefined
+                          }
+                        >
+                          <Link href={subItem.url} target={subItem.target}>
+                            <span>{subItem.title}</span>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    );
+                  })}
                 </SidebarMenuSub>
               </CollapsibleContent>
             </SidebarMenuItem>

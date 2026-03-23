@@ -46,12 +46,12 @@ export default function RootLayout({
   const isInAuthedRoute = authedRoutes.some((route) =>
     pathname.startsWith(route)
   );
-  const isInAuthRoute = pathname.startsWith("/auth");
+  // const isInAuthRoute = pathname.startsWith("/auth");
   // const isSidebarEnabled = !isPendingSession && !!session;
 
   useEffect(() => {
     const toasterId = "LOADING_SESSION_TOAST_ID";
-    if (isPendingSession) {
+    if (isPendingSession !== false) {
       toast.loading("Loading Session.", { dismissible: false, id: toasterId });
     } else {
       toast.dismiss(toasterId);
@@ -61,18 +61,9 @@ export default function RootLayout({
       }
       if (!session && isInAuthedRoute) {
         router.push("/auth/signin");
-      } else if (session && isInAuthRoute) {
-        router.push("/app");
       }
     }
-  }, [
-    isPendingSession,
-    router,
-    session,
-    error,
-    isInAuthedRoute,
-    isInAuthRoute,
-  ]);
+  }, [isPendingSession, router, session, error, isInAuthedRoute]);
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -100,9 +91,7 @@ export default function RootLayout({
               <SiteHeader />
               <div className="flex flex-1 overflow-auto">
                 <AppSidebar />
-                <SidebarInset className="min-w-0">
-                  {!isPendingSession && children}
-                </SidebarInset>
+                <SidebarInset className="min-w-0">{children}</SidebarInset>
               </div>
             </SidebarProvider>
           </div>

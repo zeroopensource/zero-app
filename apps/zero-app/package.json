@@ -3,7 +3,7 @@
   "displayName": "Zero",
   "productName": "Zero",
   "description": "Zero App",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "license": "AGPL-3.0-or-later",
   "repository": {
     "type": "git",
@@ -42,6 +42,7 @@
     "temp:build:electronbuilder": "pnpm build:web && electron-builder"
   },
   "dependencies": {
+    "@tanstack/react-query": "5.95.0",
     "@capacitor/android": "^8.1.0",
     "@capacitor/core": "^8.1.0",
     "@capacitor/ios": "^8.1.0",
