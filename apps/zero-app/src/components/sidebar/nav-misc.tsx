@@ -4,6 +4,7 @@ import type { UrlObject } from "node:url";
 import {
   BookOpen,
   ChevronRight,
+  Download,
   type LucideIcon,
   Link as LucideLink,
   Settings2,
@@ -71,7 +72,7 @@ export const NavMisc = () => {
     {
       title: "Install App",
       url: "#",
-      icon: Settings2,
+      icon: Download,
       items: [
         {
           title: "Windows",
