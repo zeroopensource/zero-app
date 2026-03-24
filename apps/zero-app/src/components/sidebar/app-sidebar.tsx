@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import type * as React from "react";
 import { useEffect } from "react";
+import { useAuthSession } from "@/components/auth-client";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sidebar,
@@ -21,6 +22,13 @@ search
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { setOpenMobile } = useSidebar();
   const pathname = usePathname();
+  const {
+    data: authSession,
+    isPending: isPendingAuthSession,
+    // error,
+    // refetch,
+  } = useAuthSession();
+
   // biome-ignore lint/correctness/useExhaustiveDependencies: Intentional
   useEffect(() => {
     setOpenMobile(false);
@@ -37,7 +45,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <ScrollArea className="h-full">
-          <NavMain />
+          {authSession && <NavMain />}
           {/* <NavProjects projects={data.projects} /> */}
           <NavMisc />
           {/* <NavSecondary className="mt-auto" items={data.navSecondary} /> */}

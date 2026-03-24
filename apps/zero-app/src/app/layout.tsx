@@ -32,7 +32,7 @@ export default function RootLayout({
   const router = useRouter();
   const {
     data: authSession,
-    isPending: isPendingSession,
+    isPending: isPendingAuthSession,
     error,
     // refetch,
   } = useAuthSession();
@@ -46,11 +46,11 @@ export default function RootLayout({
     pathname.startsWith(route)
   );
   // const isInAuthRoute = pathname.startsWith("/auth");
-  // const isSidebarEnabled = !isPendingSession && !!session;
+  // const isSidebarEnabled = !isPendingAuthSession && !!session;
   const toasterId = "LOADING_SESSION_TOAST_ID";
 
   useEffect(() => {
-    if (isPendingSession) {
+    if (isPendingAuthSession) {
       toast.loading("Loading Session.", { dismissible: false, id: toasterId });
     } else {
       toast.dismiss(toasterId);
@@ -61,7 +61,7 @@ export default function RootLayout({
         router.push("/auth/signin");
       }
     }
-  }, [isPendingSession, router, session, error, isInAuthedRoute]);
+  }, [isPendingAuthSession, router, session, error, isInAuthedRoute]);
 
   return (
     <html lang="en" suppressHydrationWarning>
