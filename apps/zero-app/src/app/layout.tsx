@@ -3,7 +3,7 @@ import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { usePathname, useRouter } from "next/navigation";
 import type { CSSProperties } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useAuthSession } from "@/components/auth-client";
 import Providers from "@/components/providers";
@@ -48,17 +48,19 @@ export default function RootLayout({
   // const isInAuthRoute = pathname.startsWith("/auth");
   // const isSidebarEnabled = !isPendingAuthSession && !!session;
   const toasterId = "LOADING_SESSION_TOAST_ID";
+  const [childrenVisible, setChildrenVisible] = useState(false);
 
   useEffect(() => {
+    if (!session && isInAuthedRoute) {
+      router.push("/auth/signin");
+    }
     if (isPendingAuthSession) {
       toast.loading("Loading Session.", { dismissible: false, id: toasterId });
     } else {
       toast.dismiss(toasterId);
+      setChildrenVisible(true);
       if (error) {
         toast.error(error.message);
-      }
-      if (!session && isInAuthedRoute) {
-        router.push("/auth/signin");
       }
     }
   }, [isPendingAuthSession, router, session, error, isInAuthedRoute]);
@@ -89,7 +91,9 @@ export default function RootLayout({
               <SiteHeader />
               <div className="flex flex-1 overflow-auto">
                 <AppSidebar />
-                <SidebarInset className="min-w-0">{children}</SidebarInset>
+                <SidebarInset className="min-w-0">
+                  {childrenVisible && children}
+                </SidebarInset>
               </div>
             </SidebarProvider>
           </div>
