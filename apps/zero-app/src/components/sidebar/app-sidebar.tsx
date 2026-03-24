@@ -14,6 +14,7 @@ import {
 import { AppMenu } from "./app-menu";
 import { NavMain } from "./nav-main";
 import { NavMisc } from "./nav-misc";
+import { SearchForm } from "./search-form";
 
 /*
 search
@@ -42,6 +43,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader className="p-0">
         <AppMenu />
         {/* <NavUser /> */}
+        
+        <SearchForm />
       </SidebarHeader>
       <SidebarContent>
         <ScrollArea className="h-full">
