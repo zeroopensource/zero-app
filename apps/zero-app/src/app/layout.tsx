@@ -10,7 +10,6 @@ import Providers from "@/components/providers";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -48,16 +47,15 @@ export default function RootLayout({
   );
   // const isInAuthRoute = pathname.startsWith("/auth");
   // const isSidebarEnabled = !isPendingSession && !!session;
+  const toasterId = "LOADING_SESSION_TOAST_ID";
 
   useEffect(() => {
-    const toasterId = "LOADING_SESSION_TOAST_ID";
-    if (isPendingSession !== false) {
+    if (isPendingSession) {
       toast.loading("Loading Session.", { dismissible: false, id: toasterId });
     } else {
       toast.dismiss(toasterId);
       if (error) {
         toast.error(error.message);
-        // router.push("/auth/signin");
       }
       if (!session && isInAuthedRoute) {
         router.push("/auth/signin");
@@ -95,7 +93,6 @@ export default function RootLayout({
               </div>
             </SidebarProvider>
           </div>
-          <Toaster />
         </Providers>
       </body>
     </html>
