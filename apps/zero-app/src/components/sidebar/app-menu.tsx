@@ -103,7 +103,7 @@ export function AppMenu() {
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium text-xs">
-                  {activeSession?.user.email || "-"}
+                  {activeSession?.user.email || "Please Sign In"}
                 </span>
                 <span className="truncate text-xs">{"-"}</span>
               </div>
@@ -117,7 +117,7 @@ export function AppMenu() {
             sideOffset={4}
           >
             <DropdownMenuLabel className="text-muted-foreground text-xs">
-              Accounts
+              {`Accounts [${sessions?.length || 0}]`}
             </DropdownMenuLabel>
             {sessions?.map((session) => {
               const isSessionActive =
@@ -165,13 +165,13 @@ export function AppMenu() {
               <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
                 <Plus className="size-4" />
               </div>
-              <div className="font-medium">Add Account</div>
+              <div className="font-medium">Sign In Account</div>
             </DropdownMenuItem>
             <DropdownMenuItem className="gap-2 p-2" onClick={() => signOut()}>
               <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
                 <LogOut className="size-4" />
               </div>
-              <div className="font-medium">Sign out Accounts</div>
+              <div className="font-medium">Sign Out Accounts</div>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
