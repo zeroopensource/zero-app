@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type * as React from "react";
 import { useEffect } from "react";
@@ -11,6 +12,7 @@ import {
   SidebarHeader,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { Button } from "../ui/button";
 import { AppMenu } from "./app-menu";
 import { NavMain } from "./nav-main";
 import { NavMisc } from "./nav-misc";
@@ -41,9 +43,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       {...props}
     >
       <SidebarHeader className="p-0">
-        <AppMenu />
-        {/* <NavUser /> */}
-        
+        {authSession && <AppMenu />}
+        {!authSession && (
+          <div className="px-2 pt-2">
+            <Link href="/auth/signin">
+              <Button className="w-full" disabled={isPendingAuthSession}>
+                Sign in
+              </Button>
+            </Link>
+          </div>
+        )}
+
         <SearchForm />
       </SidebarHeader>
       <SidebarContent>
