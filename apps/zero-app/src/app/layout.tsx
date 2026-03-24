@@ -3,14 +3,13 @@ import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { usePathname, useRouter } from "next/navigation";
 import type { CSSProperties } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useAuthSession } from "@/components/auth-client";
 import Providers from "@/components/providers";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -33,7 +32,7 @@ export default function RootLayout({
   const router = useRouter();
   const {
     data: authSession,
-    isPending: isPendingSession,
+    isPending: isPendingAuthSession,
     error,
     // refetch,
   } = useAuthSession();
@@ -47,23 +46,24 @@ export default function RootLayout({
     pathname.startsWith(route)
   );
   // const isInAuthRoute = pathname.startsWith("/auth");
-  // const isSidebarEnabled = !isPendingSession && !!session;
+  // const isSidebarEnabled = !isPendingAuthSession && !!session;
+  const toasterId = "LOADING_SESSION_TOAST_ID";
+  const [childrenVisible, setChildrenVisible] = useState(false);
 
   useEffect(() => {
-    const toasterId = "LOADING_SESSION_TOAST_ID";
-    if (isPendingSession !== false) {
+    if (!session && isInAuthedRoute) {
+      router.push("/auth/signin");
+    }
+    if (isPendingAuthSession) {
       toast.loading("Loading Session.", { dismissible: false, id: toasterId });
     } else {
       toast.dismiss(toasterId);
+      setChildrenVisible(true);
       if (error) {
         toast.error(error.message);
-        // router.push("/auth/signin");
-      }
-      if (!session && isInAuthedRoute) {
-        router.push("/auth/signin");
       }
     }
-  }, [isPendingSession, router, session, error, isInAuthedRoute]);
+  }, [isPendingAuthSession, router, session, error, isInAuthedRoute]);
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -91,11 +91,12 @@ export default function RootLayout({
               <SiteHeader />
               <div className="flex flex-1 overflow-auto">
                 <AppSidebar />
-                <SidebarInset className="min-w-0">{children}</SidebarInset>
+                <SidebarInset className="min-w-0">
+                  {childrenVisible && children}
+                </SidebarInset>
               </div>
             </SidebarProvider>
           </div>
-          <Toaster />
         </Providers>
       </body>
     </html>

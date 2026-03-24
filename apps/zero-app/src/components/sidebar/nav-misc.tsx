@@ -69,6 +69,43 @@ export const NavMisc = () => {
       ],
     },
     {
+      title: "Install App",
+      url: "#",
+      icon: Settings2,
+      items: [
+        {
+          title: "Windows",
+          url: "https://github.com/zeroopensource/zero-app/releases/latest",
+          target: "_blank",
+        },
+        {
+          title: "Linux",
+          url: "https://github.com/zeroopensource/zero-app/releases/latest",
+          target: "_blank",
+        },
+        {
+          title: "Google Play",
+          url: "https://play.google.com/store/apps/details?id=org.zeroopensource.zeroapp",
+          target: "_blank",
+        },
+        {
+          title: "Android APK",
+          url: "https://github.com/zeroopensource/zero-app/releases/latest",
+          target: "_blank",
+        },
+        {
+          title: "MacOS",
+          url: "https://github.com/zeroopensource/zero-app/releases/latest",
+          target: "_blank",
+        },
+        {
+          title: "IOS",
+          url: "https://github.com/zeroopensource/zero-app/releases/latest",
+          target: "_blank",
+        },
+      ],
+    },
+    {
       title: "Links",
       url: "#",
       icon: LucideLink,
