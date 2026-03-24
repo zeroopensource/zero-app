@@ -130,27 +130,37 @@ export function AppMenu() {
                   )}
                   key={session.user.email}
                 >
-                  <div className="flex items-center gap-2">
+                  <div className="flex gap-2">
                     <div className="flex size-6 items-center justify-center rounded-md border">
                       <User className="size-3.5 shrink-0" />
                     </div>
-                    <div className="flex flex-col text-xs">
+                    <div className="flex flex-col gap-2 text-xs">
                       {session.user.email}
-                      <div className="*:!text-zinc-300 flex gap-1 *:px-0">
-                        <Button
-                          disabled={isSessionActive}
-                          onClick={() => setActiveSession(session)}
-                          variant="link"
-                        >
-                          Switch Account
-                        </Button>
-                        <Button
-                          disabled={isSessionActive}
-                          onClick={() => revokeSession(session)}
-                          variant="link"
-                        >
-                          Sign Out
-                        </Button>
+                      <div className="*:!text-zinc-300 flex gap-2 *:h-4 *:px-0">
+                        {isSessionActive ? (
+                          <Button
+                            disabled
+                            onClick={() => setActiveSession(session)}
+                            variant="link"
+                          >
+                            Active Account
+                          </Button>
+                        ) : (
+                          <>
+                            <Button
+                              onClick={() => setActiveSession(session)}
+                              variant="link"
+                            >
+                              Switch Account
+                            </Button>
+                            <Button
+                              onClick={() => revokeSession(session)}
+                              variant="link"
+                            >
+                              Sign Out
+                            </Button>
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>
