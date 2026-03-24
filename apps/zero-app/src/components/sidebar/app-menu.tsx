@@ -129,9 +129,6 @@ export function AppMenu() {
                     isSessionActive && "!bg-accent"
                   )}
                   key={session.user.email}
-                  // onClick={() => {
-                  //   //setActiveAccount(session.session?.token || "")
-                  // }}
                 >
                   <div className="flex items-center gap-2">
                     <div className="flex size-6 items-center justify-center rounded-md border">
