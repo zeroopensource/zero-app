@@ -1,7 +1,14 @@
 "use client";
 
 import type { UrlObject } from "node:url";
-import { ChevronRight, type LucideIcon, SquareTerminal } from "lucide-react";
+import {
+  Book,
+  BookUser,
+  ChevronRight,
+  House,
+  type LucideIcon,
+  Plus,
+} from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -28,6 +35,7 @@ const items: {
   isActive?: boolean;
   disabled?: boolean;
   items?: {
+    icon?: LucideIcon;
     target?: string;
     title: string;
     url: UrlObject | Route<string>;
@@ -37,18 +45,25 @@ const items: {
   {
     title: "Index",
     url: "#",
-    icon: SquareTerminal,
+    icon: Book,
     isActive: true,
-
     items: [
+      {
+        title: "Add Item",
+        url: "#",
+        icon: Plus,
+        disabled: true,
+      },
       {
         title: "Browse",
         url: "/app",
+        icon: House,
       },
       {
         title: "My Index",
         url: "#",
         disabled: true,
+        icon: BookUser,
       },
     ],
   },
@@ -93,6 +108,7 @@ export function NavMain() {
                           }
                         >
                           <Link href={subItem.url} target={subItem.target}>
+                            {subItem.icon && <subItem.icon />}
                             <span>{subItem.title}</span>
                           </Link>
                         </SidebarMenuSubButton>
