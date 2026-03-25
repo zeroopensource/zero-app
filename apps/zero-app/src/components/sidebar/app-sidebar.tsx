@@ -17,10 +17,6 @@ import { AppMenu } from "./app-menu";
 import { NavMain } from "./nav-main";
 import { NavMisc } from "./nav-misc";
 
-/*
-search
-*/
-
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { setOpenMobile } = useSidebar();
   const pathname = usePathname();
