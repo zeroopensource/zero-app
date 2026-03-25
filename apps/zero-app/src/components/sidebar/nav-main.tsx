@@ -50,19 +50,17 @@ const items: {
     items: [
       {
         title: "Add Item",
-        url: "#",
+        url: "/app/add-item",
         icon: Plus,
-        disabled: true,
       },
       {
         title: "Browse",
-        url: "/app",
+        url: "/app/browse",
         icon: House,
       },
       {
         title: "My Index",
-        url: "#",
-        disabled: true,
+        url: "/app/browse",
         icon: BookUser,
       },
     ],

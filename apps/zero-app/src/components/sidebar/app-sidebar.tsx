@@ -17,10 +17,6 @@ import { AppMenu } from "./app-menu";
 import { NavMain } from "./nav-main";
 import { NavMisc } from "./nav-misc";
 
-/*
-search
-*/
-
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { setOpenMobile } = useSidebar();
   const pathname = usePathname();
@@ -58,10 +54,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <ScrollArea className="h-full">
           {authSession && <NavMain />}
-          {/* <NavProjects projects={data.projects} /> */}
           <NavMisc />
-          {/* <NavSecondary className="mt-auto" items={data.navSecondary} /> */}
-          {/* <NavPlatform label={versionCode} /> */}
         </ScrollArea>
       </SidebarContent>
     </Sidebar>
