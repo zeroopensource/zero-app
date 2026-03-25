@@ -49,8 +49,8 @@ const items: {
     isActive: true,
     items: [
       {
-        title: "Add Item",
-        url: "/app/add-item",
+        title: "Add Record",
+        url: "/app/add-record",
         icon: Plus,
       },
       {
