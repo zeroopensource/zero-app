@@ -54,10 +54,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <ScrollArea className="h-full">
           {authSession && <NavMain />}
-          {/* <NavProjects projects={data.projects} /> */}
           <NavMisc />
-          {/* <NavSecondary className="mt-auto" items={data.navSecondary} /> */}
-          {/* <NavPlatform label={versionCode} /> */}
         </ScrollArea>
       </SidebarContent>
     </Sidebar>
