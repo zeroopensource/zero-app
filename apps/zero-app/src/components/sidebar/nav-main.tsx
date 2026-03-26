@@ -7,6 +7,7 @@ import {
   ChevronRight,
   House,
   type LucideIcon,
+  MessageCircle,
   Plus,
 } from "lucide-react";
 import type { Route } from "next";
@@ -62,6 +63,12 @@ const items: {
         title: "My Index",
         url: "/app/browse",
         icon: BookUser,
+      },
+      {
+        title: "Chat",
+        url: "/app",
+        disabled: true,
+        icon: MessageCircle,
       },
     ],
   },
