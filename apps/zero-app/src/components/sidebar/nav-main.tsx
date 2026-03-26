@@ -131,6 +131,7 @@ export function NavMain() {
           return (
             <SidebarMenuButton
               disabled={item.disabled}
+              key={item.title}
               onClick={() => toast("Open Chat")}
               tooltip={item.title}
             >
