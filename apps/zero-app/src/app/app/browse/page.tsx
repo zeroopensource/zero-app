@@ -8,7 +8,7 @@ import { columns, taskSchema } from "./record-table/record-table-columns";
 export default function Page() {
   const data = z.array(taskSchema).parse([]);
   return (
-    <div className="flex flex-1">
+    <div className="mx-auto flex flex-1 p-2">
       {/* <RecordTable columns={columns} data={data} /> */}
       {/* <UnderMaintenanceCard /> */}
       <DataTable columns={columns} data={data} />
