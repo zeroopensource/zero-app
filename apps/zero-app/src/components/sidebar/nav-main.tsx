@@ -7,6 +7,7 @@ import {
   ChevronRight,
   House,
   type LucideIcon,
+  MessageCircle,
   Plus,
 } from "lucide-react";
 import type { Route } from "next";
@@ -43,14 +44,20 @@ const items: {
   }[];
 }[] = [
   {
+    title: "Chat",
+    url: "/app",
+    disabled: true,
+    icon: MessageCircle,
+  },
+  {
     title: "Index",
     url: "#",
     icon: Book,
     isActive: true,
     items: [
       {
-        title: "Add Item",
-        url: "/app/add-item",
+        title: "Add Record",
+        url: "/app/add-record",
         icon: Plus,
       },
       {
@@ -72,52 +79,67 @@ export function NavMain() {
     <SidebarGroup className="px-0">
       <SidebarGroupLabel>Main</SidebarGroupLabel>
       <SidebarMenu>
-        {items.map((item) => (
-          <Collapsible
-            asChild
-            className="group/collapsible"
-            defaultOpen={item.isActive}
-            key={item.title}
-          >
-            <SidebarMenuItem>
-              <CollapsibleTrigger asChild>
-                <SidebarMenuButton tooltip={item.title}>
-                  {item.icon && <item.icon />}
-                  <span>{item.title}</span>
-                  <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                </SidebarMenuButton>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <SidebarMenuSub>
-                  {item.items?.map((subItem) => {
-                    const disabled = item.disabled || subItem.disabled;
-                    return (
-                      <SidebarMenuSubItem key={subItem.title}>
-                        <SidebarMenuSubButton
-                          asChild
-                          className={disabled ? "brightness-40" : ""}
-                          onClick={
-                            disabled
-                              ? (e) => {
-                                  e.preventDefault();
-                                  toast("Disabled");
-                                }
-                              : undefined
-                          }
-                        >
-                          <Link href={subItem.url} target={subItem.target}>
-                            {subItem.icon && <subItem.icon />}
-                            <span>{subItem.title}</span>
-                          </Link>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    );
-                  })}
-                </SidebarMenuSub>
-              </CollapsibleContent>
-            </SidebarMenuItem>
-          </Collapsible>
-        ))}
+        {items.map((item) => {
+          if (item.items) {
+            return (
+              <Collapsible
+                asChild
+                className="group/collapsible"
+                defaultOpen={item.isActive}
+                key={item.title}
+              >
+                <SidebarMenuItem>
+                  <CollapsibleTrigger asChild>
+                    <SidebarMenuButton tooltip={item.title}>
+                      {item.icon && <item.icon />}
+                      <span>{item.title}</span>
+                      <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                    </SidebarMenuButton>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <SidebarMenuSub>
+                      {item.items?.map((subItem) => {
+                        const disabled = item.disabled || subItem.disabled;
+                        return (
+                          <SidebarMenuSubItem key={subItem.title}>
+                            <SidebarMenuSubButton
+                              asChild
+                              className={disabled ? "brightness-40" : ""}
+                              onClick={
+                                disabled
+                                  ? (e) => {
+                                      e.preventDefault();
+                                      toast("Disabled");
+                                    }
+                                  : undefined
+                              }
+                            >
+                              <Link href={subItem.url} target={subItem.target}>
+                                {subItem.icon && <subItem.icon />}
+                                <span>{subItem.title}</span>
+                              </Link>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        );
+                      })}
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
+                </SidebarMenuItem>
+              </Collapsible>
+            );
+          }
+          return (
+            <SidebarMenuButton
+              disabled={item.disabled}
+              key={item.title}
+              onClick={() => toast("Open Chat")}
+              tooltip={item.title}
+            >
+              {item.icon && <item.icon />}
+              <span>{item.title}</span>
+            </SidebarMenuButton>
+          );
+        })}
       </SidebarMenu>
     </SidebarGroup>
   );
