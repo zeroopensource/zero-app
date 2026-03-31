@@ -1,7 +1,15 @@
 "use client";
 
 import type { UrlObject } from "node:url";
-import { ChevronRight, type LucideIcon, SquareTerminal } from "lucide-react";
+import {
+  Book,
+  BookUser,
+  ChevronRight,
+  House,
+  type LucideIcon,
+  MessageCircle,
+  Plus,
+} from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -28,6 +36,7 @@ const items: {
   isActive?: boolean;
   disabled?: boolean;
   items?: {
+    icon?: LucideIcon;
     target?: string;
     title: string;
     url: UrlObject | Route<string>;
@@ -35,146 +44,102 @@ const items: {
   }[];
 }[] = [
   {
+    title: "Chat",
+    url: "/app",
+    disabled: true,
+    icon: MessageCircle,
+  },
+  {
     title: "Index",
     url: "#",
-    icon: SquareTerminal,
+    icon: Book,
     isActive: true,
-    disabled: true,
     items: [
       {
-        title: "Library",
-        url: "#",
+        title: "Add Record",
+        url: "/app/add-record",
+        icon: Plus,
       },
-      // {
-      //   title: "Starred",
-      //   url: "#",
-      // },
-      // {
-      //   title: "Settings",
-      //   url: "#",
-      // },
+      {
+        title: "Browse",
+        url: "/app/browse",
+        icon: House,
+      },
+      {
+        title: "My Index",
+        url: "/app/browse",
+        icon: BookUser,
+      },
     ],
   },
-  // {
-  //   title: "Models",
-  //   url: "#",
-  //   icon: Bot,
-  //   disabled: true,
-  //   items: [
-  //     {
-  //       title: "Genesis",
-  //       url: "#",
-  //     },
-  //     {
-  //       title: "Explorer",
-  //       url: "#",
-  //     },
-  //     {
-  //       title: "Quantum",
-  //       url: "#",
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: "Documentation",
-  //   url: "#",
-  //   icon: BookOpen,
-  //   disabled: true,
-  //   items: [
-  //     {
-  //       title: "Introduction",
-  //       url: "#",
-  //     },
-  //     {
-  //       title: "Get Started",
-  //       url: "#",
-  //     },
-  //     {
-  //       title: "Tutorials",
-  //       url: "#",
-  //     },
-  //     {
-  //       title: "Changelog",
-  //       url: "#",
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: "Settings",
-  //   url: "#",
-  //   icon: Settings2,
-  //   disabled: true,
-  //   items: [
-  //     {
-  //       title: "General",
-  //       url: "#",
-  //     },
-  //     {
-  //       title: "Team",
-  //       url: "#",
-  //     },
-  //     {
-  //       title: "Billing",
-  //       url: "#",
-  //     },
-  //     {
-  //       title: "Limits",
-  //       url: "#",
-  //     },
-  //   ],
-  // },
 ];
 
 export function NavMain() {
   return (
     <SidebarGroup className="px-0">
-      <SidebarGroupLabel>App</SidebarGroupLabel>
+      <SidebarGroupLabel>Main</SidebarGroupLabel>
       <SidebarMenu>
-        {items.map((item) => (
-          <Collapsible
-            asChild
-            className="group/collapsible"
-            defaultOpen={item.isActive}
-            key={item.title}
-          >
-            <SidebarMenuItem>
-              <CollapsibleTrigger asChild>
-                <SidebarMenuButton tooltip={item.title}>
-                  {item.icon && <item.icon />}
-                  <span>{item.title}</span>
-                  <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                </SidebarMenuButton>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <SidebarMenuSub>
-                  {item.items?.map((subItem) => {
-                    const disabled = item.disabled || subItem.disabled;
-                    return (
-                      <SidebarMenuSubItem key={subItem.title}>
-                        <SidebarMenuSubButton
-                          asChild
-                          className={disabled ? "brightness-40" : ""}
-                          onClick={
-                            disabled
-                              ? (e) => {
-                                  e.preventDefault();
-                                  toast("Disabled");
-                                }
-                              : undefined
-                          }
-                        >
-                          <Link href={subItem.url} target={subItem.target}>
-                            <span>{subItem.title}</span>
-                          </Link>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    );
-                  })}
-                </SidebarMenuSub>
-              </CollapsibleContent>
-            </SidebarMenuItem>
-          </Collapsible>
-        ))}
+        {items.map((item) => {
+          if (item.items) {
+            return (
+              <Collapsible
+                asChild
+                className="group/collapsible"
+                defaultOpen={item.isActive}
+                key={item.title}
+              >
+                <SidebarMenuItem>
+                  <CollapsibleTrigger asChild>
+                    <SidebarMenuButton tooltip={item.title}>
+                      {item.icon && <item.icon />}
+                      <span>{item.title}</span>
+                      <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                    </SidebarMenuButton>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <SidebarMenuSub>
+                      {item.items?.map((subItem) => {
+                        const disabled = item.disabled || subItem.disabled;
+                        return (
+                          <SidebarMenuSubItem key={subItem.title}>
+                            <SidebarMenuSubButton
+                              asChild
+                              className={disabled ? "brightness-40" : ""}
+                              onClick={
+                                disabled
+                                  ? (e) => {
+                                      e.preventDefault();
+                                      toast("Disabled");
+                                    }
+                                  : undefined
+                              }
+                            >
+                              <Link href={subItem.url} target={subItem.target}>
+                                {subItem.icon && <subItem.icon />}
+                                <span>{subItem.title}</span>
+                              </Link>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        );
+                      })}
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
+                </SidebarMenuItem>
+              </Collapsible>
+            );
+          }
+          return (
+            <SidebarMenuButton
+              disabled={item.disabled}
+              key={item.title}
+              onClick={() => toast("Open Chat")}
+              tooltip={item.title}
+            >
+              {item.icon && <item.icon />}
+              <span>{item.title}</span>
+            </SidebarMenuButton>
+          );
+        })}
       </SidebarMenu>
     </SidebarGroup>
   );

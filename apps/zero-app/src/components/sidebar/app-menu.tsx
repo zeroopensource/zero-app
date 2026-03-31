@@ -103,7 +103,7 @@ export function AppMenu() {
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium text-xs">
-                  {activeSession?.user.email || "-"}
+                  {activeSession?.user.email || "Please Sign In"}
                 </span>
                 <span className="truncate text-xs">{"-"}</span>
               </div>
@@ -117,7 +117,7 @@ export function AppMenu() {
             sideOffset={4}
           >
             <DropdownMenuLabel className="text-muted-foreground text-xs">
-              Accounts
+              {`Accounts [${sessions?.length || 0}]`}
             </DropdownMenuLabel>
             {sessions?.map((session) => {
               const isSessionActive =
@@ -129,31 +129,38 @@ export function AppMenu() {
                     isSessionActive && "!bg-accent"
                   )}
                   key={session.user.email}
-                  // onClick={() => {
-                  //   //setActiveAccount(session.session?.token || "")
-                  // }}
                 >
-                  <div className="flex items-center gap-2">
+                  <div className="flex gap-2">
                     <div className="flex size-6 items-center justify-center rounded-md border">
                       <User className="size-3.5 shrink-0" />
                     </div>
-                    <div className="flex flex-col text-xs">
+                    <div className="flex flex-col gap-2 text-xs">
                       {session.user.email}
-                      <div className="*:!text-zinc-300 flex gap-1 *:px-0">
-                        <Button
-                          disabled={isSessionActive}
-                          onClick={() => setActiveSession(session)}
-                          variant="link"
-                        >
-                          Switch Account
-                        </Button>
-                        <Button
-                          disabled={isSessionActive}
-                          onClick={() => revokeSession(session)}
-                          variant="link"
-                        >
-                          Sign Out
-                        </Button>
+                      <div className="*:!text-zinc-300 flex gap-2 *:h-4 *:px-0">
+                        {isSessionActive ? (
+                          <Button
+                            disabled
+                            onClick={() => setActiveSession(session)}
+                            variant="link"
+                          >
+                            Active Account
+                          </Button>
+                        ) : (
+                          <>
+                            <Button
+                              onClick={() => setActiveSession(session)}
+                              variant="link"
+                            >
+                              Switch Account
+                            </Button>
+                            <Button
+                              onClick={() => revokeSession(session)}
+                              variant="link"
+                            >
+                              Sign Out
+                            </Button>
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -168,13 +175,13 @@ export function AppMenu() {
               <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
                 <Plus className="size-4" />
               </div>
-              <div className="font-medium">Add Account</div>
+              <div className="font-medium">Sign In Account</div>
             </DropdownMenuItem>
             <DropdownMenuItem className="gap-2 p-2" onClick={() => signOut()}>
               <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
                 <LogOut className="size-4" />
               </div>
-              <div className="font-medium">Sign out Accounts</div>
+              <div className="font-medium">Sign Out Accounts</div>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

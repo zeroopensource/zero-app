@@ -4,6 +4,7 @@ import type { UrlObject } from "node:url";
 import {
   BookOpen,
   ChevronRight,
+  Download,
   type LucideIcon,
   Link as LucideLink,
   Settings2,
@@ -65,6 +66,43 @@ export const NavMisc = () => {
           title: "Billing",
           disabled: true,
           url: "#",
+        },
+      ],
+    },
+    {
+      title: "Install App",
+      url: "#",
+      icon: Download,
+      items: [
+        {
+          title: "Windows",
+          url: "https://github.com/zeroopensource/zero-app/releases/latest",
+          target: "_blank",
+        },
+        {
+          title: "Linux",
+          url: "https://github.com/zeroopensource/zero-app/releases/latest",
+          target: "_blank",
+        },
+        {
+          title: "Google Play",
+          url: "https://play.google.com/store/apps/details?id=org.zeroopensource.zeroapp",
+          target: "_blank",
+        },
+        {
+          title: "Android APK",
+          url: "https://github.com/zeroopensource/zero-app/releases/latest",
+          target: "_blank",
+        },
+        {
+          title: "MacOS",
+          url: "https://github.com/zeroopensource/zero-app/releases/latest",
+          target: "_blank",
+        },
+        {
+          title: "IOS",
+          url: "https://github.com/zeroopensource/zero-app/releases/latest",
+          target: "_blank",
         },
       ],
     },

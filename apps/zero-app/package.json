@@ -42,6 +42,7 @@
     "temp:build:electronbuilder": "pnpm build:web && electron-builder"
   },
   "dependencies": {
+    "@tanstack/react-table": "8.21.3",
     "@tanstack/react-query": "5.95.0",
     "@capacitor/android": "^8.1.0",
     "@capacitor/core": "^8.1.0",
@@ -67,7 +68,7 @@
     "electron-squirrel-startup": "^1.0.1",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
-    "lucide-react": "^0.546.0",
+    "lucide-react": "^1.6.0",
     "nanoid": "^5.1.6",
     "next": "^16.1.6",
     "next-themes": "^0.4.6",
@@ -78,7 +79,7 @@
     "react-resizable-panels": "^4.4.2",
     "recharts": "2.15.4",
     "remark-gfm": "4.0.1",
-    "shadcn": "^4.0.8",
+    "shadcn": "^4.1.0",
     "sonner": "^2.0.5",
     "tailwind-merge": "^3.3.1",
     "tw-animate-css": "^1.4.0",
