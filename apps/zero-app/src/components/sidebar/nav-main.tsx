@@ -44,7 +44,7 @@ const items: {
   }[];
 }[] = [
   {
-    title: "Chat",
+    title: "Z.A.I.A.",
     url: "/app",
     disabled: true,
     icon: MessageCircle,
