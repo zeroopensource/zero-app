@@ -14,12 +14,12 @@ supportedArchitectures:
 blockExoticSubdeps: false
 
 allowBuilds:
-  '@bitdisaster/exe-icon-extractor': set this to true or false
-  '@electron/build-tools': set this to true or false
-  electron: set this to true or false
-  electron-winstaller: set this to true or false
-  esbuild: set this to true or false
-  fs-xattr: set this to true or false
-  macos-alias: set this to true or false
-  msw: set this to true or false
-  sharp: set this to true or false
+  '@bitdisaster/exe-icon-extractor': true
+  '@electron/build-tools': true
+  electron: true
+  electron-winstaller: true
+  esbuild: true
+  fs-xattr: true
+  macos-alias: true
+  msw: true
+  sharp: true
