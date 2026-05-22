@@ -15,7 +15,7 @@ export function SignupVerificationForm({
   ...props
 }: React.ComponentProps<typeof Card>) {
   return (
-    <Card {...props}>
+    <Card {...props} className="bg-inherit pt-0 ring-transparent">
       <CardHeader>
         <CardTitle>Signup Verification</CardTitle>
         <CardDescription>
@@ -27,7 +27,7 @@ export function SignupVerificationForm({
           <FieldGroup>
             <Field>
               <FieldLabel htmlFor="signupVerificationCode">
-                Signup Verification Code
+                Verification Code
               </FieldLabel>
               <Input id="signupVerificationCode" required />
             </Field>

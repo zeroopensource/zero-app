@@ -60,8 +60,8 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
   });
 
   return (
-    <Card {...props} className="pt-0">
-      <CardHeader className="border-b pt-2 pb-2!">
+    <Card {...props} className="bg-inherit pt-0 ring-transparent">
+      <CardHeader className="pt-2 pb-2!">
         <CardTitle className="flex items-center gap-1">
           Create a <ZeroLogo className="h-4! w-4!" /> Account
         </CardTitle>

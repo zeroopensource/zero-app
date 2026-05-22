@@ -15,7 +15,7 @@ export function ForgotPasswordForm({
   ...props
 }: React.ComponentProps<typeof Card>) {
   return (
-    <Card {...props}>
+    <Card {...props} className="bg-inherit pt-0 ring-transparent">
       <CardHeader>
         <CardTitle>Forgot Password</CardTitle>
         <CardDescription>Enter your email for account recovery</CardDescription>

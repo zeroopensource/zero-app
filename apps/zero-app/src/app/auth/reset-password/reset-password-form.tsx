@@ -15,7 +15,7 @@ export function ResetPasswordForm({
   ...props
 }: React.ComponentProps<typeof Card>) {
   return (
-    <Card {...props}>
+    <Card {...props} className="bg-inherit pt-0 ring-transparent">
       <CardHeader>
         <CardTitle>Reset Password</CardTitle>
         <CardDescription>Enter your new Password</CardDescription>
