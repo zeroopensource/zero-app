@@ -53,10 +53,10 @@ export function SigninForm({
 
   return (
     <Card {...props} className="bg-inherit pt-0 ring-transparent">
-      <CardHeader className="pt-2 pb-2!">
+      <CardHeader className="flex flex-col items-center gap-3 pt-2 pb-2!">
+        <ZeroLogo className="h-10! w-10!" />
         <CardTitle className="flex items-center gap-1 text-xl">
-          Sign in to
-          <ZeroLogo className="h-6! w-6!" />
+          Sign in to Zero
         </CardTitle>
       </CardHeader>
       <CardContent>
