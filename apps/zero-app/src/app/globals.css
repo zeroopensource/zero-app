@@ -128,9 +128,12 @@
     @apply font-sans;
   }
   /* Fixes FUOC flash of unstyled content */
-    html,
+  html,
   body {
     background: oklch(0.141 0.005 285.823); /** zinc-950 #09090b */
     color: oklch(87.1% 0.006 286.286); /** zinc-300 */
+  }
+  button {
+    @apply cursor-pointer hover:brightness-120;
   }
 }

@@ -13,11 +13,14 @@ const links: {
 
 export const AuthFormFooter = () => {
   return (
-    <div className="flex justify-center gap-1 *:brightness-50">
+    <div className="flex justify-center gap-2 *:brightness-50">
       {links.map((link, i) => (
         <React.Fragment key={i}>
           {i !== 0 && <span> / </span>}
-          <Link className="hover:brightness-75" href={link.href}>
+          <Link
+            className="underline hover:text-blue-400 hover:brightness-100"
+            href={link.href}
+          >
             {link.label}
           </Link>
         </React.Fragment>
