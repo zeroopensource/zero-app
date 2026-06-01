@@ -29,6 +29,28 @@ export const useAuthDeviceSessions = () => {
   });
 };
 
+export const useAuthSignUp = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (value: {
+      name: string;
+      email: string;
+      password: string;
+    }) => {
+      const { data, error } = await authClient.signUp.email({
+        name: value.name,
+        email: value.email,
+        password: value.password,
+      });
+      if (error) {
+        throw error;
+      }
+      queryClient.invalidateQueries({ queryKey: ["auth-device-sessions"] });
+      return data;
+    },
+  });
+};
+
 export const useAuthSignIn = () => {
   const queryClient = useQueryClient();
   return useMutation({
