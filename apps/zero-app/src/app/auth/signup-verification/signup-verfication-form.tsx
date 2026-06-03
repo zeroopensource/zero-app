@@ -24,10 +24,12 @@ export function SignupVerificationForm({
               <FieldLabel htmlFor="signupVerificationCode">
                 Verification Code
               </FieldLabel>
-              <Input id="signupVerificationCode" required />
+              <Input disabled id="signupVerificationCode" required />
             </Field>
             <Field>
-              <Button type="submit">Verify</Button>
+              <Button disabled type="submit">
+                Verify
+              </Button>
             </Field>
             <AuthFormFooter />
           </FieldGroup>
