@@ -146,3 +146,21 @@ export const useAuthRequestPasswordReset = () => {
     },
   });
 };
+
+export const useAuthResetPassword = () => {
+  return useMutation({
+    mutationFn: async (value: {
+      newPassword: string;
+      token: string;
+    }) => {
+      const { data, error } = await authClient.resetPassword({
+        newPassword: value.newPassword,
+        token: value.token,
+      });
+      if (error) {
+        throw error;
+      }
+      return data;
+    },
+  });
+};
