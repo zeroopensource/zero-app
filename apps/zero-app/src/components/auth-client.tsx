@@ -130,3 +130,19 @@ export const useAuthSendVerificationEmail = () => {
     },
   });
 };
+
+export const useAuthRequestPasswordReset = () => {
+  return useMutation({
+    mutationFn: async (value: {
+      email: string;
+    }) => {
+      const { data, error } = await authClient.requestPasswordReset({
+        email: value.email,
+      });
+      if (error) {
+        throw error;
+      }
+      return data;
+    },
+  });
+};
