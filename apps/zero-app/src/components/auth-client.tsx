@@ -114,3 +114,19 @@ export const useAuthSetActiveSession = () => {
     },
   });
 };
+
+export const useAuthSendVerificationEmail = () => {
+  return useMutation({
+    mutationFn: async (value: {
+      email: string;
+    }) => {
+      const { data, error } = await authClient.sendVerificationEmail({
+        email: value.email,
+      });
+      if (error) {
+        throw error;
+      }
+      return data;
+    },
+  });
+};
