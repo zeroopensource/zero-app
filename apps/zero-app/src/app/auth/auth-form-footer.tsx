@@ -9,11 +9,15 @@ const links: {
   { label: "Sign in", href: "/auth/signin" },
   { label: "Sign up", href: "/auth/signup" },
   { label: "Forgot Password", href: "/auth/forgot-password" },
+  {
+    label: "Verify Email",
+    href: "/auth/resend-verification-email",
+  },
 ];
 
 export const AuthFormFooter = () => {
   return (
-    <div className="flex justify-center gap-2 *:brightness-50">
+    <div className="flex justify-center gap-1 *:brightness-50">
       {links.map((link, i) => (
         <React.Fragment key={i}>
           {i !== 0 && <span> / </span>}
