@@ -1,14 +1,56 @@
+import { useForm } from "@tanstack/react-form";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import z from "zod";
+import { useAuthRequestPasswordReset } from "@/components/auth-client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 import { ZeroLogo } from "@/components/ui/zero-logo";
+import { ZeroSchema } from "@/lib/zero-schema";
 import { AuthFormFooter } from "../auth-form-footer";
+
+const formSchema = z.object({
+  email: ZeroSchema.shape.email,
+});
 
 export function ForgotPasswordForm({
   className,
   ...props
 }: React.ComponentProps<typeof Card>) {
+  const router = useRouter();
+  const { mutate: sendVerificationEmail, isPending } =
+    useAuthRequestPasswordReset();
+  const form = useForm({
+    defaultValues: {
+      email: "",
+    },
+    validators: {
+      onSubmit: formSchema,
+    },
+    onSubmit: ({ value }) => {
+      sendVerificationEmail(
+        { email: value.email },
+        {
+          onSuccess: () => {
+            toast.success("Recovery email sent!");
+            router.push("/auth/signin");
+          },
+          onError: (error) => {
+            toast.error(error.message);
+          },
+        }
+      );
+    },
+  });
+
   return (
     <Card {...props} className="bg-inherit pt-0 ring-transparent">
       <CardHeader className="flex flex-col items-center gap-3 pt-2 pb-2!">
@@ -18,14 +60,48 @@ export function ForgotPasswordForm({
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <form>
+        <form
+          id="forgot-password-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            form.handleSubmit();
+          }}
+        >
           <FieldGroup>
+            <form.Field
+              children={(field) => {
+                const isInvalid =
+                  field.state.meta.isTouched && !field.state.meta.isValid;
+                return (
+                  <Field>
+                    <FieldLabel htmlFor="email">Email</FieldLabel>
+                    <Input
+                      aria-invalid={isInvalid}
+                      autoComplete="off"
+                      id={field.name}
+                      name={field.name}
+                      onBlur={field.handleBlur}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                      value={field.state.value}
+                    />
+                    {isInvalid && (
+                      <FieldError errors={field.state.meta.errors} />
+                    )}
+                  </Field>
+                );
+              }}
+              name="email"
+            />
+
             <Field>
-              <FieldLabel htmlFor="email">Email</FieldLabel>
-              <Input id="email" required type="email" />
-            </Field>
-            <Field>
-              <Button type="submit">Send Recovery Email</Button>
+              <Button
+                disabled={isPending}
+                form="forgot-password-form"
+                type="submit"
+              >
+                Send
+                {isPending && <Spinner />}
+              </Button>
             </Field>
             <AuthFormFooter />
           </FieldGroup>
