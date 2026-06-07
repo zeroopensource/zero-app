@@ -26,7 +26,7 @@ export function ForgotPasswordForm({
   ...props
 }: React.ComponentProps<typeof Card>) {
   const router = useRouter();
-  const { mutate: sendVerificationEmail, isPending } =
+  const { mutate: requestPasswordReset, isPending } =
     useAuthRequestPasswordReset();
   const form = useForm({
     defaultValues: {
@@ -36,7 +36,7 @@ export function ForgotPasswordForm({
       onSubmit: formSchema,
     },
     onSubmit: ({ value }) => {
-      sendVerificationEmail(
+      requestPasswordReset(
         { email: value.email },
         {
           onSuccess: () => {
