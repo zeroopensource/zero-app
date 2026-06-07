@@ -1,5 +1,6 @@
 import { useForm } from "@tanstack/react-form";
 import { useRouter } from "next/navigation";
+import { useQueryState } from "nuqs";
 import { toast } from "sonner";
 import z from "zod";
 import { useAuthResetPassword } from "@/components/auth-client";
@@ -31,6 +32,7 @@ export function ResetPasswordForm({
   className,
   ...props
 }: React.ComponentProps<typeof Card>) {
+  const [token] = useQueryState("token");
   const router = useRouter();
   const { mutate: resetPassword, isPending } = useAuthResetPassword();
   const form = useForm({
@@ -44,12 +46,12 @@ export function ResetPasswordForm({
     onSubmit: ({ value }) => {
       resetPassword(
         {
-          token: "",
+          token: token || "",
           newPassword: value.newPassword,
         },
         {
           onSuccess: () => {
-            toast.success("Recovery email sent!");
+            toast.success("New password saved!");
             router.push("/auth/signin");
           },
           onError: (error) => {
