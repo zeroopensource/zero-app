@@ -117,9 +117,7 @@ export const useAuthSetActiveSession = () => {
 
 export const useAuthSendVerificationEmail = () => {
   return useMutation({
-    mutationFn: async (value: {
-      email: string;
-    }) => {
+    mutationFn: async (value: { email: string }) => {
       const { data, error } = await authClient.sendVerificationEmail({
         email: value.email,
       });
@@ -133,9 +131,7 @@ export const useAuthSendVerificationEmail = () => {
 
 export const useAuthRequestPasswordReset = () => {
   return useMutation({
-    mutationFn: async (value: {
-      email: string;
-    }) => {
+    mutationFn: async (value: { email: string }) => {
       const { data, error } = await authClient.requestPasswordReset({
         email: value.email,
       });
@@ -149,13 +145,26 @@ export const useAuthRequestPasswordReset = () => {
 
 export const useAuthResetPassword = () => {
   return useMutation({
-    mutationFn: async (value: {
-      newPassword: string;
-      token: string;
-    }) => {
+    mutationFn: async (value: { newPassword: string; token: string }) => {
       const { data, error } = await authClient.resetPassword({
         newPassword: value.newPassword,
         token: value.token,
+      });
+      if (error) {
+        throw error;
+      }
+      return data;
+    },
+  });
+};
+
+export const useAuthVerifyEmail = () => {
+  return useMutation({
+    mutationFn: async (value: { token: string }) => {
+      const { data, error } = await authClient.verifyEmail({
+        query: {
+          token: value.token,
+        },
       });
       if (error) {
         throw error;

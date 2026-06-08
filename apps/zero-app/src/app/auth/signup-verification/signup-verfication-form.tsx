@@ -1,3 +1,4 @@
+import { useQueryState } from "nuqs";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
@@ -9,6 +10,8 @@ export function SignupVerificationForm({
   className,
   ...props
 }: React.ComponentProps<typeof Card>) {
+  const [token] = useQueryState("token");
+
   return (
     <Card {...props} className="bg-inherit pt-0 ring-transparent">
       <CardHeader className="flex flex-col items-center gap-3 pt-2 pb-2!">
