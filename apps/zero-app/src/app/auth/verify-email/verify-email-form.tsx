@@ -36,8 +36,6 @@ export function VerifyEmailForm({
     }
   }, [token, router, verifyEmail]);
 
-  console.log(token);
-
   return (
     <Card {...props} className="bg-inherit pt-0 ring-transparent">
       <CardHeader className="flex flex-col items-center gap-3 pt-2 pb-2!">
