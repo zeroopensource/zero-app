@@ -2,6 +2,7 @@ import { useForm } from "@tanstack/react-form";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import z from "zod";
+import { useAuthSignUp } from "@/components/auth-client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -11,9 +12,9 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
 import { ZeroLogo } from "@/components/ui/zero-logo";
 import { ZeroSchema } from "@/lib/zero-schema";
-import { authClient } from "@/root/src/components/auth-client";
 import { AuthFormFooter } from "../auth-form-footer";
 
 const formSchema = z
@@ -29,6 +30,7 @@ const formSchema = z
 
 export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
   const router = useRouter();
+  const { mutate: signUp, isPending } = useAuthSignUp();
   const form = useForm({
     defaultValues: {
       email: "",
@@ -39,7 +41,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
       onSubmit: formSchema,
     },
     onSubmit: async ({ value }) => {
-      await authClient.signUp.email(
+      await signUp(
         {
           name: value.email,
           email: value.email,
@@ -51,8 +53,8 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
           ) => {
             router.push("/auth/signin");
           },
-          onError: (ctx) => {
-            toast.error(ctx.error.message);
+          onError: (error) => {
+            toast.error(error.message);
           },
         }
       );
@@ -60,10 +62,11 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
   });
 
   return (
-    <Card {...props} className="pt-0">
-      <CardHeader className="border-b pt-2 pb-2!">
-        <CardTitle className="flex items-center gap-1">
-          Create a <ZeroLogo className="h-4! w-4!" /> Account
+    <Card {...props} className="bg-inherit pt-0 ring-transparent">
+      <CardHeader className="flex flex-col items-center gap-3 pt-2 pb-2!">
+        <ZeroLogo className="h-10! w-10!" />
+        <CardTitle className="flex items-center gap-1 text-xl">
+          Sign up to Zero
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -154,8 +157,9 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
             />
             <FieldGroup>
               <Field>
-                <Button form="signup-form" type="submit">
+                <Button disabled={isPending} form="signup-form" type="submit">
                   Sign up
+                  {isPending && <Spinner />}
                 </Button>
               </Field>
               <AuthFormFooter />

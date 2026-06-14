@@ -1,6 +1,6 @@
 import type { MDXComponents } from "mdx/types";
-
 import { cn } from "@/lib/utils";
+import { ZeroCommunityComments } from "@/root/src/components/ui/zero-community-comments";
 
 const components: MDXComponents = {
   wrapper: ({ children }) => (
@@ -8,6 +8,7 @@ const components: MDXComponents = {
       className={cn("markdown-body", "!text-zinc-300 !mx-auto max-w-3xl")}
     >
       {children}
+      <ZeroCommunityComments />
     </article>
   ),
 };

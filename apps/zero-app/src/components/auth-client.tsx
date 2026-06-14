@@ -29,6 +29,28 @@ export const useAuthDeviceSessions = () => {
   });
 };
 
+export const useAuthSignUp = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (value: {
+      name: string;
+      email: string;
+      password: string;
+    }) => {
+      const { data, error } = await authClient.signUp.email({
+        name: value.name,
+        email: value.email,
+        password: value.password,
+      });
+      if (error) {
+        throw error;
+      }
+      queryClient.invalidateQueries({ queryKey: ["auth-device-sessions"] });
+      return data;
+    },
+  });
+};
+
 export const useAuthSignIn = () => {
   const queryClient = useQueryClient();
   return useMutation({
@@ -88,6 +110,65 @@ export const useAuthSetActiveSession = () => {
         throw error;
       }
       queryClient.invalidateQueries({ queryKey: ["auth-device-sessions"] });
+      return data;
+    },
+  });
+};
+
+export const useAuthSendVerificationEmail = () => {
+  return useMutation({
+    mutationFn: async (value: { email: string }) => {
+      const { data, error } = await authClient.sendVerificationEmail({
+        email: value.email,
+      });
+      if (error) {
+        throw error;
+      }
+      return data;
+    },
+  });
+};
+
+export const useAuthRequestPasswordReset = () => {
+  return useMutation({
+    mutationFn: async (value: { email: string }) => {
+      const { data, error } = await authClient.requestPasswordReset({
+        email: value.email,
+      });
+      if (error) {
+        throw error;
+      }
+      return data;
+    },
+  });
+};
+
+export const useAuthResetPassword = () => {
+  return useMutation({
+    mutationFn: async (value: { newPassword: string; token: string }) => {
+      const { data, error } = await authClient.resetPassword({
+        newPassword: value.newPassword,
+        token: value.token,
+      });
+      if (error) {
+        throw error;
+      }
+      return data;
+    },
+  });
+};
+
+export const useAuthVerifyEmail = () => {
+  return useMutation({
+    mutationFn: async (value: { token: string }) => {
+      const { data, error } = await authClient.verifyEmail({
+        query: {
+          token: value.token,
+        },
+      });
+      if (error) {
+        throw error;
+      }
       return data;
     },
   });

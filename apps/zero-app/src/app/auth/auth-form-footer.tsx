@@ -9,6 +9,10 @@ const links: {
   { label: "Sign in", href: "/auth/signin" },
   { label: "Sign up", href: "/auth/signup" },
   { label: "Forgot Password", href: "/auth/forgot-password" },
+  {
+    label: "Verify Email",
+    href: "/auth/resend-verification-email",
+  },
 ];
 
 export const AuthFormFooter = () => {
@@ -17,7 +21,10 @@ export const AuthFormFooter = () => {
       {links.map((link, i) => (
         <React.Fragment key={i}>
           {i !== 0 && <span> / </span>}
-          <Link className="hover:brightness-75" href={link.href}>
+          <Link
+            className="underline hover:text-blue-400 hover:brightness-100"
+            href={link.href}
+          >
             {link.label}
           </Link>
         </React.Fragment>

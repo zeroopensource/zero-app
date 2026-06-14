@@ -1,8 +1,8 @@
 import { useForm } from "@tanstack/react-form";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { z } from "zod";
-import { useAuthSignIn } from "@/components/auth-client";
+import z from "zod";
+import { useAuthSendVerificationEmail } from "@/components/auth-client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -19,29 +19,29 @@ import { AuthFormFooter } from "../auth-form-footer";
 
 const formSchema = z.object({
   email: ZeroSchema.shape.email,
-  password: ZeroSchema.shape.password,
 });
 
-export function SigninForm({
+export function ResendVerificationEmailForm({
   className,
   ...props
 }: React.ComponentProps<typeof Card>) {
   const router = useRouter();
-  const { mutate: signIn, isPending } = useAuthSignIn();
+  const { mutate: sendVerificationEmail, isPending } =
+    useAuthSendVerificationEmail();
   const form = useForm({
     defaultValues: {
       email: "",
-      password: "",
     },
     validators: {
       onSubmit: formSchema,
     },
     onSubmit: ({ value }) => {
-      signIn(
-        { email: value.email, password: value.password },
+      sendVerificationEmail(
+        { email: value.email },
         {
           onSuccess: () => {
-            router.push("/app");
+            toast.success("Verification email sent!");
+            router.push("/auth/signin");
           },
           onError: (error) => {
             toast.error(error.message);
@@ -56,12 +56,12 @@ export function SigninForm({
       <CardHeader className="flex flex-col items-center gap-3 pt-2 pb-2!">
         <ZeroLogo className="h-10! w-10!" />
         <CardTitle className="flex items-center gap-1 text-xl">
-          Sign in to Zero
+          Resend Verification Email
         </CardTitle>
       </CardHeader>
       <CardContent>
         <form
-          id="signin-form"
+          id="resend-verification-form"
           onSubmit={(e) => {
             e.preventDefault();
             form.handleSubmit();
@@ -92,36 +92,14 @@ export function SigninForm({
               }}
               name="email"
             />
-            <form.Field
-              children={(field) => {
-                const isInvalid =
-                  field.state.meta.isTouched && !field.state.meta.isValid;
-                return (
-                  <Field>
-                    <div className="flex items-center">
-                      <FieldLabel htmlFor="password">Password</FieldLabel>
-                    </div>
-                    <Input
-                      aria-invalid={isInvalid}
-                      autoComplete="off"
-                      id={field.name}
-                      name={field.name}
-                      onBlur={field.handleBlur}
-                      onChange={(e) => field.handleChange(e.target.value)}
-                      type="password"
-                      value={field.state.value}
-                    />
-                    {isInvalid && (
-                      <FieldError errors={field.state.meta.errors} />
-                    )}
-                  </Field>
-                );
-              }}
-              name="password"
-            />
+
             <Field>
-              <Button disabled={isPending} form="signin-form" type="submit">
-                Sign in
+              <Button
+                disabled={isPending}
+                form="resend-verification-form"
+                type="submit"
+              >
+                Send
                 {isPending && <Spinner />}
               </Button>
             </Field>

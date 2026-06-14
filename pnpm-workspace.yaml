@@ -8,5 +8,18 @@ catalog:
   typescript: ^5.9.3
 
 supportedArchitectures:
-  cpu: [x64, arm64]
-  os: [win32, darwin, current]
+  cpu: [ x64, arm64 ]
+  os: [ win32, darwin, current ]
+
+blockExoticSubdeps: false
+
+allowBuilds:
+  '@bitdisaster/exe-icon-extractor': true
+  '@electron/build-tools': true
+  electron: true
+  electron-winstaller: true
+  esbuild: true
+  fs-xattr: true
+  macos-alias: true
+  msw: true
+  sharp: true
