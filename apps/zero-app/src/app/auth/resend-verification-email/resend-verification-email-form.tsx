@@ -2,7 +2,7 @@ import { useForm } from "@tanstack/react-form";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import z from "zod";
-import { useAuthRequestPasswordReset } from "@/components/auth-client";
+import { useAuthSendVerificationEmail } from "@/components/auth-client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -21,13 +21,13 @@ const formSchema = z.object({
   email: ZeroSchema.shape.email,
 });
 
-export function ForgotPasswordForm({
+export function ResendVerificationEmailForm({
   className,
   ...props
 }: React.ComponentProps<typeof Card>) {
   const router = useRouter();
-  const { mutate: requestPasswordReset, isPending } =
-    useAuthRequestPasswordReset();
+  const { mutate: sendVerificationEmail, isPending } =
+    useAuthSendVerificationEmail();
   const form = useForm({
     defaultValues: {
       email: "",
@@ -36,11 +36,11 @@ export function ForgotPasswordForm({
       onSubmit: formSchema,
     },
     onSubmit: ({ value }) => {
-      requestPasswordReset(
+      sendVerificationEmail(
         { email: value.email },
         {
           onSuccess: () => {
-            toast.success("Recovery email sent!");
+            toast.success("Verification email sent!");
             router.push("/auth/signin");
           },
           onError: (error) => {
@@ -56,12 +56,12 @@ export function ForgotPasswordForm({
       <CardHeader className="flex flex-col items-center gap-3 pt-2 pb-2!">
         <ZeroLogo className="h-10! w-10!" />
         <CardTitle className="flex items-center gap-1 text-xl">
-          Forgot Password
+          Resend Verification Email
         </CardTitle>
       </CardHeader>
       <CardContent>
         <form
-          id="forgot-password-form"
+          id="resend-verification-form"
           onSubmit={(e) => {
             e.preventDefault();
             form.handleSubmit();
@@ -96,7 +96,7 @@ export function ForgotPasswordForm({
             <Field>
               <Button
                 disabled={isPending}
-                form="forgot-password-form"
+                form="resend-verification-form"
                 type="submit"
               >
                 Send
