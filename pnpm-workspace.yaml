@@ -11,7 +11,14 @@ supportedArchitectures:
   cpu: [ x64, arm64 ]
   os: [ win32, darwin, current ]
 
-nodeLinker: hoisted
+nodeLinker: isolated
+publicHoistPattern:
+  - electron*
+  - "@electron/*"
+  - "@electron-forge/*"
+  - electron-forge
+  - electron-squirrel-startup
+  - electron-serve
 sharedWorkspaceLockfile: false
 
 blockExoticSubdeps: false
