@@ -41,6 +41,10 @@ pnpm --filter zero-app install:electron
 pnpm --filter zero-app install:electron-winstaller
 ```
 
+```bash
+pnpm install --ignore-scripts
+```
+
 ## Update Icons
 
 place icons in `src-capacitor/assets`
