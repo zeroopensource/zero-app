@@ -11,6 +11,9 @@ supportedArchitectures:
   cpu: [ x64, arm64 ]
   os: [ win32, darwin, current ]
 
+nodeLinker: hoisted
+sharedWorkspaceLockfile: false
+
 blockExoticSubdeps: false
 
 allowBuilds:
