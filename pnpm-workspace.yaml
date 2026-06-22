@@ -11,7 +11,7 @@ supportedArchitectures:
   cpu: [ x64, arm64 ]
   os: [ win32, darwin, current ]
 
-nodeLinker: isolated
+nodeLinker: hoisted
 publicHoistPattern:
   - electron*
   - "@electron/*"
@@ -22,6 +22,9 @@ publicHoistPattern:
 sharedWorkspaceLockfile: false
 
 blockExoticSubdeps: false
+
+onlyBuiltDependencies:
+- electron-winstaller
 
 allowBuilds:
   '@bitdisaster/exe-icon-extractor': true
