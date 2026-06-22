@@ -43,6 +43,7 @@ pnpm --filter zero-app install:electron-winstaller
 
 ```bash
 pnpm install --ignore-scripts
+pnpm --filter zero-app rebuild:windows
 ```
 
 ## Update Icons
