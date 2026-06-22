@@ -12,9 +12,19 @@ supportedArchitectures:
   os: [ win32, darwin, current ]
 
 nodeLinker: hoisted
+publicHoistPattern:
+  - electron*
+  - "@electron/*"
+  - "@electron-forge/*"
+  - electron-forge
+  - electron-squirrel-startup
+  - electron-serve
 sharedWorkspaceLockfile: false
 
 blockExoticSubdeps: false
+
+onlyBuiltDependencies:
+- electron-winstaller
 
 allowBuilds:
   '@bitdisaster/exe-icon-extractor': true
