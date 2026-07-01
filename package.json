@@ -27,7 +27,7 @@
     "ultracite": "7.0.11",
     "@zeroopensource/zero-cli": "latest"
   },
-  "packageManager": "pnpm@11.8.0",
+  "packageManager": "pnpm@11.5.2",
   "engines": {
     "node": ">=18"
   }
