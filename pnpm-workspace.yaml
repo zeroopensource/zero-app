@@ -13,12 +13,6 @@ supportedArchitectures:
 
 blockExoticSubdeps: false
 
-onlyBuiltDependencies:
-- electron-winstaller
-
-ignoredBuiltDependencies:
-- sharp
-
 allowBuilds:
   '@bitdisaster/exe-icon-extractor': true
   '@electron/build-tools': true
@@ -28,4 +22,4 @@ allowBuilds:
   fs-xattr: true
   macos-alias: true
   msw: true
-  sharp: false
+  sharp: true
