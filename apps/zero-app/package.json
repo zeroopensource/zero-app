@@ -44,6 +44,7 @@
     "temp:build:electronbuilder": "pnpm build:web && electron-builder"
   },
   "dependencies": {
+    "@base-ui/react": "^1.6.0",
     "@capacitor/android": "^8.1.0",
     "@capacitor/core": "^8.1.0",
     "@capacitor/ios": "^8.1.0",
@@ -79,7 +80,7 @@
     "react-day-picker": "^9.13.0",
     "react-dom": "catalog:",
     "react-resizable-panels": "^4.4.2",
-    "recharts": "2.15.4",
+    "recharts": "3.9.2",
     "remark-gfm": "4.0.1",
     "shadcn": "^4.1.0",
     "sonner": "^2.0.5",
