@@ -4,6 +4,7 @@
 // import { DataTable } from "@/components/data-table/data-table";
 // import { RecordTable } from "./record-table/record-table";
 // import { columns, taskSchema } from "./record-table/record-table-columns";
+import { UnderMaintenanceCard } from "@/components/cards/under-maintenance-card";
 
 // const tasks = [
 //   {
@@ -791,9 +792,9 @@
 export default function Page() {
   // const data = z.array(taskSchema).parse(tasks);
   return (
-    <div className="mx-auto flex flex-1 p-2">
+    <div className="flex flex-1 p-2">
       {/* <RecordTable columns={columns} data={data} /> */}
-      {/* <UnderMaintenanceCard /> */}
+      <UnderMaintenanceCard />
       {/* <DataTable columns={columns} data={data} /> */}
     </div>
   );
